@@ -1,4 +1,6 @@
 using BookLibraryApi.Contexts;
+using BookLibraryApi.Repositories.GenreRepository;
+using EmployeeApi.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -6,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json.Serialization;
+using System;
 
 namespace BookLibraryApi
 {
@@ -38,6 +41,12 @@ namespace BookLibraryApi
             {
                 options.UseSqlServer(Configuration.GetConnectionString("EmployeeContext"));
             });
+
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+            services.AddTransient<IPropertyCheckerService, PropertyCheckerService>();
+
+            services.AddScoped<IGenreRepository, GenreRepository>();
 
         }
 
