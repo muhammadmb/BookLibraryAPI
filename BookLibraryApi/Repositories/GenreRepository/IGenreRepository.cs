@@ -2,8 +2,6 @@
 using BookLibraryApi.Helper;
 using BookLibraryApi.ResourceParameters;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace BookLibraryApi.Repositories.GenreRepository
@@ -12,5 +10,8 @@ namespace BookLibraryApi.Repositories.GenreRepository
     {
         Task<PagedList<Genre>> GetGenres(GenreResourcesParameters genreResourcesParameters);
         Task<Genre> GetGenre(Guid id);
+        void CreateGenre(Genre genre);
+        void UpdateGenre(Genre genre);
+        Task<bool> SaveChangesAsync();
     }
 }

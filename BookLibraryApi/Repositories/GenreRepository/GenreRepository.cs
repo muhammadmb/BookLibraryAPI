@@ -39,5 +39,20 @@ namespace BookLibraryApi.Repositories.GenreRepository
         {
             return await _context.Genres.FirstOrDefaultAsync(g => g.Id == id);
         }
+
+        public void CreateGenre(Genre genre)
+        {
+            _context.Genres.Add(genre);
+        }
+
+        public void UpdateGenre(Genre genre)
+        {
+            _context.Genres.Update(genre);
+        }
+
+        public async Task<bool> SaveChangesAsync()
+        {
+            return (await _context.SaveChangesAsync() > 0);
+        }
     }
 }

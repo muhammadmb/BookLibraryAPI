@@ -1,10 +1,6 @@
 ﻿using AutoMapper;
 using BookLibraryApi.Entities;
-using BookLibraryApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using BookLibraryApi.Models.GenreModels;
 
 namespace BookLibraryApi.Profiles
 {
@@ -13,6 +9,8 @@ namespace BookLibraryApi.Profiles
         public GenreProfile()
         {
             CreateMap<Genre, GenreDto>();
+            CreateMap<GenreCreation, Genre>();
+            CreateMap<GenreUpdate, Genre>();
         }
     }
 }

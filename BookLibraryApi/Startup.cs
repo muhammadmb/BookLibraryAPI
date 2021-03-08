@@ -1,4 +1,5 @@
 using BookLibraryApi.Contexts;
+using BookLibraryApi.Repositories.BookReposittory;
 using BookLibraryApi.Repositories.GenreRepository;
 using EmployeeApi.Services;
 using Microsoft.AspNetCore.Builder;
@@ -47,6 +48,7 @@ namespace BookLibraryApi
             services.AddTransient<IPropertyCheckerService, PropertyCheckerService>();
 
             services.AddScoped<IGenreRepository, GenreRepository>();
+            services.AddScoped<IBookRepository, BookRepository>();
 
         }
 

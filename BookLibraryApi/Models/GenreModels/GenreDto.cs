@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace BookLibraryApi.Models
+namespace BookLibraryApi.Models.GenreModels
 {
     public class GenreDto
     {
@@ -12,5 +9,7 @@ namespace BookLibraryApi.Models
         public string Description { get; set; }
 
         public string GenreName { get; set; }
+
+        public string PicUrl { get; set; }
     }
 }

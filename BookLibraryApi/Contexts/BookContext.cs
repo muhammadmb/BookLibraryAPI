@@ -49,24 +49,28 @@ namespace BookLibraryApi.Contexts
                 {
                     Id = Guid.Parse("00000000-0000-0000-abcd-000000000000"),
                     Description = "Suspendisse id accumsan lacus. Phasellus condimentum volutpat libero id finibus.",
+                    PicUrl = "https://ex.com",
                     GenreName = "Art"
                 },
                 new Genre
                 {
                     Id = Guid.Parse("00000000-0000-0000-abcd-000000000001"),
                     Description = "Suspendisse id accumsan lacus. Phasellus condimentum volutpat libero id finibus.",
+                    PicUrl = "https://ex.com",
                     GenreName = "Fantasy"
                 },
                 new Genre
                 {
                     Id = Guid.Parse("00000000-0000-0000-abcd-000000000002"),
                     Description = "Suspendisse id accumsan lacus. Phasellus condimentum volutpat libero id finibus.",
+                    PicUrl = "https://ex.com",
                     GenreName = "History"
                 },
                 new Genre
                 {
                     Id = Guid.Parse("00000000-0000-0000-abcd-000000000003"),
                     Description = "Suspendisse id accumsan lacus. Phasellus condimentum volutpat libero id finibus.",
+                    PicUrl = "https://ex.com",
                     GenreName = "Poetry"
                 }
                 );

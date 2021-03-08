@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
+using BookLibraryApi.Entities;
 using BookLibraryApi.Helper;
-using BookLibraryApi.Models;
+using BookLibraryApi.Models.GenreModels;
 using BookLibraryApi.Repositories.GenreRepository;
 using BookLibraryApi.ResourceParameters;
 using EmployeeApi.Services;
@@ -43,7 +44,7 @@ namespace BookLibraryApi.Controllers
 
             var GenreGromRepo = await _genreRepository.GetGenres(parameters);
 
-            if(GenreGromRepo == null)
+            if (GenreGromRepo == null)
             {
                 return NotFound();
             }
@@ -52,11 +53,11 @@ namespace BookLibraryApi.Controllers
             return Ok(shapedData);
         }
 
-        [HttpGet("{id}",Name ="GetGenre")]
+        [HttpGet("{id}", Name = "GetGenre")]
         [HttpHead("{id}")]
         public async Task<IActionResult> GetGenre(Guid id, string fields)
         {
-            if(id == null)
+            if (id == null)
             {
                 throw new ArgumentNullException(nameof(id));
             }
@@ -68,7 +69,7 @@ namespace BookLibraryApi.Controllers
 
             var GenreFromRepo = await _genreRepository.GetGenre(id);
 
-            if(GenreFromRepo == null)
+            if (GenreFromRepo == null)
             {
                 return NotFound();
             }
@@ -78,5 +79,58 @@ namespace BookLibraryApi.Controllers
             return Ok(shapedData);
         }
 
+        [HttpPost()]
+        public async Task<IActionResult> Create(GenreCreation genreCreation)
+        {
+            if (genreCreation == null)
+            {
+                throw new ArgumentNullException(nameof(genreCreation));
+            }
+
+            var CreatedGenre = _mapper.Map<Genre>(genreCreation);
+
+            _genreRepository.CreateGenre(CreatedGenre);
+
+            await _genreRepository.SaveChangesAsync();
+
+            return CreatedAtRoute(
+                "GetGenre",
+                new { id = CreatedGenre.Id },
+                $"the {genreCreation.GenreName} Genre is successfuly created");
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(Guid id, GenreUpdate genreUpdate)
+        {
+            if (genreUpdate == null)
+            {
+                throw new ArgumentNullException(nameof(genreUpdate));
+            }
+
+            var genreFromRepo = await _genreRepository.GetGenre(id);
+
+            if (genreFromRepo == null)
+            {
+                return NotFound();
+            }
+
+            _mapper.Map(genreUpdate, genreFromRepo);
+            _genreRepository.UpdateGenre(genreFromRepo);
+            await _genreRepository.SaveChangesAsync();
+            return NoContent();
+        }
+        [HttpOptions()]
+        public IActionResult GetGenresOptions()
+        {
+            Response.Headers.Add("Allow", "Get, Post, Head, Options");
+            return Ok();
+        }
+
+        [HttpOptions("{id}")]
+        public IActionResult GetGenreOptions()
+        {
+            Response.Headers.Add("Allow", "Get, Head, Put, Options");
+            return Ok();
+        }
     }
 }
