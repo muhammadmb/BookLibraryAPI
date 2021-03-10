@@ -1,4 +1,5 @@
 using BookLibraryApi.Contexts;
+using BookLibraryApi.Repositories.AuthorRepository;
 using BookLibraryApi.Repositories.BookReposittory;
 using BookLibraryApi.Repositories.GenreRepository;
 using EmployeeApi.Services;
@@ -49,6 +50,7 @@ namespace BookLibraryApi
 
             services.AddScoped<IGenreRepository, GenreRepository>();
             services.AddScoped<IBookRepository, BookRepository>();
+            services.AddScoped<IAuthorRepository, AuthorRepository>();
 
         }
 

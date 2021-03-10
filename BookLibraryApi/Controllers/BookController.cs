@@ -63,6 +63,11 @@ namespace BookLibraryApi.Controllers
             Guid BookId,
             [FromQuery] string fields)
         {
+            if (!_propertyCheckerService.TypeHasProperties<BookDto>(fields))
+            {
+                return NotFound();
+            }
+
             var BookFromRepo = await _bookRepository.GetBook(GenreId, BookId);
 
             if(BookFromRepo == null)
@@ -80,6 +85,11 @@ namespace BookLibraryApi.Controllers
             Guid GenreId,
             [FromBody] BookCreation bookCreation)
         {
+            if(bookCreation == null)
+            {
+                throw new ArgumentNullException(nameof(bookCreation));
+            }
+
             var book = _mapper.Map<Book>(bookCreation);
             _bookRepository.Create(GenreId, book);
             await _bookRepository.SaveChangesAsync();
@@ -99,6 +109,11 @@ namespace BookLibraryApi.Controllers
         {
             var bookFromRepo = await _bookRepository.GetBook(GenreId, BookId);
 
+            if(bookFromRepo == null)
+            {
+                return NotFound();
+            }
+
             _mapper.Map(bookUpdate,bookFromRepo);
             _bookRepository.Update(bookFromRepo);
             await _bookRepository.SaveChangesAsync();
@@ -110,6 +125,11 @@ namespace BookLibraryApi.Controllers
         public async Task<IActionResult> PartialUpdate(Guid GenreId, Guid BookId, JsonPatchDocument<BookUpdate> patchDocument)
         {
             var bookFromRepo = await _bookRepository.GetBook(GenreId ,BookId);
+
+            if(bookFromRepo == null)
+            {
+                return NotFound();
+            }
 
             var book = _mapper.Map<BookUpdate>(bookFromRepo);
 

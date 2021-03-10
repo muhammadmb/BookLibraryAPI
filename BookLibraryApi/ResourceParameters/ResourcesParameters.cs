@@ -1,24 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace BookLibraryApi.ResourceParameters
+﻿namespace BookLibraryApi.ResourceParameters
 {
     public class ResourcesParameters
     {
         const int MaxPageSize = 16;
-       
+
         public int PageNumber { get; set; } = 1;
-        
+
         private int _PageSize = 12;
-        
-        public int PageSize 
+
+        public int PageSize
         {
             get => _PageSize;
             set => _PageSize = value > MaxPageSize ? MaxPageSize : value;
         }
-        
+
         public string Fields { get; set; }
     }
 }

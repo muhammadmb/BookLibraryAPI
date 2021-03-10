@@ -16,6 +16,7 @@ namespace BookLibraryApi.Profiles
             CreateMap<BookUpdate, Book>();
             CreateMap<Book, BookUpdate>();
             CreateMap<BookCreation, Book>();
+            CreateMap<Book, BookForAuthor>();
         }
     }
 }

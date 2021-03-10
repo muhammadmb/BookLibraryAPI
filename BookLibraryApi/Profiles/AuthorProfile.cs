@@ -9,6 +9,10 @@ namespace BookLibraryApi.Profiles
         public AuthorProfile()
         {
             CreateMap<Author, AuthorForBook>();
+            CreateMap<Author, AuthorDto>();
+            CreateMap<AuthorCreation, Author>();
+            CreateMap<UpdateAuthor, Author>();
+            CreateMap<Author, UpdateAuthor>();
         }
     }
 }
