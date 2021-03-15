@@ -2,6 +2,7 @@ using BookLibraryApi.Contexts;
 using BookLibraryApi.Repositories.AuthorRepository;
 using BookLibraryApi.Repositories.BookReposittory;
 using BookLibraryApi.Repositories.GenreRepository;
+using BookLibraryApi.Repositories.ReviewsRepository;
 using EmployeeApi.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -26,6 +27,17 @@ namespace BookLibraryApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            // for front end test
+            services.AddCors(options =>
+            {
+                options.AddPolicy("testPolicy",
+                    builder =>
+                    {
+                        builder.WithOrigins().AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+                    });
+            });
+
             services.AddControllers()
                 .AddNewtonsoftJson(
                     x => x.SerializerSettings.ReferenceLoopHandling =
@@ -51,6 +63,7 @@ namespace BookLibraryApi
             services.AddScoped<IGenreRepository, GenreRepository>();
             services.AddScoped<IBookRepository, BookRepository>();
             services.AddScoped<IAuthorRepository, AuthorRepository>();
+            services.AddScoped<IReviewsRepository, ReviewsRepository>();
 
         }
 
@@ -64,6 +77,8 @@ namespace BookLibraryApi
             }
 
             app.UseRouting();
+
+            app.UseCors();
 
             app.UseAuthorization();
 

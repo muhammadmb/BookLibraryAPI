@@ -1,15 +1,16 @@
 ﻿using AutoMapper;
+using BookLibraryApi.Entities;
+using BookLibraryApi.Helper;
 using BookLibraryApi.Models.BookModels;
 using BookLibraryApi.Repositories.BookReposittory;
 using BookLibraryApi.ResourceParameters;
+using EmployeeApi.Services;
+using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using BookLibraryApi.Helper;
-using EmployeeApi.Services;
-using BookLibraryApi.Entities;
-using Microsoft.AspNetCore.JsonPatch;
 
 namespace BookLibraryApi.Controllers
 {
@@ -33,9 +34,10 @@ namespace BookLibraryApi.Controllers
             _mapper = mapper ??
                 throw new ArgumentNullException(nameof(mapper));
         }
-
+        [EnableCors("testPolicy")]
         [HttpGet(Name = "GetBooks")]
         [HttpHead]
+
         public async Task<IActionResult> GetBooks(Guid GenreId,
             [FromQuery] BookResourceParameters parameters)
         {
@@ -47,7 +49,7 @@ namespace BookLibraryApi.Controllers
 
             var Books = await _bookRepository.GetBooks(GenreId, parameters);
 
-            if(Books == null)
+            if (Books == null)
             {
                 return NotFound();
             }
@@ -56,7 +58,7 @@ namespace BookLibraryApi.Controllers
             return Ok(BooksToReturn);
         }
 
-        [HttpGet("{BookId}", Name ="GetBook")]
+        [HttpGet("{BookId}", Name = "GetBook")]
         [HttpHead("{BookId}")]
         public async Task<IActionResult> GetBook(
             Guid GenreId,
@@ -70,7 +72,7 @@ namespace BookLibraryApi.Controllers
 
             var BookFromRepo = await _bookRepository.GetBook(GenreId, BookId);
 
-            if(BookFromRepo == null)
+            if (BookFromRepo == null)
             {
                 return NotFound();
             }
@@ -85,7 +87,7 @@ namespace BookLibraryApi.Controllers
             Guid GenreId,
             [FromBody] BookCreation bookCreation)
         {
-            if(bookCreation == null)
+            if (bookCreation == null)
             {
                 throw new ArgumentNullException(nameof(bookCreation));
             }
@@ -96,7 +98,7 @@ namespace BookLibraryApi.Controllers
 
             return CreatedAtRoute(
                 "GetBook",
-                new { book.GenreId ,BookId = book.Id },
+                new { book.GenreId, BookId = book.Id },
                 $"the {book.BookTitle} is added successfuly"
                 );
         }
@@ -109,12 +111,12 @@ namespace BookLibraryApi.Controllers
         {
             var bookFromRepo = await _bookRepository.GetBook(GenreId, BookId);
 
-            if(bookFromRepo == null)
+            if (bookFromRepo == null)
             {
                 return NotFound();
             }
 
-            _mapper.Map(bookUpdate,bookFromRepo);
+            _mapper.Map(bookUpdate, bookFromRepo);
             _bookRepository.Update(bookFromRepo);
             await _bookRepository.SaveChangesAsync();
 
@@ -124,9 +126,9 @@ namespace BookLibraryApi.Controllers
         [HttpPatch("{BookId}")]
         public async Task<IActionResult> PartialUpdate(Guid GenreId, Guid BookId, JsonPatchDocument<BookUpdate> patchDocument)
         {
-            var bookFromRepo = await _bookRepository.GetBook(GenreId ,BookId);
+            var bookFromRepo = await _bookRepository.GetBook(GenreId, BookId);
 
-            if(bookFromRepo == null)
+            if (bookFromRepo == null)
             {
                 return NotFound();
             }
