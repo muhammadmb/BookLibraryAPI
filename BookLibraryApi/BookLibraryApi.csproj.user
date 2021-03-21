@@ -10,5 +10,6 @@
     <WebStackScaffolding_LayoutPageFile />
     <WebStackScaffolding_DbContextTypeFullName>BookLibraryApi.Contexts.BookContext</WebStackScaffolding_DbContextTypeFullName>
     <WebStackScaffolding_IsAsyncSelected>False</WebStackScaffolding_IsAsyncSelected>
+    <NameOfLastUsedPublishProfile>OnlineBookLibraryApi - Web Deploy</NameOfLastUsedPublishProfile>
   </PropertyGroup>
 </Project>

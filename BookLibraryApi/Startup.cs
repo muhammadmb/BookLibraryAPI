@@ -53,7 +53,7 @@ namespace BookLibraryApi
 
             services.AddDbContext<BookContext>(options =>
             {
-                options.UseSqlServer(Configuration.GetConnectionString("EmployeeContext"));
+                options.UseSqlServer(Configuration.GetConnectionString("BookContext"));
             });
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -65,8 +65,8 @@ namespace BookLibraryApi
             services.AddScoped<IAuthorRepository, AuthorRepository>();
             services.AddScoped<IReviewsRepository, ReviewsRepository>();
 
+            services.AddSwaggerGen();
         }
-
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -81,6 +81,8 @@ namespace BookLibraryApi
             app.UseCors();
 
             app.UseAuthorization();
+
+            app.UseSwagger();
 
             app.UseEndpoints(endpoints =>
             {

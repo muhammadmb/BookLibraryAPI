@@ -1,0 +1,38 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "restored": true,
+      "restoreTime": "2021-03-21T16:33:00.8253289Z"
+    }
+  },
+  "parameters": {
+    "OnlineBookLibraryApi.resourceGroupName": {
+      "Type": "resourceGroup",
+      "Value": "OnlineBookLibraryApiResourceGroup"
+    },
+    "mssql1.subscriptionId": {
+      "Type": "subscription",
+      "Value": "74efcfdc-bd56-4cfb-b77e-af336699d45f"
+    },
+    "mssql1.resourceGroupName": {
+      "Type": "resourceGroup",
+      "Value": "OnlineBookLibraryApiResourceGroup"
+    },
+    "OnlineBookLibraryApi.resourceName": {
+      "Type": null,
+      "Value": "OnlineBookLibraryApi"
+    },
+    "subscriptionId": {
+      "Type": "subscription",
+      "Value": "74efcfdc-bd56-4cfb-b77e-af336699d45f"
+    },
+    "OnlineBookLibraryApi.resourceGroupLocation": {
+      "Type": null,
+      "Value": "southcentralus"
+    },
+    "OnlineBookLibraryApi.subscriptionId": {
+      "Type": "subscription",
+      "Value": "74efcfdc-bd56-4cfb-b77e-af336699d45f"
+    }
+  }
+}

@@ -54,6 +54,7 @@ namespace BookLibraryApi.Repositories.ReviewsRepository
 
         public void CreateReview(Review review)
         {
+            review.handelRatting(_context);
             _context.Reviews.Add(review);
         }
         public void UpdateReview(Review review)

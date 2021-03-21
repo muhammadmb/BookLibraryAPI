@@ -1,5 +1,6 @@
 ﻿using BookLibraryApi.Models.AuthorsModels;
 using BookLibraryApi.Models.GenreModels;
+using BookLibraryApi.Models.RatingModels;
 using BookLibraryApi.Models.ReviewModels;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,8 @@ namespace BookLibraryApi.Models.BookModels
         public DateTimeOffset DateOfPublish { get; set; }
 
         public int NumberOfBookPages { get; set; }
+
+        public RatingDto BookRating { get; set; }
 
         public string Publisher { get; set; }
 

@@ -1,10 +1,6 @@
 ﻿using AutoMapper;
 using BookLibraryApi.Entities;
 using BookLibraryApi.Models.BookModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace BookLibraryApi.Profiles
 {

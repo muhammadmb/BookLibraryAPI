@@ -26,9 +26,10 @@ namespace BookLibraryApi.Repositories.BookReposittory
                 .Include(b => b.Author)
                 .Include(b => b.Reviews)
                 .Include(b => b.Genre)
+                .Include(b => b.BookRating)
                 as IQueryable<Book>;
 
-            if(parameters.YearOfPublish != null)
+            if (parameters.YearOfPublish != null)
             {
                 Collection =
                     _context.Books
@@ -47,7 +48,9 @@ namespace BookLibraryApi.Repositories.BookReposittory
                     .Where(b => b.Author.Name == parameters.Author)
                     .Include(b => b.Author)
                     .Include(b => b.Reviews)
-                    .Include(b => b.Genre);
+                    .Include(b => b.Genre)
+                    .Include(b => b.BookRating)
+                    ;
             }
 
             if (!string.IsNullOrWhiteSpace(parameters.SortBy))
@@ -83,6 +86,7 @@ namespace BookLibraryApi.Repositories.BookReposittory
                 .Include(b => b.Reviews)
                 .Include(b => b.Author)
                 .Include(b => b.Genre)
+                .Include(b => b.BookRating)
                 .FirstOrDefaultAsync(b => b.GenreId == genreId && b.Id == bookId);
         }
 
