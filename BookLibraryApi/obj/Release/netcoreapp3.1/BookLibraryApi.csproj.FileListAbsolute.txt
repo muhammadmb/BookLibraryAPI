@@ -1,7 +1,6 @@
 F:\Projects\BackEndProjects\BookLibraryAPI\BookLibraryApi\bin\Release\netcoreapp3.1\appsettings.Development.json
 F:\Projects\BackEndProjects\BookLibraryAPI\BookLibraryApi\bin\Release\netcoreapp3.1\appsettings.json
 F:\Projects\BackEndProjects\BookLibraryAPI\BookLibraryApi\bin\Release\netcoreapp3.1\Properties\launchSettings.json
-F:\Projects\BackEndProjects\BookLibraryAPI\BookLibraryApi\bin\Release\netcoreapp3.1\Properties\ServiceDependencies\OnlineBookLibraryApi - Web Deploy\profile.arm.json
 F:\Projects\BackEndProjects\BookLibraryAPI\BookLibraryApi\bin\Release\netcoreapp3.1\BookLibraryApi.exe
 F:\Projects\BackEndProjects\BookLibraryAPI\BookLibraryApi\bin\Release\netcoreapp3.1\BookLibraryApi.deps.json
 F:\Projects\BackEndProjects\BookLibraryAPI\BookLibraryApi\bin\Release\netcoreapp3.1\BookLibraryApi.runtimeconfig.json
@@ -166,5 +165,6 @@ F:\Projects\BackEndProjects\BookLibraryAPI\BookLibraryApi\obj\Release\netcoreapp
 F:\Projects\BackEndProjects\BookLibraryAPI\BookLibraryApi\obj\Release\netcoreapp3.1\BookLibraryApi.genruntimeconfig.cache
 F:\Projects\BackEndProjects\BookLibraryAPI\BookLibraryApi\obj\Release\netcoreapp3.1\BookLibraryApi.csprojAssemblyReference.cache
 F:\Projects\BackEndProjects\BookLibraryAPI\BookLibraryApi\bin\Release\netcoreapp3.1\Properties\serviceDependencies.json
-F:\Projects\BackEndProjects\BookLibraryAPI\BookLibraryApi\bin\Release\netcoreapp3.1\Properties\serviceDependencies.OnlineBookLibraryApi - Web Deploy.json
-F:\Projects\BackEndProjects\BookLibraryAPI\BookLibraryApi\bin\Release\netcoreapp3.1\Properties\ServiceDependencies\OnlineBookLibraryApi - Web Deploy\mssql1.arm.json
+F:\Projects\BackEndProjects\BookLibraryAPI\BookLibraryApi\bin\Release\netcoreapp3.1\Properties\serviceDependencies.Online-Book-Library - Web Deploy.json
+F:\Projects\BackEndProjects\BookLibraryAPI\BookLibraryApi\bin\Release\netcoreapp3.1\Properties\ServiceDependencies\Online-Book-Library - Web Deploy\mssql1.arm.json
+F:\Projects\BackEndProjects\BookLibraryAPI\BookLibraryApi\bin\Release\netcoreapp3.1\Properties\ServiceDependencies\Online-Book-Library - Web Deploy\profile.arm.json

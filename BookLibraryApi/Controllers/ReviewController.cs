@@ -5,6 +5,7 @@ using BookLibraryApi.Models.ReviewModels;
 using BookLibraryApi.Repositories.ReviewsRepository;
 using BookLibraryApi.ResourceParameters;
 using EmployeeApi.Services;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -14,6 +15,7 @@ using System.Threading.Tasks;
 namespace BookLibraryApi.Controllers
 {
     [ApiController]
+    [EnableCors("demoPolicy")]
     [Route("api/genres/{genreId}/Books/{bookId}/reviews")]
     public class ReviewController : ControllerBase
     {

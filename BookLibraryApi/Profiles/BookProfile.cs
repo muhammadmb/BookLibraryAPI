@@ -13,6 +13,7 @@ namespace BookLibraryApi.Profiles
             CreateMap<Book, BookUpdate>();
             CreateMap<BookCreation, Book>();
             CreateMap<Book, BookForAuthor>();
+            CreateMap<Book, BookForGenre>();
         }
     }
 }

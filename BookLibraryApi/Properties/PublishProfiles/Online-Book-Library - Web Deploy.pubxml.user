@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA5Iz5KvNo4ki+dC/UVw4S5gAAAAACAAAAAAAQZgAAAAEAACAAAABmy5PgQIci777oynD0EjNr/1lE7lD3lfStDtZVrLG33QAAAAAOgAAAAAIAACAAAAD8U2Wo1CquLa3fLEzh4REOd8BxqlH7G4Z00kyuYX8gdIAAAABBPGPLpTYR3pKIfZmJLno1K+3ps5zL85HDuld6kVwBwzj87S9tjbbj4REUdIKcTQ77/GSaNKCNPNyMkcnK1RpHkdP0prSfwP0nNB14nKPhwIyPPciMGYbrqOI2b6H6sDBrbKmPBZr/VE6hwI4yrRnAiIxXy3/06WYVmrKFtIEoOUAAAABqLW0JuIp1FrTT+rXHWSa556jvw+r3UYTdOquxrUz8gEWmUnzcY8y4kYADrFccbgM06UN7tqdl4HyVqKg1Uwzl</EncryptedPassword>
+  </PropertyGroup>
+  <ItemGroup>
+    <EFMigrations Include="BookLibraryApi.Contexts.BookContext">
+      <Value>Data Source=tcp:booklibrarydbserver.database.windows.net,1433%3bInitial Catalog=BookLibrary_db%3bUser Id=mohamed%40booklibrarydbserver%3bPassword=Muhammad 1998</Value>
+    </EFMigrations>
+  </ItemGroup>
+</Project>

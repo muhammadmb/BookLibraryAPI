@@ -1,11 +1,9 @@
 ﻿using BookLibraryApi.Contexts;
 using BookLibraryApi.Entities;
 using BookLibraryApi.Helper;
-using BookLibraryApi.Models.AuthorsModels;
 using BookLibraryApi.ResourceParameters;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -21,7 +19,7 @@ namespace BookLibraryApi.Repositories.AuthorRepository
                 throw new ArgumentNullException(nameof(context));
         }
 
-     
+
         public async Task<PagedList<Author>> GetAuthors(AuthorResourcesParameters parameters)
         {
             var Collection =
@@ -30,7 +28,15 @@ namespace BookLibraryApi.Repositories.AuthorRepository
                 .Include(a => a.Books)
                 as IQueryable<Author>;
 
-            return 
+            if (!string.IsNullOrWhiteSpace(parameters.SearchQuery))
+            {
+                parameters.SearchQuery = parameters.SearchQuery.Trim();
+
+                Collection =
+                    Collection.Where(a => a.Name.Contains(parameters.SearchQuery));
+            }
+
+            return
                 PagedList<Author>.Create(
                     Collection,
                     parameters.PageNumber,
@@ -43,7 +49,7 @@ namespace BookLibraryApi.Repositories.AuthorRepository
             return await _context.Authors
                 .Include(a => a.Genre)
                 .Include(a => a.Books)
-                .FirstOrDefaultAsync();
+                .FirstOrDefaultAsync(a => a.Id == id);
         }
 
         public void CreateAuthor(Author author)

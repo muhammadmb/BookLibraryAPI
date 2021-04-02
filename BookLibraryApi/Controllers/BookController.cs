@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 namespace BookLibraryApi.Controllers
 {
     [ApiController]
+    [EnableCors("demoPolicy")]
     [Route("api/Genres/{GenreId}/Books")]
     public class BookController : ControllerBase
     {
@@ -34,10 +35,9 @@ namespace BookLibraryApi.Controllers
             _mapper = mapper ??
                 throw new ArgumentNullException(nameof(mapper));
         }
-        [EnableCors("testPolicy")]
+        
         [HttpGet(Name = "GetBooks")]
         [HttpHead]
-
         public async Task<IActionResult> GetBooks(Guid GenreId,
             [FromQuery] BookResourceParameters parameters)
         {

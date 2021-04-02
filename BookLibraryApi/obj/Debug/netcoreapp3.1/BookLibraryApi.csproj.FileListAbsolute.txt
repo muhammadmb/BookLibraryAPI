@@ -164,6 +164,7 @@ F:\Projects\BackEndProjects\BookLibraryAPI\BookLibraryApi\bin\Debug\netcoreapp3.
 F:\Projects\BackEndProjects\BookLibraryAPI\BookLibraryApi\obj\Debug\netcoreapp3.1\BookLibraryApi.csproj.CoreCompileInputs.cache
 F:\Projects\BackEndProjects\BookLibraryAPI\BookLibraryApi\obj\Debug\netcoreapp3.1\BookLibraryApi.MvcApplicationPartsAssemblyInfo.cs
 F:\Projects\BackEndProjects\BookLibraryAPI\BookLibraryApi\obj\Debug\netcoreapp3.1\BookLibraryApi.MvcApplicationPartsAssemblyInfo.cache
-F:\Projects\BackEndProjects\BookLibraryAPI\BookLibraryApi\bin\Debug\netcoreapp3.1\Properties\ServiceDependencies\OnlineBookLibraryApi - Web Deploy\profile.arm.json
 F:\Projects\BackEndProjects\BookLibraryAPI\BookLibraryApi\bin\Debug\netcoreapp3.1\Properties\serviceDependencies.json
-F:\Projects\BackEndProjects\BookLibraryAPI\BookLibraryApi\bin\Debug\netcoreapp3.1\Properties\serviceDependencies.OnlineBookLibraryApi - Web Deploy.json
+F:\Projects\BackEndProjects\BookLibraryAPI\BookLibraryApi\bin\Debug\netcoreapp3.1\Properties\serviceDependencies.Online-Book-Library - Web Deploy.json
+F:\Projects\BackEndProjects\BookLibraryAPI\BookLibraryApi\bin\Debug\netcoreapp3.1\Properties\ServiceDependencies\Online-Book-Library - Web Deploy\mssql1.arm.json
+F:\Projects\BackEndProjects\BookLibraryAPI\BookLibraryApi\bin\Debug\netcoreapp3.1\Properties\ServiceDependencies\Online-Book-Library - Web Deploy\profile.arm.json

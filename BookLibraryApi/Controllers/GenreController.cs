@@ -5,6 +5,7 @@ using BookLibraryApi.Models.GenreModels;
 using BookLibraryApi.Repositories.GenreRepository;
 using BookLibraryApi.ResourceParameters;
 using EmployeeApi.Services;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ using System.Threading.Tasks;
 namespace BookLibraryApi.Controllers
 {
     [ApiController]
+    [EnableCors("demoPolicy")]
     [Route("/api/Genres")]
     public class GenreController : ControllerBase
     {

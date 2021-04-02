@@ -1,0 +1,18 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "restored": true,
+      "restoreTime": "2021-03-22T03:21:23.4850273Z"
+    }
+  },
+  "parameters": {
+    "mssql1.subscriptionId": {
+      "Type": "subscription",
+      "Value": "74efcfdc-bd56-4cfb-b77e-af336699d45f"
+    },
+    "mssql1.resourceGroupName": {
+      "Type": "resourceGroup",
+      "Value": "BookLibraryApiResourceGroup"
+    }
+  }
+}

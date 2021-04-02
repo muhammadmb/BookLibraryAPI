@@ -1,8 +1,8 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "BookLibrary",
-    "version": "v1"
+    "title": "BookLibraryApi",
+    "version": "1.0"
   },
   "paths": {
     "/api/authors": {
@@ -27,6 +27,11 @@
           {
             "in": "query",
             "name": "Fields",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "SearchQuery",
             "type": "string"
           }
         ],
@@ -56,6 +61,11 @@
           {
             "in": "query",
             "name": "Fields",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "SearchQuery",
             "type": "string"
           }
         ],
@@ -279,6 +289,11 @@
             "in": "query",
             "name": "Fields",
             "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "SearchQuery",
+            "type": "string"
           }
         ],
         "responses": {
@@ -329,6 +344,11 @@
           {
             "in": "query",
             "name": "Fields",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "SearchQuery",
             "type": "string"
           }
         ],
@@ -579,6 +599,11 @@
             "in": "query",
             "name": "Fields",
             "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "SearchQuery",
+            "type": "string"
           }
         ],
         "responses": {
@@ -607,6 +632,11 @@
           {
             "in": "query",
             "name": "Fields",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "SearchQuery",
             "type": "string"
           }
         ],
@@ -795,6 +825,11 @@
             "in": "query",
             "name": "Fields",
             "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "SearchQuery",
+            "type": "string"
           }
         ],
         "responses": {
@@ -842,6 +877,11 @@
           {
             "in": "query",
             "name": "Fields",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "SearchQuery",
             "type": "string"
           }
         ],

@@ -24,7 +24,7 @@ namespace BookLibraryApi.Entities
 
         public double BookRate
         {
-            get => TotalRate > 1 ? Math.Ceiling((double)TotalRate / (double)ReviewsCount) : 0;
+            get => TotalRate > 1 ? (double)TotalRate / (double)ReviewsCount : 0;
         }
 
         public Guid BookId { get; set; }

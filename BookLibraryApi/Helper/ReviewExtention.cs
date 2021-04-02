@@ -11,6 +11,13 @@ namespace BookLibraryApi.Helper
         {
             var book = _context.Books.FirstOrDefault(b => b.Id == review.BookId);
             var bookRate = _context.BookRatings.FirstOrDefault(r => r.BookId == book.Id);
+            if(bookRate == null)
+            {
+                book.BookRating = new BookRating() { BookId = book.Id };
+                _context.SaveChanges();
+                _context.BookRatings.Add(book.BookRating);
+                _context.SaveChanges();
+            }
 
             switch (review.BookRate)
             {

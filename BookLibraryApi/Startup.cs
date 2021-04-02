@@ -28,10 +28,9 @@ namespace BookLibraryApi
         public void ConfigureServices(IServiceCollection services)
         {
 
-            // for front end test
             services.AddCors(options =>
             {
-                options.AddPolicy("testPolicy",
+                options.AddPolicy("demoPolicy",
                     builder =>
                     {
                         builder.WithOrigins().AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();

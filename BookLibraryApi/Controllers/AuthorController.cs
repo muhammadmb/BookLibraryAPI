@@ -5,6 +5,7 @@ using BookLibraryApi.Models.AuthorsModels;
 using BookLibraryApi.Repositories.AuthorRepository;
 using BookLibraryApi.ResourceParameters;
 using EmployeeApi.Services;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -14,6 +15,7 @@ using System.Threading.Tasks;
 namespace BookLibraryApi.Controllers
 {
     [ApiController]
+    [EnableCors("demoPolicy")]
     [Route("api/authors")]
     public class AuthorController : ControllerBase
     {

@@ -6,6 +6,7 @@ namespace BookLibraryApi.Entities
 {
     public class Book
     {
+
         [Key]
         public Guid Id { get; set; }
 

@@ -21,13 +21,27 @@ namespace BookLibraryApi.Repositories.BookReposittory
 
         public async Task<PagedList<Book>> GetBooks(Guid genreId, BookResourceParameters parameters)
         {
-            var Collection =
-                _context.Books.Where(b => b.GenreId == genreId)
-                .Include(b => b.Author)
-                .Include(b => b.Reviews)
-                .Include(b => b.Genre)
-                .Include(b => b.BookRating)
-                as IQueryable<Book>;
+            IQueryable<Book> Collection;
+
+            if (genreId != Guid.Empty)
+            {
+                Collection =
+                    _context.Books.Where(b => b.GenreId == genreId)
+                    .Include(b => b.Author)
+                    .Include(b => b.Reviews)
+                    .Include(b => b.Genre)
+                    .Include(b => b.BookRating);
+            }
+            else
+            {
+                Collection =
+                    _context.Books
+                    .Include(b => b.Author)
+                    .Include(b => b.Reviews)
+                    .Include(b => b.Genre)
+                    .Include(b => b.BookRating);
+            }
+
 
             if (parameters.YearOfPublish != null)
             {
@@ -67,11 +81,22 @@ namespace BookLibraryApi.Repositories.BookReposittory
                     Collection =
                         Collection.OrderBy(b => b.Reviews.Count());
                 }
-                if (parameters.SortBy.ToLowerInvariant() == "date")
+                if (parameters.SortBy.ToLowerInvariant() == "rating")
                 {
                     Collection =
-                        Collection.OrderByDescending(b => b.DateOfPublish);
+                        Collection.OrderBy(b => b.BookRating);
                 }
+            }
+
+            if (!string.IsNullOrWhiteSpace(parameters.SearchQuery))
+            {
+                parameters.SearchQuery = parameters.SearchQuery.Trim();
+
+                Collection =
+                    Collection.Where(b =>
+                    b.BookTitle.Contains(parameters.SearchQuery) ||
+                    b.Description.Contains(parameters.SearchQuery) ||
+                    b.Publisher.Contains(parameters.SearchQuery));
             }
 
             return PagedList<Book>.Create(
@@ -93,6 +118,7 @@ namespace BookLibraryApi.Repositories.BookReposittory
         public void Create(Guid genreId, Book book)
         {
             book.GenreId = genreId;
+            book.BookRating = new BookRating() { BookId = book.Id };
             _context.Books.Add(book);
         }
 

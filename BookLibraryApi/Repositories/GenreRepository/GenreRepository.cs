@@ -26,8 +26,22 @@ namespace BookLibraryApi.Repositories.GenreRepository
                 throw new ArgumentNullException(nameof(genreResourcesParameters));
             }
 
-            var Collection = _context.Genres
+            var Collection =
+                _context.Genres
+                .Include(g => g.Books)
+                .ThenInclude(b => b.Author)
                 as IQueryable<Genre>;
+
+            if (!string.IsNullOrWhiteSpace(genreResourcesParameters.SearchQuery))
+            {
+                genreResourcesParameters.SearchQuery = genreResourcesParameters.SearchQuery.Trim();
+
+                Collection =
+                    Collection.Where(
+                        g =>
+                            g.GenreName.Contains(genreResourcesParameters.SearchQuery) ||
+                            g.Description.Contains(genreResourcesParameters.SearchQuery));
+            }
 
             return PagedList<Genre>.Create(
                 Collection,
