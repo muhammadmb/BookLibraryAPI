@@ -12,6 +12,7 @@ namespace BookLibraryApi.Repositories.ReviewsRepository
         Task<Review> GetReview(Guid genreId, Guid bookId, Guid reviewId);
         void CreateReview(Review review);
         void UpdateReview(Review review);
+        void Delete(Guid bookId, Guid reviewId);
         Task<bool> saveChangesAsync();
     }
 }

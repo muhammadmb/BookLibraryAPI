@@ -61,6 +61,18 @@ namespace BookLibraryApi.Repositories.ReviewsRepository
         {
             _context.Reviews.Update(review);
         }
+
+        public void Delete(Guid bookId, Guid reviewId)
+        {
+            var review = new Review()
+            {
+                BookId = bookId,
+                Id = reviewId
+            };
+
+            _context.Reviews.Remove(review);
+        }
+
         public async Task<bool> saveChangesAsync()
         {
             return (await _context.SaveChangesAsync() > 0);

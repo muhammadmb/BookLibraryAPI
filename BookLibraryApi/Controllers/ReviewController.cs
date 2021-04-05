@@ -171,6 +171,17 @@ namespace BookLibraryApi.Controllers
             return NoContent();
         }
 
+        [HttpDelete("{reviewId}")]
+        public async Task<IActionResult> DeleteReview(
+            Guid genreId,
+            Guid bookId,
+            Guid reviewId)
+        {
+            _reviewsRepository.Delete(bookId ,reviewId);
+            await _reviewsRepository.saveChangesAsync();
+            return NoContent();
+        }
+
         [HttpOptions()]
         public IActionResult GetReviewsOptions()
         {

@@ -151,6 +151,14 @@ namespace BookLibraryApi.Controllers
             return NoContent();
         }
 
+        [HttpDelete("{bookId}")]
+        public async Task<IActionResult> DelteBook(Guid GenreId, Guid BookId)
+        {
+            _bookRepository.Delete(GenreId, BookId);
+            await _bookRepository.SaveChangesAsync();
+            return (NoContent());
+        }
+
         [HttpOptions()]
         public IActionResult GetBooksOptions()
         {

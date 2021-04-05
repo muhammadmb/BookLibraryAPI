@@ -126,10 +126,20 @@ namespace BookLibraryApi.Repositories.BookReposittory
         {
             _context.Books.Update(book);
         }
+        public void Delete(Guid genreId, Guid bookId)
+        {
+            var book = new Book()
+            {
+                GenreId = genreId,
+                Id = bookId
+            };
+            _context.Books.Remove(book);
+        }
 
         public async Task<bool> SaveChangesAsync()
         {
             return (await _context.SaveChangesAsync() > 0);
         }
+
     }
 }

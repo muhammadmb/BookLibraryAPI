@@ -154,6 +154,14 @@ namespace BookLibraryApi.Controllers
             return NoContent();
         }
 
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteAuthor(Guid id)
+        {
+            _authorRepository.Delete(id);
+            await _authorRepository.SaveChangesAsync();
+            return (NoContent());
+        }
+
         [HttpOptions()]
         public IActionResult GetAuthorsOptions()
         {

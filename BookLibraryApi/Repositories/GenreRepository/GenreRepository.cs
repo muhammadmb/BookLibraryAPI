@@ -51,7 +51,11 @@ namespace BookLibraryApi.Repositories.GenreRepository
 
         public async Task<Genre> GetGenre(Guid id)
         {
-            return await _context.Genres.FirstOrDefaultAsync(g => g.Id == id);
+            return await 
+                _context.Genres
+                .Include(g => g.Books)
+                .ThenInclude(b => b.Author)
+                .FirstOrDefaultAsync(g => g.Id == id);
         }
 
         public void CreateGenre(Genre genre)

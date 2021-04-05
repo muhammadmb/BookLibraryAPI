@@ -121,6 +121,7 @@ namespace BookLibraryApi.Controllers
             await _genreRepository.SaveChangesAsync();
             return NoContent();
         }
+
         [HttpOptions()]
         public IActionResult GetGenresOptions()
         {

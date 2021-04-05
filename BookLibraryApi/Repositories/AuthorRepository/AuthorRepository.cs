@@ -19,7 +19,6 @@ namespace BookLibraryApi.Repositories.AuthorRepository
                 throw new ArgumentNullException(nameof(context));
         }
 
-
         public async Task<PagedList<Author>> GetAuthors(AuthorResourcesParameters parameters)
         {
             var Collection =
@@ -59,6 +58,14 @@ namespace BookLibraryApi.Repositories.AuthorRepository
         public void Update(Author authorFromRepo)
         {
             _context.Authors.Update(authorFromRepo);
+        }
+        public void Delete(Guid id)
+        {
+            var author = new Author()
+            {
+                Id = id
+            };
+            _context.Authors.Remove(author);
         }
         public async Task<bool> SaveChangesAsync()
         {

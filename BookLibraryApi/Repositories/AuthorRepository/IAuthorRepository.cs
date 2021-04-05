@@ -12,6 +12,7 @@ namespace BookLibraryApi.Repositories.AuthorRepository
         Task<Author> GetAuthor(Guid id);
         void CreateAuthor(Author author);
         void Update(Author authorFromRepo);
+        void Delete(Guid id);
         Task<bool> SaveChangesAsync();
     }
 }
