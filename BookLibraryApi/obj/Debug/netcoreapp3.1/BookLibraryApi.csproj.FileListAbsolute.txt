@@ -1,8 +1,6 @@
 F:\Projects\BackEndProjects\BookLibraryAPI\BookLibraryApi\bin\Debug\netcoreapp3.1\appsettings.Development.json
 F:\Projects\BackEndProjects\BookLibraryAPI\BookLibraryApi\bin\Debug\netcoreapp3.1\appsettings.json
-F:\Projects\BackEndProjects\BookLibraryAPI\BookLibraryApi\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
 F:\Projects\BackEndProjects\BookLibraryAPI\BookLibraryApi\bin\Debug\netcoreapp3.1\BookLibraryApi.exe
-F:\Projects\BackEndProjects\BookLibraryAPI\BookLibraryApi\obj\Debug\netcoreapp3.1\BookLibraryApi.csprojAssemblyReference.cache
 F:\Projects\BackEndProjects\BookLibraryAPI\BookLibraryApi\obj\Debug\netcoreapp3.1\BookLibraryApi.AssemblyInfoInputs.cache
 F:\Projects\BackEndProjects\BookLibraryAPI\BookLibraryApi\obj\Debug\netcoreapp3.1\BookLibraryApi.AssemblyInfo.cs
 F:\Projects\BackEndProjects\BookLibraryAPI\BookLibraryApi\obj\Debug\netcoreapp3.1\BookLibraryApi.RazorTargetAssemblyInfo.cache
@@ -164,7 +162,6 @@ F:\Projects\BackEndProjects\BookLibraryAPI\BookLibraryApi\bin\Debug\netcoreapp3.
 F:\Projects\BackEndProjects\BookLibraryAPI\BookLibraryApi\obj\Debug\netcoreapp3.1\BookLibraryApi.csproj.CoreCompileInputs.cache
 F:\Projects\BackEndProjects\BookLibraryAPI\BookLibraryApi\obj\Debug\netcoreapp3.1\BookLibraryApi.MvcApplicationPartsAssemblyInfo.cs
 F:\Projects\BackEndProjects\BookLibraryAPI\BookLibraryApi\obj\Debug\netcoreapp3.1\BookLibraryApi.MvcApplicationPartsAssemblyInfo.cache
-F:\Projects\BackEndProjects\BookLibraryAPI\BookLibraryApi\bin\Debug\netcoreapp3.1\Properties\serviceDependencies.json
-F:\Projects\BackEndProjects\BookLibraryAPI\BookLibraryApi\bin\Debug\netcoreapp3.1\Properties\serviceDependencies.Online-Book-Library - Web Deploy.json
-F:\Projects\BackEndProjects\BookLibraryAPI\BookLibraryApi\bin\Debug\netcoreapp3.1\Properties\ServiceDependencies\Online-Book-Library - Web Deploy\mssql1.arm.json
-F:\Projects\BackEndProjects\BookLibraryAPI\BookLibraryApi\bin\Debug\netcoreapp3.1\Properties\ServiceDependencies\Online-Book-Library - Web Deploy\profile.arm.json
+F:\Projects\BackEndProjects\BookLibraryAPI\BookLibraryApi\obj\Debug\netcoreapp3.1\BookLibraryApi.csproj.AssemblyReference.cache
+F:\Projects\BackEndProjects\BookLibraryAPI\BookLibraryApi\obj\Debug\netcoreapp3.1\BookLibraryApi.GeneratedMSBuildEditorConfig.editorconfig
+F:\Projects\BackEndProjects\BookLibraryAPI\BookLibraryApi\obj\Debug\netcoreapp3.1\scopedcss\bundle\BookLibraryApi.styles.css

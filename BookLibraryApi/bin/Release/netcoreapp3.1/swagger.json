@@ -225,6 +225,25 @@
           }
         }
       },
+      "delete": {
+        "tags": [
+          "Author"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
       "options": {
         "tags": [
           "Author"
@@ -567,6 +586,34 @@
             "name": "BookId",
             "required": true,
             "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Genres/{GenreId}/Books/{bookId}": {
+      "delete": {
+        "tags": [
+          "Book"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "GenreId",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "in": "path",
+            "name": "BookId",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
           }
         ],
         "responses": {
@@ -1117,6 +1164,39 @@
             "schema": {
               "$ref": "#/definitions/ReviewUpdateJsonPatchDocument"
             }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Review"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "genreId",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "in": "path",
+            "name": "bookId",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "in": "path",
+            "name": "reviewId",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
           }
         ],
         "responses": {

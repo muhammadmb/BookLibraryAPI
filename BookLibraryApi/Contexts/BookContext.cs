@@ -1,10 +1,12 @@
 ﻿using BookLibraryApi.Entities;
+using BookLibraryApi.Models.AuthenticationModels;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 
 namespace BookLibraryApi.Contexts
 {
-    public class BookContext : DbContext
+    public class BookContext : IdentityDbContext
     {
         public BookContext(DbContextOptions<BookContext> options) : base(options)
         {
@@ -21,24 +23,28 @@ namespace BookLibraryApi.Contexts
 
         public DbSet<BookRating> BookRatings { get; set; }
 
+        public DbSet<RefreshTokens> RefreshTokens { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<Genre>()
                 .HasMany(g => g.Books)
                 .WithOne(b => b.Genre)
-                .HasForeignKey(g => g.GenreId)
+                .HasForeignKey(b => b.GenreId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Genre>()
                 .HasMany(g => g.Authors)
                 .WithOne(a => a.Genre)
-                .HasForeignKey(g => g.GenreId)
+                .HasForeignKey(a => a.GenreId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Author>()
                 .HasMany(a => a.Books)
                 .WithOne(b => b.Author)
-                .HasForeignKey(a => a.AuthorId);
+                .HasForeignKey(b => b.AuthorId);
 
             modelBuilder.Entity<Book>()
                 .HasMany(b => b.Reviews)
