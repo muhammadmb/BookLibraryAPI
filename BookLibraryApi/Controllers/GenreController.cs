@@ -6,6 +6,7 @@ using BookLibraryApi.Repositories.GenreRepository;
 using BookLibraryApi.ResourceParameters;
 using EmployeeApi.Services;
 using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -119,6 +120,41 @@ namespace BookLibraryApi.Controllers
             _mapper.Map(genreUpdate, genreFromRepo);
             _genreRepository.UpdateGenre(genreFromRepo);
             await _genreRepository.SaveChangesAsync();
+            return NoContent();
+        }
+
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> PartialUpdate(
+            Guid id,
+            JsonPatchDocument<GenreUpdate> patchDocument)
+        {
+            if (patchDocument == null)
+            {
+                return NotFound();
+            }
+
+            var genreFromRepo = await _genreRepository.GetGenre(id);
+
+            if (genreFromRepo == null)
+            {
+                return NotFound();
+            }
+
+            var genre = _mapper.Map<GenreUpdate>(genreFromRepo);
+
+            patchDocument.ApplyTo(genre, ModelState);
+
+            if(!TryValidateModel(genre))
+            {
+                return ValidationProblem(ModelState);
+            }
+
+            _mapper.Map(genre, genreFromRepo);
+
+            _genreRepository.UpdateGenre(genreFromRepo);
+
+            await _genreRepository.SaveChangesAsync();
+
             return NoContent();
         }
 

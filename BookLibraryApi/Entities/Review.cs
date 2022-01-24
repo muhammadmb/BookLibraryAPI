@@ -28,5 +28,7 @@ namespace BookLibraryApi.Entities
         public int UpVote { get; set; }
 
         public int DownVote { get; set; }
+
+        public bool IsDeleted { get; set; }
     }
 }

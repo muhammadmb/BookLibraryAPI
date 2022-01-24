@@ -21,8 +21,10 @@ namespace BookLibraryApi.Models.BookModels
         [MaxLength(1000)]
         public string Description { get; set; }
 
-        public Guid AuthorId { get; set; }
+        public Guid? AuthorId { get; set; }
 
         public Guid GenreId { get; set; }
+
+        public bool IsDeleted { get; set; }
     }
 }

@@ -4,14 +4,16 @@ using BookLibraryApi.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BookLibraryApi.Migrations
 {
     [DbContext(typeof(BookContext))]
-    partial class BookContextModelSnapshot : ModelSnapshot
+    [Migration("20220123215712_implementSoftDeleteForAuthor")]
+    partial class implementSoftDeleteForAuthor
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -141,7 +143,7 @@ namespace BookLibraryApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("AuthorId")
+                    b.Property<Guid>("AuthorId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("BookCover")
@@ -161,9 +163,6 @@ namespace BookLibraryApi.Migrations
 
                     b.Property<Guid>("GenreId")
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
 
                     b.Property<int>("NumberOfBookPages")
                         .HasColumnType("int");
@@ -189,7 +188,6 @@ namespace BookLibraryApi.Migrations
                             DateOfPublish = new DateTimeOffset(new DateTime(2014, 4, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed faucibus quis nibh non sagittis",
                             GenreId = new Guid("00000000-0000-0000-abcd-000000000000"),
-                            IsDeleted = false,
                             NumberOfBookPages = 456,
                             Publisher = "Zindex"
                         },
@@ -202,7 +200,6 @@ namespace BookLibraryApi.Migrations
                             DateOfPublish = new DateTimeOffset(new DateTime(2018, 12, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed faucibus quis nibh non sagittis",
                             GenreId = new Guid("00000000-0000-0000-abcd-000000000000"),
-                            IsDeleted = false,
                             NumberOfBookPages = 285,
                             Publisher = "AI"
                         },
@@ -215,7 +212,6 @@ namespace BookLibraryApi.Migrations
                             DateOfPublish = new DateTimeOffset(new DateTime(1987, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed faucibus quis nibh non sagittis",
                             GenreId = new Guid("00000000-0000-0000-abcd-000000000001"),
-                            IsDeleted = false,
                             NumberOfBookPages = 145,
                             Publisher = "non"
                         },
@@ -228,7 +224,6 @@ namespace BookLibraryApi.Migrations
                             DateOfPublish = new DateTimeOffset(new DateTime(2010, 10, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed faucibus quis nibh non sagittis",
                             GenreId = new Guid("00000000-0000-0000-abcd-000000000002"),
-                            IsDeleted = false,
                             NumberOfBookPages = 575,
                             Publisher = "non"
                         },
@@ -241,7 +236,6 @@ namespace BookLibraryApi.Migrations
                             DateOfPublish = new DateTimeOffset(new DateTime(1998, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 3, 0, 0, 0)),
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed faucibus quis nibh non sagittis",
                             GenreId = new Guid("00000000-0000-0000-abcd-000000000002"),
-                            IsDeleted = false,
                             NumberOfBookPages = 185,
                             Publisher = "Alef"
                         },
@@ -254,7 +248,6 @@ namespace BookLibraryApi.Migrations
                             DateOfPublish = new DateTimeOffset(new DateTime(1998, 4, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed faucibus quis nibh non sagittis",
                             GenreId = new Guid("00000000-0000-0000-abcd-000000000002"),
-                            IsDeleted = false,
                             NumberOfBookPages = 450,
                             Publisher = "non"
                         },
@@ -267,7 +260,6 @@ namespace BookLibraryApi.Migrations
                             DateOfPublish = new DateTimeOffset(new DateTime(1997, 3, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed faucibus quis nibh non sagittis",
                             GenreId = new Guid("00000000-0000-0000-abcd-000000000003"),
-                            IsDeleted = false,
                             NumberOfBookPages = 221,
                             Publisher = "non"
                         },
@@ -280,7 +272,6 @@ namespace BookLibraryApi.Migrations
                             DateOfPublish = new DateTimeOffset(new DateTime(1997, 2, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed faucibus quis nibh non sagittis",
                             GenreId = new Guid("00000000-0000-0000-abcd-000000000002"),
-                            IsDeleted = false,
                             NumberOfBookPages = 185,
                             Publisher = "Book One"
                         },
@@ -293,7 +284,6 @@ namespace BookLibraryApi.Migrations
                             DateOfPublish = new DateTimeOffset(new DateTime(1996, 1, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed faucibus quis nibh non sagittis",
                             GenreId = new Guid("00000000-0000-0000-abcd-000000000001"),
-                            IsDeleted = false,
                             NumberOfBookPages = 185,
                             Publisher = "non"
                         },
@@ -306,7 +296,6 @@ namespace BookLibraryApi.Migrations
                             DateOfPublish = new DateTimeOffset(new DateTime(2006, 5, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 3, 0, 0, 0)),
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed faucibus quis nibh non sagittis",
                             GenreId = new Guid("00000000-0000-0000-abcd-000000000005"),
-                            IsDeleted = false,
                             NumberOfBookPages = 158,
                             Publisher = "non"
                         },
@@ -319,7 +308,6 @@ namespace BookLibraryApi.Migrations
                             DateOfPublish = new DateTimeOffset(new DateTime(1996, 1, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed faucibus quis nibh non sagittis",
                             GenreId = new Guid("00000000-0000-0000-abcd-000000000005"),
-                            IsDeleted = false,
                             NumberOfBookPages = 444,
                             Publisher = "non"
                         },
@@ -332,7 +320,6 @@ namespace BookLibraryApi.Migrations
                             DateOfPublish = new DateTimeOffset(new DateTime(2007, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed faucibus quis nibh non sagittis",
                             GenreId = new Guid("00000000-0000-0000-abcd-000000000005"),
-                            IsDeleted = false,
                             NumberOfBookPages = 800,
                             Publisher = "non"
                         },
@@ -345,7 +332,6 @@ namespace BookLibraryApi.Migrations
                             DateOfPublish = new DateTimeOffset(new DateTime(2013, 7, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed faucibus quis nibh non sagittis",
                             GenreId = new Guid("00000000-0000-0000-abcd-000000000005"),
-                            IsDeleted = false,
                             NumberOfBookPages = 545,
                             Publisher = "non"
                         },
@@ -358,7 +344,6 @@ namespace BookLibraryApi.Migrations
                             DateOfPublish = new DateTimeOffset(new DateTime(2015, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed faucibus quis nibh non sagittis",
                             GenreId = new Guid("00000000-0000-0000-abcd-000000000005"),
-                            IsDeleted = false,
                             NumberOfBookPages = 652,
                             Publisher = "non"
                         },
@@ -371,7 +356,6 @@ namespace BookLibraryApi.Migrations
                             DateOfPublish = new DateTimeOffset(new DateTime(2001, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed faucibus quis nibh non sagittis",
                             GenreId = new Guid("00000000-0000-0000-abcd-000000000002"),
-                            IsDeleted = false,
                             NumberOfBookPages = 325,
                             Publisher = "non"
                         },
@@ -384,7 +368,6 @@ namespace BookLibraryApi.Migrations
                             DateOfPublish = new DateTimeOffset(new DateTime(2010, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed faucibus quis nibh non sagittis",
                             GenreId = new Guid("00000000-0000-0000-abcd-000000000002"),
-                            IsDeleted = false,
                             NumberOfBookPages = 475,
                             Publisher = "non"
                         },
@@ -397,7 +380,6 @@ namespace BookLibraryApi.Migrations
                             DateOfPublish = new DateTimeOffset(new DateTime(2010, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed faucibus quis nibh non sagittis",
                             GenreId = new Guid("00000000-0000-0000-abcd-000000000002"),
-                            IsDeleted = false,
                             NumberOfBookPages = 475,
                             Publisher = "non"
                         },
@@ -410,7 +392,6 @@ namespace BookLibraryApi.Migrations
                             DateOfPublish = new DateTimeOffset(new DateTime(2019, 11, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed faucibus quis nibh non sagittis",
                             GenreId = new Guid("00000000-0000-0000-abcd-000000000001"),
-                            IsDeleted = false,
                             NumberOfBookPages = 405,
                             Publisher = "non"
                         },
@@ -423,7 +404,6 @@ namespace BookLibraryApi.Migrations
                             DateOfPublish = new DateTimeOffset(new DateTime(2020, 10, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed faucibus quis nibh non sagittis",
                             GenreId = new Guid("00000000-0000-0000-abcd-000000000001"),
-                            IsDeleted = false,
                             NumberOfBookPages = 507,
                             Publisher = "non"
                         });
@@ -578,9 +558,6 @@ namespace BookLibraryApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
                     b.Property<string>("PicUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -595,7 +572,6 @@ namespace BookLibraryApi.Migrations
                             Id = new Guid("00000000-0000-0000-abcd-000000000000"),
                             Description = "Suspendisse id accumsan lacus. Phasellus condimentum volutpat libero id finibus.",
                             GenreName = "Classics",
-                            IsDeleted = false,
                             PicUrl = "https://cdn.shopify.com/s/files/1/0064/5342/8271/products/PCCP5-Penguin_Classics_Cameo_angle_1200_300x.jpg?v=1556052881"
                         },
                         new
@@ -603,7 +579,6 @@ namespace BookLibraryApi.Migrations
                             Id = new Guid("00000000-0000-0000-abcd-000000000001"),
                             Description = "Suspendisse id accumsan lacus. Phasellus condimentum volutpat libero id finibus.",
                             GenreName = "Fantasy",
-                            IsDeleted = false,
                             PicUrl = "https://www.rd.com/wp-content/uploads/2019/12/book-e1576790089347.jpg"
                         },
                         new
@@ -611,7 +586,6 @@ namespace BookLibraryApi.Migrations
                             Id = new Guid("00000000-0000-0000-abcd-000000000002"),
                             Description = "Suspendisse id accumsan lacus. Phasellus condimentum volutpat libero id finibus.",
                             GenreName = "Action and Adventure",
-                            IsDeleted = false,
                             PicUrl = "https://alisonmortonauthor.com/wp-content/uploads/2014/01/books.jpg"
                         },
                         new
@@ -619,7 +593,6 @@ namespace BookLibraryApi.Migrations
                             Id = new Guid("00000000-0000-0000-abcd-000000000003"),
                             Description = "Suspendisse id accumsan lacus. Phasellus condimentum volutpat libero id finibus.",
                             GenreName = "Comic Book",
-                            IsDeleted = false,
                             PicUrl = "https://www.sun-sentinel.com/resizer/1fuMDdJE7v3kltVnXX07CWZ58Ws=/415x614/top/www.trbimg.com/img-5caf8a09/turbine/fl-1555008005-hc4qu2941s-snap-image"
                         },
                         new
@@ -627,7 +600,6 @@ namespace BookLibraryApi.Migrations
                             Id = new Guid("00000000-0000-0000-abcd-000000000004"),
                             Description = "Suspendisse id accumsan lacus. Phasellus condimentum volutpat libero id finibus.",
                             GenreName = "Romance",
-                            IsDeleted = false,
                             PicUrl = "https://pbs.twimg.com/media/EQuNRJoU0AAvyKD.jpg"
                         },
                         new
@@ -635,7 +607,6 @@ namespace BookLibraryApi.Migrations
                             Id = new Guid("00000000-0000-0000-abcd-000000000005"),
                             Description = "Suspendisse id accumsan lacus. Phasellus condimentum volutpat libero id finibus.",
                             GenreName = "Horror",
-                            IsDeleted = false,
                             PicUrl = "https://images.thestar.com/xN_oIrR10VL8zpaa1-hDq0ELBE8=/1086x1652/smart/filters:cb(1594158289211)/https://www.thestar.com/content/dam/thestar/entertainment/books/2020/07/09/horror-books-to-make-you-lose-your-cool-on-a-hot-summers-night/if_it_bleeds.jpg"
                         });
                 });
@@ -658,9 +629,6 @@ namespace BookLibraryApi.Migrations
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
 
                     b.Property<string>("ReviewDescription")
                         .IsRequired()
@@ -688,7 +656,6 @@ namespace BookLibraryApi.Migrations
                             BookRate = 5,
                             DownVote = 0,
                             Email = "XMan@abc.com",
-                            IsDeleted = false,
                             ReviewDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed faucibus quis nibh non sagittis",
                             ReviewerName = "Xman",
                             UpVote = 0
@@ -700,7 +667,6 @@ namespace BookLibraryApi.Migrations
                             BookRate = 4,
                             DownVote = 0,
                             Email = "AMan@abc.com",
-                            IsDeleted = false,
                             ReviewDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed faucibus quis nibh non sagittis",
                             ReviewerName = "Aman",
                             UpVote = 0
@@ -712,7 +678,6 @@ namespace BookLibraryApi.Migrations
                             BookRate = 4,
                             DownVote = 0,
                             Email = "BMan@abc.com",
-                            IsDeleted = false,
                             ReviewDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed faucibus quis nibh non sagittis",
                             ReviewerName = "Bman",
                             UpVote = 0
@@ -724,7 +689,6 @@ namespace BookLibraryApi.Migrations
                             BookRate = 5,
                             DownVote = 0,
                             Email = "CMan@abc.com",
-                            IsDeleted = false,
                             ReviewDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed faucibus quis nibh non sagittis",
                             ReviewerName = "Cman",
                             UpVote = 0
@@ -736,7 +700,6 @@ namespace BookLibraryApi.Migrations
                             BookRate = 1,
                             DownVote = 0,
                             Email = "DMan@abc.com",
-                            IsDeleted = false,
                             ReviewDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed faucibus quis nibh non sagittis",
                             ReviewerName = "Dman",
                             UpVote = 0
@@ -748,7 +711,6 @@ namespace BookLibraryApi.Migrations
                             BookRate = 3,
                             DownVote = 0,
                             Email = "EMan@abc.com",
-                            IsDeleted = false,
                             ReviewDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed faucibus quis nibh non sagittis",
                             ReviewerName = "Eman",
                             UpVote = 0
@@ -760,7 +722,6 @@ namespace BookLibraryApi.Migrations
                             BookRate = 3,
                             DownVote = 0,
                             Email = "FMan@abc.com",
-                            IsDeleted = false,
                             ReviewDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed faucibus quis nibh non sagittis",
                             ReviewerName = "Fman",
                             UpVote = 0
@@ -772,7 +733,6 @@ namespace BookLibraryApi.Migrations
                             BookRate = 4,
                             DownVote = 0,
                             Email = "GMan@abc.com",
-                            IsDeleted = false,
                             ReviewDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed faucibus quis nibh non sagittis",
                             ReviewerName = "Gman",
                             UpVote = 0
@@ -784,7 +744,6 @@ namespace BookLibraryApi.Migrations
                             BookRate = 2,
                             DownVote = 0,
                             Email = "HMan@abc.com",
-                            IsDeleted = false,
                             ReviewDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed faucibus quis nibh non sagittis",
                             ReviewerName = "Hman",
                             UpVote = 0
@@ -796,7 +755,6 @@ namespace BookLibraryApi.Migrations
                             BookRate = 2,
                             DownVote = 0,
                             Email = "ZMan@abc.com",
-                            IsDeleted = false,
                             ReviewDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed faucibus quis nibh non sagittis",
                             ReviewerName = "Zman",
                             UpVote = 0
@@ -808,7 +766,6 @@ namespace BookLibraryApi.Migrations
                             BookRate = 2,
                             DownVote = 0,
                             Email = "VMan@abc.com",
-                            IsDeleted = false,
                             ReviewDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed faucibus quis nibh non sagittis",
                             ReviewerName = "Vman",
                             UpVote = 0
@@ -820,7 +777,6 @@ namespace BookLibraryApi.Migrations
                             BookRate = 2,
                             DownVote = 0,
                             Email = "NMan@abc.com",
-                            IsDeleted = false,
                             ReviewDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed faucibus quis nibh non sagittis",
                             ReviewerName = "Nman",
                             UpVote = 0
@@ -832,7 +788,6 @@ namespace BookLibraryApi.Migrations
                             BookRate = 5,
                             DownVote = 0,
                             Email = "MMan@abc.com",
-                            IsDeleted = false,
                             ReviewDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed faucibus quis nibh non sagittis",
                             ReviewerName = "Mman",
                             UpVote = 0
@@ -844,7 +799,6 @@ namespace BookLibraryApi.Migrations
                             BookRate = 1,
                             DownVote = 0,
                             Email = "LMan@abc.com",
-                            IsDeleted = false,
                             ReviewDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed faucibus quis nibh non sagittis",
                             ReviewerName = "Lman",
                             UpVote = 0
@@ -856,7 +810,6 @@ namespace BookLibraryApi.Migrations
                             BookRate = 4,
                             DownVote = 0,
                             Email = "KMan@abc.com",
-                            IsDeleted = false,
                             ReviewDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed faucibus quis nibh non sagittis",
                             ReviewerName = "Kman",
                             UpVote = 0
@@ -868,7 +821,6 @@ namespace BookLibraryApi.Migrations
                             BookRate = 2,
                             DownVote = 0,
                             Email = "PMan@abc.com",
-                            IsDeleted = false,
                             ReviewDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed faucibus quis nibh non sagittis",
                             ReviewerName = "Pman",
                             UpVote = 0
@@ -880,7 +832,6 @@ namespace BookLibraryApi.Migrations
                             BookRate = 1,
                             DownVote = 0,
                             Email = "IMan@abc.com",
-                            IsDeleted = false,
                             ReviewDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed faucibus quis nibh non sagittis",
                             ReviewerName = "Iman",
                             UpVote = 0
@@ -1134,7 +1085,8 @@ namespace BookLibraryApi.Migrations
                     b.HasOne("BookLibraryApi.Entities.Author", "Author")
                         .WithMany("Books")
                         .HasForeignKey("AuthorId")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("BookLibraryApi.Entities.Genre", "Genre")
                         .WithMany("Books")

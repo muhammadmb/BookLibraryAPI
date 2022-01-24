@@ -27,7 +27,8 @@ namespace BookLibraryApi.Entities
         public string Description { get; set; }
 
         public BookRating BookRating { get; set; }
-        public Guid AuthorId { get; set; }
+        
+        public Guid? AuthorId { get; set; }
 
         public Author Author { get; set; }
 
@@ -36,5 +37,7 @@ namespace BookLibraryApi.Entities
         public Guid GenreId { get; set; }
 
         public Genre Genre { get; set; }
+
+        public bool IsDeleted { get; set; }
     }
 }

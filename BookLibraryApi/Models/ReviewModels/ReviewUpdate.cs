@@ -19,5 +19,7 @@ namespace BookLibraryApi.Models.ReviewModels
         public int UpVote { get; set; }
 
         public int DownVote { get; set; }
+
+        public bool IsDeleted { get; set; }
     }
 }

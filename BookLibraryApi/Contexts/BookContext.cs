@@ -44,7 +44,8 @@ namespace BookLibraryApi.Contexts
             modelBuilder.Entity<Author>()
                 .HasMany(a => a.Books)
                 .WithOne(b => b.Author)
-                .HasForeignKey(b => b.AuthorId);
+                .HasForeignKey(b => b.AuthorId)
+                .OnDelete(DeleteBehavior.SetNull);
 
             modelBuilder.Entity<Book>()
                 .HasMany(b => b.Reviews)
@@ -54,6 +55,11 @@ namespace BookLibraryApi.Contexts
                 .HasOne<BookRating>(b => b.BookRating)
                 .WithOne(r => r.Book)
                 .HasForeignKey<BookRating>(r => r.BookId);
+
+            modelBuilder.Entity<Author>().HasQueryFilter(p => !p.IsDeleted);
+            modelBuilder.Entity<Genre>().HasQueryFilter(p => !p.IsDeleted);
+            modelBuilder.Entity<Book>().HasQueryFilter(p => !p.IsDeleted);
+            modelBuilder.Entity<Review>().HasQueryFilter(p => !p.IsDeleted);
 
             // Dunny data just for development
 

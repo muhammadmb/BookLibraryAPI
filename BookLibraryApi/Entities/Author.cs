@@ -27,5 +27,7 @@ namespace BookLibraryApi.Entities
 
         public Guid GenreId { get; set; }
         public Genre Genre { get; set; }
+
+        public bool IsDeleted { get; set; }
     }
 }

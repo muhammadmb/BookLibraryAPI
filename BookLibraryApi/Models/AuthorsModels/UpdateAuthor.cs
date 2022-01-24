@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace BookLibraryApi.Models.AuthorsModels
 {
+
     public class UpdateAuthor
     {
         [Required]
@@ -20,5 +21,7 @@ namespace BookLibraryApi.Models.AuthorsModels
         public DateTimeOffset DateOfDeath { get; set; }
 
         public Guid GenreId { get; set; }
+
+        public bool IsDeleted { get; set; }
     }
 }
