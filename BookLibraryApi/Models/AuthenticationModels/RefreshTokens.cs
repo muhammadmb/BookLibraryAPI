@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using BookLibraryApi.Entities;
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -16,6 +16,6 @@ namespace BookLibraryApi.Models.AuthenticationModels
         public DateTime ExpiryDate { get; set; }
 
         [ForeignKey(nameof(UserId))]
-        public IdentityUser User { get; set; }
+        public ApplicationUser User { get; set; }
     }
 }

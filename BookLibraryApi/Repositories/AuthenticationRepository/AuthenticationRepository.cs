@@ -14,9 +14,9 @@ namespace BookLibraryApi.Repositories.AuthenticationRepository
             _context = context ??
                throw new ArgumentNullException(nameof(context));
         }
-        public void AddRefreshToken(RefreshTokens refreshTokens)
+        public async void AddRefreshToken(RefreshTokens refreshTokens)
         {
-            _context.RefreshTokens.AddAsync(refreshTokens);
+            await _context.RefreshTokens.AddAsync(refreshTokens);
         }
 
         public void Update(RefreshTokens storedToken)

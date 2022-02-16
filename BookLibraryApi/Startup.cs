@@ -1,5 +1,6 @@
 using BookLibraryApi.Configuration;
 using BookLibraryApi.Contexts;
+using BookLibraryApi.Entities;
 using BookLibraryApi.Repositories.AuthenticationRepository;
 using BookLibraryApi.Repositories.AuthorRepository;
 using BookLibraryApi.Repositories.BookReposittory;
@@ -69,7 +70,7 @@ namespace BookLibraryApi
                 jwt.TokenValidationParameters = tokenValidationParameters;
             });
 
-            services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
                         .AddEntityFrameworkStores<BookContext>();
 
             services.AddControllers()

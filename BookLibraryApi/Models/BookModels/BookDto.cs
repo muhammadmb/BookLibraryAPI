@@ -30,5 +30,6 @@ namespace BookLibraryApi.Models.BookModels
         public List<ReviewForBook> Reviews { get; set; }
 
         public GenreDto Genre { get; set; }
+
     }
 }

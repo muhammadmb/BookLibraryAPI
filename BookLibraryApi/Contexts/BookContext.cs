@@ -6,7 +6,7 @@ using System;
 
 namespace BookLibraryApi.Contexts
 {
-    public class BookContext : IdentityDbContext
+    public class BookContext : IdentityDbContext<ApplicationUser>
     {
         public BookContext(DbContextOptions<BookContext> options) : base(options)
         {
@@ -61,7 +61,7 @@ namespace BookLibraryApi.Contexts
             modelBuilder.Entity<Book>().HasQueryFilter(p => !p.IsDeleted);
             modelBuilder.Entity<Review>().HasQueryFilter(p => !p.IsDeleted);
 
-            // Dunny data just for development
+            // data just for development
 
             modelBuilder.Entity<Genre>().HasData(
                 new Genre
@@ -578,9 +578,9 @@ namespace BookLibraryApi.Contexts
                     {
                         BookRateId = Guid.Parse("11111111-0000-0000-abcd-000000000000"),
                         BookId = Guid.Parse("00000000-1111-0000-abcd-000000000000"),
-                        FiveStarsRate=1,
-                        FourStarsRate=1,
-                        ThreeStarsRate=0,
+                        FiveStarsRate = 1,
+                        FourStarsRate = 1,
+                        ThreeStarsRate = 0,
                         TwoStarsRate = 0,
                         OneStarRate = 0,
                         TotalRate = 9,
@@ -609,7 +609,7 @@ namespace BookLibraryApi.Contexts
                         OneStarRate = 0,
                         TotalRate = 4,
                         ReviewsCount = 2
-                    }, 
+                    },
                     new BookRating
                     {
                         BookRateId = Guid.Parse("44444444-0000-0000-abcd-000000000000"),

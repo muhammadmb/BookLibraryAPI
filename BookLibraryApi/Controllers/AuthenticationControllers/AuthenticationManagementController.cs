@@ -1,4 +1,5 @@
 ﻿using BookLibraryApi.Configuration;
+using BookLibraryApi.Entities;
 using BookLibraryApi.Models.AuthenticationModels;
 using BookLibraryApi.Repositories.AuthenticationRepository;
 using Microsoft.AspNetCore.Identity;
@@ -19,14 +20,14 @@ namespace BookLibraryApi.Controllers.AuthenticationControllers
     [Route("api/AuthenticationManagement")]
     public class AuthenticationManagementController : ControllerBase
     {
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly JwtConfig _jwtConfig;
         private readonly TokenValidationParameters _tokenValidationParams;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IAuthenticationRepository _authenticationRepository;
 
         public AuthenticationManagementController(
-            UserManager<IdentityUser> userManager,
+            UserManager<ApplicationUser> userManager,
             IOptionsMonitor<JwtConfig> optionsMonitor,
             TokenValidationParameters tokenValidationParams,
             RoleManager<IdentityRole> roleManager,
@@ -62,7 +63,7 @@ namespace BookLibraryApi.Controllers.AuthenticationControllers
                     });
                 }
 
-                var newUser = new IdentityUser() { Email = user.Email, UserName = user.Username };
+                var newUser = new ApplicationUser() { Email = user.Email, UserName = user.Username };
                 var isCreated = await _userManager.CreateAsync(newUser, user.Password);
 
                 if (isCreated.Succeeded)
@@ -301,7 +302,7 @@ namespace BookLibraryApi.Controllers.AuthenticationControllers
             return dateTimeVal;
         }
 
-        private async Task<AuthResult> GenerateJwtToken(IdentityUser user)
+        private async Task<AuthResult> GenerateJwtToken(ApplicationUser user)
         {
             var jwtTokenHandler = new JwtSecurityTokenHandler();
 
@@ -343,11 +344,12 @@ namespace BookLibraryApi.Controllers.AuthenticationControllers
         }
 
         // Get all valid claims for the corresponding user
-        private async Task<List<Claim>> GetAllValidClaims(IdentityUser user)
+        private async Task<List<Claim>> GetAllValidClaims(ApplicationUser user)
         {
             var claims = new List<Claim>
             {
                 new Claim("Id", user.Id),
+                new Claim(ClaimTypes.NameIdentifier, user.Id),
                 new Claim(JwtRegisteredClaimNames.Email, user.Email),
                 new Claim(JwtRegisteredClaimNames.Sub, user.Email),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())

@@ -6,7 +6,6 @@ namespace BookLibraryApi.Entities
 {
     public class Book
     {
-
         [Key]
         public Guid Id { get; set; }
 
@@ -39,5 +38,6 @@ namespace BookLibraryApi.Entities
         public Genre Genre { get; set; }
 
         public bool IsDeleted { get; set; }
+
     }
 }

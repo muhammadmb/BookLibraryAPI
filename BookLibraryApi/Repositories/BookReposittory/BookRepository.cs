@@ -63,8 +63,7 @@ namespace BookLibraryApi.Repositories.BookReposittory
                     .Include(b => b.Author)
                     .Include(b => b.Reviews)
                     .Include(b => b.Genre)
-                    .Include(b => b.BookRating)
-                    ;
+                    .Include(b => b.BookRating);
             }
 
             if (!string.IsNullOrWhiteSpace(parameters.SortBy))
