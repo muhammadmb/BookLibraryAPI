@@ -1,4 +1,4 @@
-﻿namespace EmployeeApi.Services
+﻿namespace BookLibraryApi.Services
 {
     public interface IPropertyCheckerService
     {

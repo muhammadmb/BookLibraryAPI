@@ -41,7 +41,7 @@ namespace BookLibraryApi.Repositories.ReviewsRepository
                 }
             }
 
-            return PagedList<Review>.Create(
+            return await PagedList<Review>.Create(
                 Collection,
                 parameters.PageNumber,
                 parameters.PageSize);

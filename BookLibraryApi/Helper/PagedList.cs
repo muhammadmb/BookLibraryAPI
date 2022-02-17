@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace BookLibraryApi.Helper
 {
@@ -26,13 +28,13 @@ namespace BookLibraryApi.Helper
             CurrentPage = pageNumber;
             AddRange(items);
         }
-        public static PagedList<T> Create(IQueryable<T> source, int pageNumber, int pageSize)
+        public static async Task<PagedList<T>> Create(IQueryable<T> source, int pageNumber, int pageSize)
         {
             var count = source.Count();
-            var items = source
+            var items = await source
                 .Skip(pageSize * (pageNumber - 1))
                 .Take(pageSize)
-                .ToList();
+                .ToListAsync();
             return new PagedList<T>(items, count, pageNumber, pageSize);
         }
     }

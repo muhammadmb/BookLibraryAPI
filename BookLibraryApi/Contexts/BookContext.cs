@@ -25,6 +25,8 @@ namespace BookLibraryApi.Contexts
 
         public DbSet<RefreshTokens> RefreshTokens { get; set; }
 
+        public DbSet<Feedback> Feedbacks { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

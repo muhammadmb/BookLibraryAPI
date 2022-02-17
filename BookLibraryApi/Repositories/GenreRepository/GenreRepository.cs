@@ -43,7 +43,7 @@ namespace BookLibraryApi.Repositories.GenreRepository
                             g.Description.Contains(genreResourcesParameters.SearchQuery));
             }
 
-            return PagedList<Genre>.Create(
+            return await PagedList<Genre>.Create(
                 Collection,
                 genreResourcesParameters.PageNumber,
                 genreResourcesParameters.PageSize);

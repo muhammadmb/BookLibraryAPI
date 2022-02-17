@@ -36,7 +36,7 @@ namespace BookLibraryApi.Repositories.AuthorRepository
             }
 
             return
-                PagedList<Author>.Create(
+                await PagedList<Author>.Create(
                     Collection,
                     parameters.PageNumber,
                     parameters.PageSize

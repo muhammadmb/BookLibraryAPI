@@ -4,7 +4,7 @@ using BookLibraryApi.Helper;
 using BookLibraryApi.Models.GenreModels;
 using BookLibraryApi.Repositories.GenreRepository;
 using BookLibraryApi.ResourceParameters;
-using EmployeeApi.Services;
+using BookLibraryApi.Services;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;

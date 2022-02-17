@@ -4,9 +4,10 @@ using BookLibraryApi.Entities;
 using BookLibraryApi.Repositories.AuthenticationRepository;
 using BookLibraryApi.Repositories.AuthorRepository;
 using BookLibraryApi.Repositories.BookReposittory;
+using BookLibraryApi.Repositories.FeedbackRepository;
 using BookLibraryApi.Repositories.GenreRepository;
 using BookLibraryApi.Repositories.ReviewsRepository;
-using EmployeeApi.Services;
+using BookLibraryApi.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -100,6 +101,7 @@ namespace BookLibraryApi
             services.AddScoped<IAuthorRepository, AuthorRepository>();
             services.AddScoped<IReviewsRepository, ReviewsRepository>();
             services.AddScoped<IAuthenticationRepository, AuthenticationRepository>();
+            services.AddScoped<IFeedbackRepository, FeedbackRepository>();
 
             services.AddSwaggerGen(c =>
             {

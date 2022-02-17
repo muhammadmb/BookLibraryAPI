@@ -98,7 +98,7 @@ namespace BookLibraryApi.Repositories.BookReposittory
                     b.Publisher.Contains(parameters.SearchQuery));
             }
 
-            return PagedList<Book>.Create(
+            return await PagedList<Book>.Create(
                 Collection,
                 parameters.PageNumber,
                 parameters.PageSize);
