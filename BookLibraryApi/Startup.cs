@@ -7,6 +7,7 @@ using BookLibraryApi.Repositories.BookReposittory;
 using BookLibraryApi.Repositories.FeedbackRepository;
 using BookLibraryApi.Repositories.GenreRepository;
 using BookLibraryApi.Repositories.ReviewsRepository;
+using BookLibraryApi.Repositories.SuggesstionRepository;
 using BookLibraryApi.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -102,6 +103,7 @@ namespace BookLibraryApi
             services.AddScoped<IReviewsRepository, ReviewsRepository>();
             services.AddScoped<IAuthenticationRepository, AuthenticationRepository>();
             services.AddScoped<IFeedbackRepository, FeedbackRepository>();
+            services.AddScoped<ISuggesstionRepository, SuggesstionRepository>();
 
             services.AddSwaggerGen(c =>
             {

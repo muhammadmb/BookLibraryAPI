@@ -27,6 +27,8 @@ namespace BookLibraryApi.Contexts
 
         public DbSet<Feedback> Feedbacks { get; set; }
 
+        public DbSet<Suggesstion> Suggesstions { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

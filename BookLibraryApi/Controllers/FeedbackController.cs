@@ -93,27 +93,27 @@ namespace BookLibraryApi.Controllers
 
             return CreatedAtRoute(
                 "GetFeedback",
-                new { Id = feedback.Id },
+                new { feedback.Id },
                 "The feedback Added Succesfully"
                 );
         }
 
         [HttpPatch("{Id}")]
-        public async Task<IActionResult> PartialUpdate (Guid Id, JsonPatchDocument<FeedbackUpdateDto> patchDocument)
+        public async Task<IActionResult> PartialUpdate(Guid Id, JsonPatchDocument<FeedbackUpdateDto> patchDocument)
         {
-            if(patchDocument == null)
+            if (patchDocument == null)
             {
                 return BadRequest();
             }
 
-            var feddbackFromRepo = await _feedbackRepository.GetFeedback(Id);
+            var feedbackFromRepo = await _feedbackRepository.GetFeedback(Id);
 
-            if(feddbackFromRepo == null)
+            if (feedbackFromRepo == null)
             {
-                throw new ArgumentNullException(nameof(patchDocument));
+                return NotFound();
             }
 
-            var feedback = _mapper.Map<FeedbackUpdateDto>(feddbackFromRepo);
+            var feedback = _mapper.Map<FeedbackUpdateDto>(feedbackFromRepo);
 
             patchDocument.ApplyTo(feedback, ModelState);
 
@@ -122,8 +122,8 @@ namespace BookLibraryApi.Controllers
                 return ValidationProblem(ModelState);
             }
 
-            _mapper.Map(feedback, feddbackFromRepo);
-            _feedbackRepository.Update(feddbackFromRepo);
+            _mapper.Map(feedback, feedbackFromRepo);
+            _feedbackRepository.Update(feedbackFromRepo);
             await _feedbackRepository.SaveChangesAsync();
 
             return NoContent();
