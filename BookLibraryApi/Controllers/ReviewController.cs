@@ -5,6 +5,8 @@ using BookLibraryApi.Models.ReviewModels;
 using BookLibraryApi.Repositories.ReviewsRepository;
 using BookLibraryApi.ResourceParameters;
 using BookLibraryApi.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
@@ -17,6 +19,7 @@ namespace BookLibraryApi.Controllers
     [ApiController]
     [EnableCors("demoPolicy")]
     [Route("api/genres/{genreId}/Books/{bookId}/reviews")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Master, Editor")]
     public class ReviewController : ControllerBase
     {
         private readonly IReviewsRepository _reviewsRepository;
@@ -38,6 +41,7 @@ namespace BookLibraryApi.Controllers
 
         [HttpGet(Name = "GetReviews")]
         [HttpHead]
+        [AllowAnonymous]
         public async Task<IActionResult> GetReviewsForBook(
             Guid genreId,
             Guid bookId,
@@ -63,6 +67,7 @@ namespace BookLibraryApi.Controllers
 
         [HttpGet("{reviewId}", Name = "GetReview")]
         [HttpHead("{reviewId}")]
+        [AllowAnonymous]
         public async Task<IActionResult> GetReviewForBook(
             Guid genreId,
             Guid bookId,
@@ -86,7 +91,9 @@ namespace BookLibraryApi.Controllers
 
             return Ok(reviewsToReturn);
         }
+
         [HttpPost()]
+        [AllowAnonymous]
         public async Task<IActionResult> AddReview(
             Guid genreId,
             Guid bookId,
@@ -172,6 +179,7 @@ namespace BookLibraryApi.Controllers
         }
 
         [HttpDelete("{reviewId}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Master")]
         public async Task<IActionResult> DeleteReview(
             Guid genreId,
             Guid bookId,

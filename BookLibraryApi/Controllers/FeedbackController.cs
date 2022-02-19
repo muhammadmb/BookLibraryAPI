@@ -5,6 +5,9 @@ using BookLibraryApi.Models.FeedbackModels;
 using BookLibraryApi.Repositories.FeedbackRepository;
 using BookLibraryApi.ResourceParameters;
 using BookLibraryApi.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -14,6 +17,8 @@ namespace BookLibraryApi.Controllers
 {
     [Route("api/Feedback")]
     [ApiController]
+    [EnableCors("demoPolicy")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Master, Editor")]
     public class FeedbackController : ControllerBase
     {
         private readonly IFeedbackRepository _feedbackRepository;
@@ -74,6 +79,7 @@ namespace BookLibraryApi.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> CreateFeedback([FromBody] FeedbackCreationDto creationDto)
         {
             if (!ModelState.IsValid)

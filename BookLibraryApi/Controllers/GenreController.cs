@@ -5,6 +5,8 @@ using BookLibraryApi.Models.GenreModels;
 using BookLibraryApi.Repositories.GenreRepository;
 using BookLibraryApi.ResourceParameters;
 using BookLibraryApi.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
@@ -17,6 +19,7 @@ namespace BookLibraryApi.Controllers
     [ApiController]
     [EnableCors("demoPolicy")]
     [Route("/api/Genres")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Master, Editor")]
     public class GenreController : ControllerBase
     {
         private readonly IGenreRepository _genreRepository;
@@ -38,6 +41,7 @@ namespace BookLibraryApi.Controllers
 
         [HttpGet(Name = "GetGenres")]
         [HttpHead]
+        [AllowAnonymous]
         public async Task<IActionResult> GetGenres([FromQuery] GenreResourcesParameters parameters)
         {
             if (!_propertyCheckerService.TypeHasProperties<GenreDto>(parameters.Fields))
@@ -58,6 +62,7 @@ namespace BookLibraryApi.Controllers
 
         [HttpGet("{id}", Name = "GetGenre")]
         [HttpHead("{id}")]
+        [AllowAnonymous]
         public async Task<IActionResult> GetGenre(Guid id, string fields)
         {
             if (id == null)

@@ -5,6 +5,8 @@ using BookLibraryApi.Models.BookModels;
 using BookLibraryApi.Repositories.BookReposittory;
 using BookLibraryApi.ResourceParameters;
 using BookLibraryApi.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
@@ -17,6 +19,7 @@ namespace BookLibraryApi.Controllers
     [ApiController]
     [EnableCors("demoPolicy")]
     [Route("api/Genres/{GenreId}/Books")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Master, Editor")]
     public class BookController : ControllerBase
     {
         private readonly IBookRepository _bookRepository;
@@ -38,6 +41,7 @@ namespace BookLibraryApi.Controllers
         
         [HttpGet(Name = "GetBooks")]
         [HttpHead]
+        [AllowAnonymous]
         public async Task<IActionResult> GetBooks(Guid GenreId,
             [FromQuery] BookResourceParameters parameters)
         {
@@ -60,6 +64,7 @@ namespace BookLibraryApi.Controllers
 
         [HttpGet("{BookId}", Name = "GetBook")]
         [HttpHead("{BookId}")]
+        [AllowAnonymous]
         public async Task<IActionResult> GetBook(
             Guid GenreId,
             Guid BookId,
@@ -152,6 +157,7 @@ namespace BookLibraryApi.Controllers
         }
 
         [HttpDelete("{bookId}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Master")]
         public async Task<IActionResult> DelteBook(Guid GenreId, Guid BookId)
         {
             _bookRepository.Delete(GenreId, BookId);

@@ -5,6 +5,8 @@ using BookLibraryApi.Models.AuthorsModels;
 using BookLibraryApi.Repositories.AuthorRepository;
 using BookLibraryApi.ResourceParameters;
 using BookLibraryApi.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
@@ -17,6 +19,7 @@ namespace BookLibraryApi.Controllers
     [ApiController]
     [EnableCors("demoPolicy")]
     [Route("api/authors")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Master, Editor")]
     public class AuthorController : ControllerBase
     {
         private readonly IAuthorRepository _authorRepository;
@@ -35,6 +38,7 @@ namespace BookLibraryApi.Controllers
 
         [HttpGet(Name = "GetAuthors")]
         [HttpHead()]
+        [AllowAnonymous]
         public async Task<IActionResult> GetAuthors(
             [FromQuery] AuthorResourcesParameters parameters
             )
@@ -58,6 +62,7 @@ namespace BookLibraryApi.Controllers
 
         [HttpGet("{id}", Name = "GetAuthor")]
         [HttpHead("{id}")]
+        [AllowAnonymous]
         public async Task<IActionResult> GetAuthor(Guid id, string fields)
         {
             if (!_propertyChecker.TypeHasProperties<AuthorDto>(fields))

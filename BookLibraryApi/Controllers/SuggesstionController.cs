@@ -5,6 +5,9 @@ using BookLibraryApi.Models.SuggesstionModels;
 using BookLibraryApi.Repositories.SuggesstionRepository;
 using BookLibraryApi.ResourceParameters;
 using BookLibraryApi.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -14,6 +17,8 @@ namespace BookLibraryApi.Controllers
 {
     [Route("api/Suggesstions")]
     [ApiController]
+    [EnableCors("demoPolicy")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Master, Editor")]
     public class SuggesstionController : ControllerBase
     {
 
@@ -35,7 +40,6 @@ namespace BookLibraryApi.Controllers
             _propertyCheckerService = propertyCheckerService ??
                 throw new ArgumentNullException(nameof(propertyCheckerService));
         }
-
 
         [HttpGet]
         public async Task<IActionResult> GetSuggesstions(
@@ -76,6 +80,7 @@ namespace BookLibraryApi.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> CreateSuggesstion([FromBody] SuggesstionCreationDto creationDto)
         {
             if (creationDto == null)
@@ -145,8 +150,9 @@ namespace BookLibraryApi.Controllers
 
             return NoContent();
         }
-
+        
         [HttpDelete("{id}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Master")]
         public async Task<IActionResult> Delete(Guid id)
         {
             _suggesstionRepository.Delete(id);
