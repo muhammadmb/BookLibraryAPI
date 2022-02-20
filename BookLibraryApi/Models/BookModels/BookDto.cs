@@ -1,9 +1,7 @@
 ﻿using BookLibraryApi.Models.AuthorsModels;
 using BookLibraryApi.Models.GenreModels;
 using BookLibraryApi.Models.RatingModels;
-using BookLibraryApi.Models.ReviewModels;
 using System;
-using System.Collections.Generic;
 
 namespace BookLibraryApi.Models.BookModels
 {
@@ -27,9 +25,7 @@ namespace BookLibraryApi.Models.BookModels
 
         public AuthorForBook Author { get; set; }
 
-        public List<ReviewForBook> Reviews { get; set; }
-
-        public GenreDto Genre { get; set; }
+        public GenreForOtherEntitiesDto Genre { get; set; }
 
     }
 }

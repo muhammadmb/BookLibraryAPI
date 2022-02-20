@@ -11,7 +11,7 @@ namespace BookLibraryApi.Profiles
             CreateMap<Genre, GenreDto>();
             CreateMap<GenreCreation, Genre>();
             CreateMap<GenreUpdate, Genre>();
-            CreateMap<Genre, GenreForAuthor>();
+            CreateMap<Genre, GenreForOtherEntitiesDto>();
         }
     }
 }

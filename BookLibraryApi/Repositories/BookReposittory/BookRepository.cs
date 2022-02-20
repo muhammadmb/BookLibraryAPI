@@ -28,7 +28,6 @@ namespace BookLibraryApi.Repositories.BookReposittory
                 Collection =
                     _context.Books.Where(b => b.GenreId == genreId)
                     .Include(b => b.Author)
-                    .Include(b => b.Reviews)
                     .Include(b => b.Genre)
                     .Include(b => b.BookRating);
             }
@@ -37,7 +36,6 @@ namespace BookLibraryApi.Repositories.BookReposittory
                 Collection =
                     _context.Books
                     .Include(b => b.Author)
-                    .Include(b => b.Reviews)
                     .Include(b => b.Genre)
                     .Include(b => b.BookRating);
             }
@@ -49,7 +47,6 @@ namespace BookLibraryApi.Repositories.BookReposittory
                     _context.Books
                     .Where(b => b.DateOfPublish.Year.ToString().Equals(parameters.YearOfPublish))
                     .Include(b => b.Author)
-                    .Include(b => b.Reviews)
                     .Include(b => b.Genre);
             }
 
@@ -61,7 +58,6 @@ namespace BookLibraryApi.Repositories.BookReposittory
                     _context.Books
                     .Where(b => b.Author.Name == parameters.Author)
                     .Include(b => b.Author)
-                    .Include(b => b.Reviews)
                     .Include(b => b.Genre)
                     .Include(b => b.BookRating);
             }
@@ -107,7 +103,6 @@ namespace BookLibraryApi.Repositories.BookReposittory
         public async Task<Book> GetBook(Guid genreId, Guid bookId)
         {
             return await _context.Books
-                .Include(b => b.Reviews)
                 .Include(b => b.Author)
                 .Include(b => b.Genre)
                 .Include(b => b.BookRating)
