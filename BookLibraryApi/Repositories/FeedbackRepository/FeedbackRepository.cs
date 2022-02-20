@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace BookLibraryApi.Repositories.FeedbackRepository
 {
-    public class FeedbackRepository : IFeedbackRepository
+    public class FeedbackRepository : IFeedbackRepository, IDisposable
     {
         private readonly BookContext _context;
 
@@ -60,6 +60,20 @@ namespace BookLibraryApi.Repositories.FeedbackRepository
         public async Task<bool> SaveChangesAsync()
         {
             return (await _context.SaveChangesAsync() > 0);
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                // dispose resources when needed
+            }
         }
     }
 }

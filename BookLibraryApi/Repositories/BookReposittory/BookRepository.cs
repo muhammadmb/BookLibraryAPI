@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BookLibraryApi.Repositories.BookReposittory
 {
-    public class BookRepository : IBookRepository
+    public class BookRepository : IBookRepository, IDisposable
     {
         private readonly BookContext _context;
 
@@ -140,5 +140,18 @@ namespace BookLibraryApi.Repositories.BookReposittory
             return (await _context.SaveChangesAsync() > 0);
         }
 
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                // dispose resources when needed
+            }
+        }
     }
 }

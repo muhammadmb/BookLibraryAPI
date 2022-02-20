@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BookLibraryApi.Repositories.GenreRepository
 {
-    public class GenreRepository : IGenreRepository
+    public class GenreRepository : IGenreRepository, IDisposable
     {
         private readonly BookContext _context;
 
@@ -71,6 +71,20 @@ namespace BookLibraryApi.Repositories.GenreRepository
         public async Task<bool> SaveChangesAsync()
         {
             return (await _context.SaveChangesAsync() > 0);
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                // dispose resources when needed
+            }
         }
     }
 }

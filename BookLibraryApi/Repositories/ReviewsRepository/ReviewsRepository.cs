@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BookLibraryApi.Repositories.ReviewsRepository
 {
-    public class ReviewsRepository : IReviewsRepository
+    public class ReviewsRepository : IReviewsRepository, IDisposable
     {
         private readonly BookContext _context;
 
@@ -76,6 +76,20 @@ namespace BookLibraryApi.Repositories.ReviewsRepository
         public async Task<bool> saveChangesAsync()
         {
             return (await _context.SaveChangesAsync() > 0);
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                // dispose resources when needed
+            }
         }
     }
 }
