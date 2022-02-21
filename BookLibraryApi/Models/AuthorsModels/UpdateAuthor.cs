@@ -16,12 +16,10 @@ namespace BookLibraryApi.Models.AuthorsModels
         [MaxLength(1000)]
         public string Bio { get; set; }
 
-        public DateTimeOffset DateOfBirth { get; set; }
+        public DateTime DateOfBirth { get; set; }
 
-        public DateTimeOffset DateOfDeath { get; set; }
+        public DateTime DateOfDeath { get; set; }
 
         public Guid GenreId { get; set; }
-
-        public bool IsDeleted { get; set; }
     }
 }

@@ -134,5 +134,13 @@ namespace BookLibraryApi.Controllers
 
             return NoContent();
         }
+        
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            _feedbackRepository.Delete(id);
+            await _feedbackRepository.SaveChangesAsync();
+            return NoContent();
+        }
     }
 }

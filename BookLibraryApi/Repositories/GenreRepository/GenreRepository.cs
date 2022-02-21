@@ -68,6 +68,13 @@ namespace BookLibraryApi.Repositories.GenreRepository
             _context.Genres.Update(genre);
         }
 
+        public void DeleteGenre(Guid id)
+        {
+            var genre = _context.Genres.FirstOrDefault(g => g.Id == id);
+            genre.IsDeleted = DateTimeOffset.Now;
+            _context.Genres.Update(genre);
+        }
+
         public async Task<bool> SaveChangesAsync()
         {
             return (await _context.SaveChangesAsync() > 0);

@@ -12,6 +12,8 @@ namespace BookLibraryApi.Repositories.GenreRepository
         Task<Genre> GetGenre(Guid id);
         void CreateGenre(Genre genre);
         void UpdateGenre(Genre genre);
+        void DeleteGenre(Guid id);
         Task<bool> SaveChangesAsync();
+        
     }
 }

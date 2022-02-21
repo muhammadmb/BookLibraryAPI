@@ -7,7 +7,5 @@
         public string Description { get; set; }
 
         public bool IsReaded { get; set; }
-
-        public bool IsDeleted { get; set; }
     }
 }

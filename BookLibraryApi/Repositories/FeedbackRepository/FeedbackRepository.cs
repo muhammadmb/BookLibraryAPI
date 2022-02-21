@@ -57,6 +57,13 @@ namespace BookLibraryApi.Repositories.FeedbackRepository
             _context.Feedbacks.Update(feddback);
         }
 
+        public void Delete(Guid id)
+        {
+            var feedback = _context.Feedbacks.FirstOrDefault(f => f.Id == id);
+            feedback.IsDeleted = DateTimeOffset.Now;
+            _context.Feedbacks.Update(feedback);
+        }
+
         public async Task<bool> SaveChangesAsync()
         {
             return (await _context.SaveChangesAsync() > 0);

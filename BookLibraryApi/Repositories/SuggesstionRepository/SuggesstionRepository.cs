@@ -59,11 +59,9 @@ namespace BookLibraryApi.Repositories.SuggesstionRepository
 
         public void Delete(Guid id)
         {
-            var suggesstion = new Suggesstion()
-            {
-                Id = id
-            };
-            _context.Suggesstions.Remove(suggesstion);
+            var suggestion = _context.Suggesstions.FirstOrDefault(s => s.Id == id);
+            suggestion.IsDeleted = DateTimeOffset.Now;
+            _context.Suggesstions.Update(suggestion);
         }
 
         public async Task<bool> SaveChangesAsync()

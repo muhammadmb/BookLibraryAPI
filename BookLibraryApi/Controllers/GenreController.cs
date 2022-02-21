@@ -65,11 +65,6 @@ namespace BookLibraryApi.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> GetGenre(Guid id, string fields)
         {
-            if (id == null)
-            {
-                throw new ArgumentNullException(nameof(id));
-            }
-
             if (!_propertyCheckerService.TypeHasProperties<GenreDto>(fields))
             {
                 return NotFound();
@@ -160,6 +155,14 @@ namespace BookLibraryApi.Controllers
 
             await _genreRepository.SaveChangesAsync();
 
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete (Guid id)
+        {
+            _genreRepository.DeleteGenre(id);
+            await _genreRepository.SaveChangesAsync();
             return NoContent();
         }
 

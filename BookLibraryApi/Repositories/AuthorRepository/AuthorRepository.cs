@@ -21,11 +21,12 @@ namespace BookLibraryApi.Repositories.AuthorRepository
 
         public async Task<PagedList<Author>> GetAuthors(AuthorResourcesParameters parameters)
         {
-            var Collection =
+            IQueryable<Author> Collection;
+
+            Collection =
                 _context.Authors
                 .Include(a => a.Genre)
-                .Include(a => a.Books)
-                as IQueryable<Author>;
+                .Include(a => a.Books);
 
             if (!string.IsNullOrWhiteSpace(parameters.SearchQuery))
             {
@@ -55,18 +56,19 @@ namespace BookLibraryApi.Repositories.AuthorRepository
         {
             _context.Authors.Add(author);
         }
+
         public void Update(Author authorFromRepo)
         {
             _context.Authors.Update(authorFromRepo);
         }
+
         public void Delete(Guid id)
         {
-            var author = new Author()
-            {
-                Id = id
-            };
-            _context.Authors.Remove(author);
+            var author = _context.Authors.FirstOrDefault(a => a.Id == id);
+            author.IsDeleted = DateTimeOffset.Now;
+            _context.Authors.Update(author);
         }
+
         public async Task<bool> SaveChangesAsync()
         {
             return (await _context.SaveChangesAsync() > 0);

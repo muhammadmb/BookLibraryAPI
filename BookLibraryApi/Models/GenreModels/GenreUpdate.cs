@@ -12,7 +12,5 @@ namespace BookLibraryApi.Models.GenreModels
         [Url]
         [Required]
         public string PicUrl { get; set; }
-
-        public bool IsDeleted { get; set; }
     }
 }

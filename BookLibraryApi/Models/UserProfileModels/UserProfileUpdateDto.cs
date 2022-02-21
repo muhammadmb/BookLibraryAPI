@@ -24,7 +24,5 @@ namespace BookLibraryApi.Models.UserProfileModels
 
         [Url]
         public string PictureUrl { get; set; }
-
-        public bool IsDeleted { get; set; }
     }
 }

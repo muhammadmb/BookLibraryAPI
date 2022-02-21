@@ -13,9 +13,9 @@ namespace BookLibraryApi.Models.AuthorsModels
 
         public string Bio { get; set; }
 
-        public DateTimeOffset DateOfBirth { get; set; }
+        public DateTime DateOfBirth { get; set; }
 
-        public DateTimeOffset DateOfDeath { get; set; }
+        public DateTime DateOfDeath { get; set; }
 
         public GenreForOtherEntitiesDto Genre { get; set; }
     }

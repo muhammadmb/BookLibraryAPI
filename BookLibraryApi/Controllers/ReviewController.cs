@@ -105,7 +105,7 @@ namespace BookLibraryApi.Controllers
             }
 
             var review = _mapper.Map<Review>(reviewCreation);
-            review.BookId = reviewCreation.BookId != null ? reviewCreation.BookId : bookId;
+            review.BookId = reviewCreation.BookId != Guid.Empty ? reviewCreation.BookId : bookId;
 
             _reviewsRepository.CreateReview(review);
             await _reviewsRepository.saveChangesAsync();
@@ -181,7 +181,6 @@ namespace BookLibraryApi.Controllers
         [HttpDelete("{reviewId}")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Master")]
         public async Task<IActionResult> DeleteReview(
-            Guid genreId,
             Guid bookId,
             Guid reviewId)
         {

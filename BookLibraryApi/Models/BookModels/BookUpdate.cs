@@ -24,7 +24,5 @@ namespace BookLibraryApi.Models.BookModels
         public Guid? AuthorId { get; set; }
 
         public Guid GenreId { get; set; }
-
-        public bool IsDeleted { get; set; }
     }
 }

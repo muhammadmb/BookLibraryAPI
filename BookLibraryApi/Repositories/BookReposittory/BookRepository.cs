@@ -120,14 +120,12 @@ namespace BookLibraryApi.Repositories.BookReposittory
         {
             _context.Books.Update(book);
         }
+
         public void Delete(Guid genreId, Guid bookId)
         {
-            var book = new Book()
-            {
-                GenreId = genreId,
-                Id = bookId
-            };
-            _context.Books.Remove(book);
+            var book = _context.Books.FirstOrDefault(b => b.GenreId == genreId && b.Id == bookId);
+            book.IsDeleted = DateTimeOffset.Now;
+            _context.Books.Update(book);
         }
 
         public async Task<bool> SaveChangesAsync()

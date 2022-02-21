@@ -15,6 +15,8 @@ namespace BookLibraryApi.Repositories.FeedbackRepository
         void Create(Feedback feedback);
 
         void Update(Feedback feddback);
+        
+        void Delete(Guid id);
 
         Task<bool> SaveChangesAsync();
     }
