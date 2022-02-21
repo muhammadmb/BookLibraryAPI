@@ -19,5 +19,9 @@ namespace BookLibraryApi.Models.ReviewModels
         public int UpVote { get; set; }
 
         public int DownVote { get; set; }
+
+        public DateTimeOffset AddedDate { get; set; }
+
+        public DateTimeOffset UpdateDate { get; set; }
     }
 }

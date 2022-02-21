@@ -11,5 +11,10 @@ namespace BookLibraryApi.Models.GenreModels
         public string GenreName { get; set; }
 
         public string PicUrl { get; set; }
+
+        public DateTimeOffset AddedDate { get; set; }
+
+        public DateTimeOffset UpdateDate { get; set; }
+
     }
 }

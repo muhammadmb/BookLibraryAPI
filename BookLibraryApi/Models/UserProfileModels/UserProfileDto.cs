@@ -28,5 +28,7 @@ namespace BookLibraryApi.Models.UserProfileModels
         public Gender Gender { get; set; }
 
         public string PictureUrl { get; set; }
+
+        public DateTimeOffset UpdateDate { get; set; }
     }
 }

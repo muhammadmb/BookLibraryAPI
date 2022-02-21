@@ -16,6 +16,7 @@ namespace BookLibraryApi.Models.ReviewModels
 
         [Required]
         public int BookRate { get; set; }
+
         public int UpVote { get; set; }
 
         public int DownVote { get; set; }

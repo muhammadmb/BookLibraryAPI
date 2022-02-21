@@ -27,5 +27,9 @@ namespace BookLibraryApi.Models.SuggesstionModels
         public Guid? AuthorId { get; set; }
 
         public Guid GenreId { get; set; }
+
+        public DateTimeOffset AddedDate { get; set; }
+
+        public DateTimeOffset UpdateDate { get; set; }
     }
 }

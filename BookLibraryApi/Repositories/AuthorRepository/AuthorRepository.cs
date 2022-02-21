@@ -59,6 +59,7 @@ namespace BookLibraryApi.Repositories.AuthorRepository
 
         public void Update(Author authorFromRepo)
         {
+            authorFromRepo.UpdateDate = DateTimeOffset.Now;
             _context.Authors.Update(authorFromRepo);
         }
 

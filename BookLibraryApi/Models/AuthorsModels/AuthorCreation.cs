@@ -17,7 +17,7 @@ namespace BookLibraryApi.Models.AuthorsModels
 
         public DateTime DateOfBirth { get; set; }
 
-        public DateTime DateOfDeath { get; set; }
+        public DateTime? DateOfDeath { get; set; }
 
         public Guid GenreId { get; set; }
     }

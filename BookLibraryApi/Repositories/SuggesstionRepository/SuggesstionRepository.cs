@@ -54,6 +54,7 @@ namespace BookLibraryApi.Repositories.SuggesstionRepository
 
         public void Update(Suggesstion suggesstion)
         {
+            suggesstion.UpdateDate = DateTimeOffset.Now;
             _context.Suggesstions.Update(suggesstion);
         }
 

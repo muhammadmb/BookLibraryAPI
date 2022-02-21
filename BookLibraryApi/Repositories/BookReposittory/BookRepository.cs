@@ -118,6 +118,7 @@ namespace BookLibraryApi.Repositories.BookReposittory
 
         public void Update(Book book)
         {
+            book.UpdateDate = DateTimeOffset.Now;
             _context.Books.Update(book);
         }
 

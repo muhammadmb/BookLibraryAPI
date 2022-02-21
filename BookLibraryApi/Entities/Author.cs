@@ -6,10 +6,6 @@ namespace BookLibraryApi.Entities
 {
     public class Author
     {
-        public Author()
-        {
-
-        }
         [Key]
         public Guid Id { get; set; }
 

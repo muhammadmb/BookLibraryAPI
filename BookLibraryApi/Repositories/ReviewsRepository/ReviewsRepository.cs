@@ -59,6 +59,7 @@ namespace BookLibraryApi.Repositories.ReviewsRepository
         }
         public void UpdateReview(Review review)
         {
+            review.UpdateDate = DateTimeOffset.Now;
             _context.Reviews.Update(review);
         }
 

@@ -54,6 +54,7 @@ namespace BookLibraryApi.Repositories.FeedbackRepository
 
         public void Update(Feedback feddback)
         {
+            feddback.UpdateDate = DateTimeOffset.Now;
             _context.Feedbacks.Update(feddback);
         }
 

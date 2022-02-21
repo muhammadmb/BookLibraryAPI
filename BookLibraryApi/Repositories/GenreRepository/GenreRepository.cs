@@ -65,6 +65,7 @@ namespace BookLibraryApi.Repositories.GenreRepository
 
         public void UpdateGenre(Genre genre)
         {
+            genre.UpdateDate = DateTimeOffset.Now;
             _context.Genres.Update(genre);
         }
 

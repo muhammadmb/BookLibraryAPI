@@ -27,5 +27,8 @@ namespace BookLibraryApi.Models.BookModels
 
         public GenreForOtherEntitiesDto Genre { get; set; }
 
+        public DateTimeOffset AddedDate { get; set; }
+
+        public DateTimeOffset UpdateDate { get; set; }
     }
 }

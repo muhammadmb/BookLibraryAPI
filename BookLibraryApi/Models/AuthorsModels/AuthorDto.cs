@@ -18,5 +18,9 @@ namespace BookLibraryApi.Models.AuthorsModels
         public DateTime DateOfDeath { get; set; }
 
         public GenreForOtherEntitiesDto Genre { get; set; }
+
+        public DateTimeOffset AddedDate { get; set; }
+
+        public DateTimeOffset UpdateDate { get; set; }
     }
 }
