@@ -22,6 +22,10 @@ namespace BookLibraryApi.Entities
 
         public List<Author> Authors { get; set; }
 
-        public bool IsDeleted { get; set; }
+        public DateTimeOffset AddedDate { get; set; } = DateTimeOffset.Now;
+
+        public DateTimeOffset? IsDeleted { get; set; }
+
+        public DateTimeOffset? UpdateDate { get; set; }
     }
 }

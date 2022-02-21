@@ -20,7 +20,7 @@ namespace BookLibraryApi.Entities
 
         public DateTime DateOfPublish { get; set; }
 
-        public DateTime AddedDate { get; set; } = DateTime.Now;
+        public DateTimeOffset AddedDate { get; set; } = DateTimeOffset.Now;
 
         public int NumberOfBookPages { get; set; }
 
@@ -33,6 +33,8 @@ namespace BookLibraryApi.Entities
 
         public Guid GenreId { get; set; }
 
-        public bool IsDeleted { get; set; }
+        public DateTimeOffset? IsDeleted { get; set; }
+
+        public DateTimeOffset? UpdateDate { get; set; }
     }
 }

@@ -4,14 +4,16 @@ using BookLibraryApi.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BookLibraryApi.Migrations
 {
     [DbContext(typeof(BookContext))]
-    partial class BookContextModelSnapshot : ModelSnapshot
+    [Migration("20220221030927_Add AddedDate, updateDate")]
+    partial class AddAddedDateupdateDate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -55,9 +57,6 @@ namespace BookLibraryApi.Migrations
 
                     b.Property<int>("Gender")
                         .HasColumnType("int");
-
-                    b.Property<DateTimeOffset?>("IsDeleted")
-                        .HasColumnType("datetimeoffset");
 
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
@@ -137,9 +136,6 @@ namespace BookLibraryApi.Migrations
                     b.Property<Guid>("GenreId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTimeOffset?>("IsDeleted")
-                        .HasColumnType("datetimeoffset");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -160,7 +156,7 @@ namespace BookLibraryApi.Migrations
                         new
                         {
                             Id = new Guid("10000000-0000-0000-abcd-000000000000"),
-                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 14, 30, 746, DateTimeKind.Unspecified).AddTicks(7269), new TimeSpan(0, 2, 0, 0, 0)),
+                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 9, 26, 879, DateTimeKind.Unspecified).AddTicks(7095), new TimeSpan(0, 2, 0, 0, 0)),
                             Bio = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed faucibus quis nibh non sagittis",
                             DateOfBirth = new DateTime(1988, 4, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateOfDeath = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -171,7 +167,7 @@ namespace BookLibraryApi.Migrations
                         new
                         {
                             Id = new Guid("20000000-0000-0000-abcd-000000000000"),
-                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 14, 30, 746, DateTimeKind.Unspecified).AddTicks(8761), new TimeSpan(0, 2, 0, 0, 0)),
+                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 9, 26, 879, DateTimeKind.Unspecified).AddTicks(8854), new TimeSpan(0, 2, 0, 0, 0)),
                             Bio = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed faucibus quis nibh non sagittis",
                             DateOfBirth = new DateTime(1918, 4, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateOfDeath = new DateTime(2018, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -182,7 +178,7 @@ namespace BookLibraryApi.Migrations
                         new
                         {
                             Id = new Guid("30000000-0000-0000-abcd-000000000000"),
-                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 14, 30, 746, DateTimeKind.Unspecified).AddTicks(9009), new TimeSpan(0, 2, 0, 0, 0)),
+                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 9, 26, 879, DateTimeKind.Unspecified).AddTicks(9116), new TimeSpan(0, 2, 0, 0, 0)),
                             Bio = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed faucibus quis nibh non sagittis",
                             DateOfBirth = new DateTime(1995, 2, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateOfDeath = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -193,7 +189,7 @@ namespace BookLibraryApi.Migrations
                         new
                         {
                             Id = new Guid("40000000-0000-0000-abcd-000000000000"),
-                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 14, 30, 746, DateTimeKind.Unspecified).AddTicks(9021), new TimeSpan(0, 2, 0, 0, 0)),
+                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 9, 26, 879, DateTimeKind.Unspecified).AddTicks(9128), new TimeSpan(0, 2, 0, 0, 0)),
                             Bio = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed faucibus quis nibh non sagittis",
                             DateOfBirth = new DateTime(1977, 7, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateOfDeath = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -204,7 +200,7 @@ namespace BookLibraryApi.Migrations
                         new
                         {
                             Id = new Guid("50000000-0000-0000-abcd-000000000000"),
-                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 14, 30, 746, DateTimeKind.Unspecified).AddTicks(9025), new TimeSpan(0, 2, 0, 0, 0)),
+                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 9, 26, 879, DateTimeKind.Unspecified).AddTicks(9132), new TimeSpan(0, 2, 0, 0, 0)),
                             Bio = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed faucibus quis nibh non sagittis",
                             DateOfBirth = new DateTime(1988, 7, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateOfDeath = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -215,7 +211,7 @@ namespace BookLibraryApi.Migrations
                         new
                         {
                             Id = new Guid("60000000-0000-0000-abcd-000000000000"),
-                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 14, 30, 746, DateTimeKind.Unspecified).AddTicks(9029), new TimeSpan(0, 2, 0, 0, 0)),
+                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 9, 26, 879, DateTimeKind.Unspecified).AddTicks(9137), new TimeSpan(0, 2, 0, 0, 0)),
                             Bio = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed faucibus quis nibh non sagittis",
                             DateOfBirth = new DateTime(1898, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateOfDeath = new DateTime(1948, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -226,7 +222,7 @@ namespace BookLibraryApi.Migrations
                         new
                         {
                             Id = new Guid("70000000-0000-0000-abcd-000000000000"),
-                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 14, 30, 746, DateTimeKind.Unspecified).AddTicks(9034), new TimeSpan(0, 2, 0, 0, 0)),
+                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 9, 26, 879, DateTimeKind.Unspecified).AddTicks(9141), new TimeSpan(0, 2, 0, 0, 0)),
                             Bio = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed faucibus quis nibh non sagittis",
                             DateOfBirth = new DateTime(1998, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateOfDeath = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -266,9 +262,6 @@ namespace BookLibraryApi.Migrations
                     b.Property<Guid>("GenreId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTimeOffset?>("IsDeleted")
-                        .HasColumnType("datetimeoffset");
-
                     b.Property<int>("NumberOfBookPages")
                         .HasColumnType("int");
 
@@ -290,7 +283,7 @@ namespace BookLibraryApi.Migrations
                         new
                         {
                             Id = new Guid("00000000-1111-0000-abcd-000000000000"),
-                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 14, 30, 746, DateTimeKind.Unspecified).AddTicks(9531), new TimeSpan(0, 2, 0, 0, 0)),
+                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 9, 26, 879, DateTimeKind.Unspecified).AddTicks(9737), new TimeSpan(0, 2, 0, 0, 0)),
                             AuthorId = new Guid("10000000-0000-0000-abcd-000000000000"),
                             BookCover = "https://www.designforwriters.com/wp-content/uploads/2017/10/design-for-writers-book-cover-tf-2-a-million-to-one.jpg",
                             BookTitle = "A Milion To One",
@@ -303,7 +296,7 @@ namespace BookLibraryApi.Migrations
                         new
                         {
                             Id = new Guid("00000000-2222-0000-abcd-000000000000"),
-                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 14, 30, 747, DateTimeKind.Unspecified).AddTicks(2337), new TimeSpan(0, 2, 0, 0, 0)),
+                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 9, 26, 880, DateTimeKind.Unspecified).AddTicks(2587), new TimeSpan(0, 2, 0, 0, 0)),
                             AuthorId = new Guid("20000000-0000-0000-abcd-000000000000"),
                             BookCover = "https://marketplace.canva.com/EAD7WWWtKSQ/1/0/251w/canva-purple-and-red-leaves-illustration-children%27s-book-cover-hNI7HYnNVQQ.jpg",
                             BookTitle = "Amara the brave",
@@ -316,7 +309,7 @@ namespace BookLibraryApi.Migrations
                         new
                         {
                             Id = new Guid("00000000-3333-0000-abcd-000000000000"),
-                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 14, 30, 747, DateTimeKind.Unspecified).AddTicks(2370), new TimeSpan(0, 2, 0, 0, 0)),
+                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 9, 26, 880, DateTimeKind.Unspecified).AddTicks(2612), new TimeSpan(0, 2, 0, 0, 0)),
                             AuthorId = new Guid("30000000-0000-0000-abcd-000000000000"),
                             BookCover = "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/action-thriller-book-cover-design-template-3675ae3e3ac7ee095fc793ab61b812cc_screen.jpg?ts=1588152105",
                             BookTitle = "The king of drugs",
@@ -329,7 +322,7 @@ namespace BookLibraryApi.Migrations
                         new
                         {
                             Id = new Guid("00000000-4444-0000-abcd-000000000000"),
-                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 14, 30, 747, DateTimeKind.Unspecified).AddTicks(2391), new TimeSpan(0, 2, 0, 0, 0)),
+                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 9, 26, 880, DateTimeKind.Unspecified).AddTicks(2637), new TimeSpan(0, 2, 0, 0, 0)),
                             AuthorId = new Guid("40000000-0000-0000-abcd-000000000000"),
                             BookCover = "https://static01.nyt.com/images/2014/02/05/books/05before-and-after-slide-T6H2/05before-and-after-slide-T6H2-superJumbo.jpg?quality=75&auto=webp&disable=upscale",
                             BookTitle = "The Martian",
@@ -342,7 +335,7 @@ namespace BookLibraryApi.Migrations
                         new
                         {
                             Id = new Guid("00000000-5555-0000-abcd-000000000000"),
-                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 14, 30, 747, DateTimeKind.Unspecified).AddTicks(2401), new TimeSpan(0, 2, 0, 0, 0)),
+                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 9, 26, 880, DateTimeKind.Unspecified).AddTicks(2647), new TimeSpan(0, 2, 0, 0, 0)),
                             AuthorId = new Guid("40000000-0000-0000-abcd-000000000000"),
                             BookCover = "https://images.squarespace-cdn.com/content/v1/5ae2fce87e3c3ae275ea2c9f/1526464175408-W92Q4MSAM40I8YF4HM64/ke17ZwdGBToddI8pDm48kG42nK5MxReh9N1Tgs_dc9t7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1UXysNIcM8ERoy824r28kfN5DdNsbvYnFI46u1WARIoKesh_vZu_IHrh0xbom9DKbTA/tess-cover.jpg?format=1500w",
                             BookTitle = "Tess of the road",
@@ -355,7 +348,7 @@ namespace BookLibraryApi.Migrations
                         new
                         {
                             Id = new Guid("00000000-6666-0000-abcd-000000000000"),
-                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 14, 30, 747, DateTimeKind.Unspecified).AddTicks(2409), new TimeSpan(0, 2, 0, 0, 0)),
+                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 9, 26, 880, DateTimeKind.Unspecified).AddTicks(2654), new TimeSpan(0, 2, 0, 0, 0)),
                             AuthorId = new Guid("40000000-0000-0000-abcd-000000000000"),
                             BookCover = "https://cms-assets.tutsplus.com/uploads/users/1631/posts/32582/image/Soulful%20Poetry%20Book%20Cover%20Template%20copy.jpg",
                             BookTitle = "Songs with Souls",
@@ -368,7 +361,7 @@ namespace BookLibraryApi.Migrations
                         new
                         {
                             Id = new Guid("00000000-7777-0000-abcd-000000000000"),
-                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 14, 30, 747, DateTimeKind.Unspecified).AddTicks(2421), new TimeSpan(0, 2, 0, 0, 0)),
+                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 9, 26, 880, DateTimeKind.Unspecified).AddTicks(2662), new TimeSpan(0, 2, 0, 0, 0)),
                             AuthorId = new Guid("30000000-0000-0000-abcd-000000000000"),
                             BookCover = "https://assets-2.placeit.net/smart_templates/e639b9513adc63d37ee4f577433b787b/assets/wn5u193mcjesm2ycxacaltq8jdu68kmu.jpg",
                             BookTitle = "Story Book",
@@ -381,7 +374,7 @@ namespace BookLibraryApi.Migrations
                         new
                         {
                             Id = new Guid("00000000-8888-0000-abcd-000000000000"),
-                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 14, 30, 747, DateTimeKind.Unspecified).AddTicks(2427), new TimeSpan(0, 2, 0, 0, 0)),
+                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 9, 26, 880, DateTimeKind.Unspecified).AddTicks(2669), new TimeSpan(0, 2, 0, 0, 0)),
                             AuthorId = new Guid("10000000-0000-0000-abcd-000000000000"),
                             BookCover = "https://i.pinimg.com/originals/1e/c5/df/1ec5df963765d4bcf151467c99d1dae7.jpg",
                             BookTitle = "Finding Moana",
@@ -394,7 +387,7 @@ namespace BookLibraryApi.Migrations
                         new
                         {
                             Id = new Guid("00000000-9999-0000-abcd-000000000000"),
-                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 14, 30, 747, DateTimeKind.Unspecified).AddTicks(2433), new TimeSpan(0, 2, 0, 0, 0)),
+                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 9, 26, 880, DateTimeKind.Unspecified).AddTicks(2676), new TimeSpan(0, 2, 0, 0, 0)),
                             AuthorId = new Guid("20000000-0000-0000-abcd-000000000000"),
                             BookCover = "https://i.pinimg.com/originals/a4/aa/c1/a4aac1f3d86869bcfd2833e8be768014.jpg",
                             BookTitle = "City on the edge",
@@ -407,7 +400,7 @@ namespace BookLibraryApi.Migrations
                         new
                         {
                             Id = new Guid("00000000-1010-0000-abcd-000000000000"),
-                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 14, 30, 747, DateTimeKind.Unspecified).AddTicks(2440), new TimeSpan(0, 2, 0, 0, 0)),
+                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 9, 26, 880, DateTimeKind.Unspecified).AddTicks(2705), new TimeSpan(0, 2, 0, 0, 0)),
                             AuthorId = new Guid("10000000-0000-0000-abcd-000000000000"),
                             BookCover = "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/haunted-house-horror-book-cover-design-template-fd3a8016a4128af962549c3c40190270_screen.jpg?ts=1588747771",
                             BookTitle = "House Of Secrets",
@@ -420,7 +413,7 @@ namespace BookLibraryApi.Migrations
                         new
                         {
                             Id = new Guid("00000000-1100-0000-abcd-000000000000"),
-                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 14, 30, 747, DateTimeKind.Unspecified).AddTicks(2446), new TimeSpan(0, 2, 0, 0, 0)),
+                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 9, 26, 880, DateTimeKind.Unspecified).AddTicks(2716), new TimeSpan(0, 2, 0, 0, 0)),
                             AuthorId = new Guid("10000000-0000-0000-abcd-000000000000"),
                             BookCover = "https://i.pinimg.com/originals/d1/47/e9/d147e94169caabe9ca52cf7e7f20bb4c.jpg",
                             BookTitle = "The Carrow Haunt",
@@ -433,7 +426,7 @@ namespace BookLibraryApi.Migrations
                         new
                         {
                             Id = new Guid("00000000-1212-0000-abcd-000000000000"),
-                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 14, 30, 747, DateTimeKind.Unspecified).AddTicks(2453), new TimeSpan(0, 2, 0, 0, 0)),
+                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 9, 26, 880, DateTimeKind.Unspecified).AddTicks(2724), new TimeSpan(0, 2, 0, 0, 0)),
                             AuthorId = new Guid("30000000-0000-0000-abcd-000000000000"),
                             BookCover = "https://i.pinimg.com/originals/a4/aa/c1/a4aac1f3d86869bcfd2833e8be768014.jpg",
                             BookTitle = "Stephen King",
@@ -446,7 +439,7 @@ namespace BookLibraryApi.Migrations
                         new
                         {
                             Id = new Guid("00000000-1313-0000-abcd-000000000000"),
-                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 14, 30, 747, DateTimeKind.Unspecified).AddTicks(2459), new TimeSpan(0, 2, 0, 0, 0)),
+                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 9, 26, 880, DateTimeKind.Unspecified).AddTicks(2732), new TimeSpan(0, 2, 0, 0, 0)),
                             AuthorId = new Guid("20000000-0000-0000-abcd-000000000000"),
                             BookCover = "https://corviddesign.com/wp-content/uploads/2015/11/isntfunny_web.png",
                             BookTitle = "Isn't That Funny",
@@ -459,7 +452,7 @@ namespace BookLibraryApi.Migrations
                         new
                         {
                             Id = new Guid("00000000-1414-0000-abcd-000000000000"),
-                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 14, 30, 747, DateTimeKind.Unspecified).AddTicks(2466), new TimeSpan(0, 2, 0, 0, 0)),
+                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 9, 26, 880, DateTimeKind.Unspecified).AddTicks(2738), new TimeSpan(0, 2, 0, 0, 0)),
                             AuthorId = new Guid("20000000-0000-0000-abcd-000000000000"),
                             BookCover = "hhttps://artfulcover.com/wp-content/uploads/2018/06/Artful-Cover_premade_126524214_Creepy-Kid-Ghost_800x1200.jpg",
                             BookTitle = "Creepy Kid Ghost",
@@ -472,7 +465,7 @@ namespace BookLibraryApi.Migrations
                         new
                         {
                             Id = new Guid("00000000-1515-0000-abcd-000000000000"),
-                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 14, 30, 747, DateTimeKind.Unspecified).AddTicks(2471), new TimeSpan(0, 2, 0, 0, 0)),
+                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 9, 26, 880, DateTimeKind.Unspecified).AddTicks(2744), new TimeSpan(0, 2, 0, 0, 0)),
                             AuthorId = new Guid("20000000-0000-0000-abcd-000000000000"),
                             BookCover = "https://i.pinimg.com/originals/97/26/e8/9726e81b7bba2b8fe0aca6f804b1f44b.jpg",
                             BookTitle = "The Black Thunder",
@@ -485,7 +478,7 @@ namespace BookLibraryApi.Migrations
                         new
                         {
                             Id = new Guid("00000000-1616-0000-abcd-000000000000"),
-                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 14, 30, 747, DateTimeKind.Unspecified).AddTicks(2477), new TimeSpan(0, 2, 0, 0, 0)),
+                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 9, 26, 880, DateTimeKind.Unspecified).AddTicks(2750), new TimeSpan(0, 2, 0, 0, 0)),
                             AuthorId = new Guid("20000000-0000-0000-abcd-000000000000"),
                             BookCover = "https://damonza.com/wp-content/uploads/portfolio/fiction/torrent-15.jpg",
                             BookTitle = "Torrent",
@@ -498,7 +491,7 @@ namespace BookLibraryApi.Migrations
                         new
                         {
                             Id = new Guid("00000000-1717-0000-abcd-000000000000"),
-                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 14, 30, 747, DateTimeKind.Unspecified).AddTicks(2483), new TimeSpan(0, 2, 0, 0, 0)),
+                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 9, 26, 880, DateTimeKind.Unspecified).AddTicks(2757), new TimeSpan(0, 2, 0, 0, 0)),
                             AuthorId = new Guid("20000000-0000-0000-abcd-000000000000"),
                             BookCover = "https://damonza.com/wp-content/uploads/portfolio/fiction/torrent-15.jpg",
                             BookTitle = "Torrent",
@@ -511,7 +504,7 @@ namespace BookLibraryApi.Migrations
                         new
                         {
                             Id = new Guid("00000000-1818-0000-abcd-000000000000"),
-                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 14, 30, 747, DateTimeKind.Unspecified).AddTicks(2489), new TimeSpan(0, 2, 0, 0, 0)),
+                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 9, 26, 880, DateTimeKind.Unspecified).AddTicks(2764), new TimeSpan(0, 2, 0, 0, 0)),
                             AuthorId = new Guid("10000000-0000-0000-abcd-000000000000"),
                             BookCover = "https://i.pinimg.com/originals/aa/11/6a/aa116a773d6049b0d9d778aae0650062.jpg",
                             BookTitle = "The Blue Princes",
@@ -524,7 +517,7 @@ namespace BookLibraryApi.Migrations
                         new
                         {
                             Id = new Guid("00000000-1919-0000-abcd-000000000000"),
-                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 14, 30, 747, DateTimeKind.Unspecified).AddTicks(2494), new TimeSpan(0, 2, 0, 0, 0)),
+                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 9, 26, 880, DateTimeKind.Unspecified).AddTicks(2770), new TimeSpan(0, 2, 0, 0, 0)),
                             AuthorId = new Guid("10000000-0000-0000-abcd-000000000000"),
                             BookCover = "https://www.mythosink.com/wp-content/uploads/2020/01/Screen-Shot-2020-01-20-at-6.00.55-PM.png",
                             BookTitle = "Tarnished light",
@@ -689,9 +682,6 @@ namespace BookLibraryApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTimeOffset?>("IsDeleted")
-                        .HasColumnType("datetimeoffset");
-
                     b.Property<bool>("IsReaded")
                         .HasColumnType("bit");
 
@@ -719,9 +709,6 @@ namespace BookLibraryApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTimeOffset?>("IsDeleted")
-                        .HasColumnType("datetimeoffset");
-
                     b.Property<string>("PicUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -737,7 +724,7 @@ namespace BookLibraryApi.Migrations
                         new
                         {
                             Id = new Guid("00000000-0000-0000-abcd-000000000000"),
-                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 14, 30, 743, DateTimeKind.Unspecified).AddTicks(6407), new TimeSpan(0, 2, 0, 0, 0)),
+                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 9, 26, 876, DateTimeKind.Unspecified).AddTicks(3269), new TimeSpan(0, 2, 0, 0, 0)),
                             Description = "Suspendisse id accumsan lacus. Phasellus condimentum volutpat libero id finibus.",
                             GenreName = "Classics",
                             PicUrl = "https://cdn.shopify.com/s/files/1/0064/5342/8271/products/PCCP5-Penguin_Classics_Cameo_angle_1200_300x.jpg?v=1556052881"
@@ -745,7 +732,7 @@ namespace BookLibraryApi.Migrations
                         new
                         {
                             Id = new Guid("00000000-0000-0000-abcd-000000000001"),
-                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 14, 30, 745, DateTimeKind.Unspecified).AddTicks(9439), new TimeSpan(0, 2, 0, 0, 0)),
+                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 9, 26, 878, DateTimeKind.Unspecified).AddTicks(7014), new TimeSpan(0, 2, 0, 0, 0)),
                             Description = "Suspendisse id accumsan lacus. Phasellus condimentum volutpat libero id finibus.",
                             GenreName = "Fantasy",
                             PicUrl = "https://www.rd.com/wp-content/uploads/2019/12/book-e1576790089347.jpg"
@@ -753,7 +740,7 @@ namespace BookLibraryApi.Migrations
                         new
                         {
                             Id = new Guid("00000000-0000-0000-abcd-000000000002"),
-                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 14, 30, 745, DateTimeKind.Unspecified).AddTicks(9476), new TimeSpan(0, 2, 0, 0, 0)),
+                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 9, 26, 878, DateTimeKind.Unspecified).AddTicks(7059), new TimeSpan(0, 2, 0, 0, 0)),
                             Description = "Suspendisse id accumsan lacus. Phasellus condimentum volutpat libero id finibus.",
                             GenreName = "Action and Adventure",
                             PicUrl = "https://alisonmortonauthor.com/wp-content/uploads/2014/01/books.jpg"
@@ -761,7 +748,7 @@ namespace BookLibraryApi.Migrations
                         new
                         {
                             Id = new Guid("00000000-0000-0000-abcd-000000000003"),
-                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 14, 30, 745, DateTimeKind.Unspecified).AddTicks(9481), new TimeSpan(0, 2, 0, 0, 0)),
+                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 9, 26, 878, DateTimeKind.Unspecified).AddTicks(7064), new TimeSpan(0, 2, 0, 0, 0)),
                             Description = "Suspendisse id accumsan lacus. Phasellus condimentum volutpat libero id finibus.",
                             GenreName = "Comic Book",
                             PicUrl = "https://www.sun-sentinel.com/resizer/1fuMDdJE7v3kltVnXX07CWZ58Ws=/415x614/top/www.trbimg.com/img-5caf8a09/turbine/fl-1555008005-hc4qu2941s-snap-image"
@@ -769,7 +756,7 @@ namespace BookLibraryApi.Migrations
                         new
                         {
                             Id = new Guid("00000000-0000-0000-abcd-000000000004"),
-                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 14, 30, 745, DateTimeKind.Unspecified).AddTicks(9484), new TimeSpan(0, 2, 0, 0, 0)),
+                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 9, 26, 878, DateTimeKind.Unspecified).AddTicks(7068), new TimeSpan(0, 2, 0, 0, 0)),
                             Description = "Suspendisse id accumsan lacus. Phasellus condimentum volutpat libero id finibus.",
                             GenreName = "Romance",
                             PicUrl = "https://pbs.twimg.com/media/EQuNRJoU0AAvyKD.jpg"
@@ -777,7 +764,7 @@ namespace BookLibraryApi.Migrations
                         new
                         {
                             Id = new Guid("00000000-0000-0000-abcd-000000000005"),
-                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 14, 30, 745, DateTimeKind.Unspecified).AddTicks(9487), new TimeSpan(0, 2, 0, 0, 0)),
+                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 9, 26, 878, DateTimeKind.Unspecified).AddTicks(7070), new TimeSpan(0, 2, 0, 0, 0)),
                             Description = "Suspendisse id accumsan lacus. Phasellus condimentum volutpat libero id finibus.",
                             GenreName = "Horror",
                             PicUrl = "https://images.thestar.com/xN_oIrR10VL8zpaa1-hDq0ELBE8=/1086x1652/smart/filters:cb(1594158289211)/https://www.thestar.com/content/dam/thestar/entertainment/books/2020/07/09/horror-books-to-make-you-lose-your-cool-on-a-hot-summers-night/if_it_bleeds.jpg"
@@ -806,9 +793,6 @@ namespace BookLibraryApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTimeOffset?>("IsDeleted")
-                        .HasColumnType("datetimeoffset");
-
                     b.Property<string>("ReviewDescription")
                         .IsRequired()
                         .HasMaxLength(800)
@@ -834,7 +818,7 @@ namespace BookLibraryApi.Migrations
                         new
                         {
                             Id = new Guid("00000000-0000-1010-abcd-000000000000"),
-                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 14, 30, 747, DateTimeKind.Unspecified).AddTicks(3013), new TimeSpan(0, 2, 0, 0, 0)),
+                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 9, 26, 880, DateTimeKind.Unspecified).AddTicks(3527), new TimeSpan(0, 2, 0, 0, 0)),
                             BookId = new Guid("00000000-1111-0000-abcd-000000000000"),
                             BookRate = 5,
                             DownVote = 0,
@@ -846,7 +830,7 @@ namespace BookLibraryApi.Migrations
                         new
                         {
                             Id = new Guid("00000000-0000-2010-abcd-000000000000"),
-                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 14, 30, 747, DateTimeKind.Unspecified).AddTicks(4241), new TimeSpan(0, 2, 0, 0, 0)),
+                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 9, 26, 880, DateTimeKind.Unspecified).AddTicks(5306), new TimeSpan(0, 2, 0, 0, 0)),
                             BookId = new Guid("00000000-1111-0000-abcd-000000000000"),
                             BookRate = 4,
                             DownVote = 0,
@@ -858,7 +842,7 @@ namespace BookLibraryApi.Migrations
                         new
                         {
                             Id = new Guid("00000000-0000-3010-abcd-000000000000"),
-                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 14, 30, 747, DateTimeKind.Unspecified).AddTicks(4255), new TimeSpan(0, 2, 0, 0, 0)),
+                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 9, 26, 880, DateTimeKind.Unspecified).AddTicks(5326), new TimeSpan(0, 2, 0, 0, 0)),
                             BookId = new Guid("00000000-2222-0000-abcd-000000000000"),
                             BookRate = 4,
                             DownVote = 0,
@@ -870,7 +854,7 @@ namespace BookLibraryApi.Migrations
                         new
                         {
                             Id = new Guid("00000000-0000-4010-abcd-000000000000"),
-                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 14, 30, 747, DateTimeKind.Unspecified).AddTicks(4259), new TimeSpan(0, 2, 0, 0, 0)),
+                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 9, 26, 880, DateTimeKind.Unspecified).AddTicks(5330), new TimeSpan(0, 2, 0, 0, 0)),
                             BookId = new Guid("00000000-2222-0000-abcd-000000000000"),
                             BookRate = 5,
                             DownVote = 0,
@@ -882,7 +866,7 @@ namespace BookLibraryApi.Migrations
                         new
                         {
                             Id = new Guid("00000000-0000-5010-abcd-000000000000"),
-                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 14, 30, 747, DateTimeKind.Unspecified).AddTicks(4263), new TimeSpan(0, 2, 0, 0, 0)),
+                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 9, 26, 880, DateTimeKind.Unspecified).AddTicks(5334), new TimeSpan(0, 2, 0, 0, 0)),
                             BookId = new Guid("00000000-3333-0000-abcd-000000000000"),
                             BookRate = 1,
                             DownVote = 0,
@@ -894,7 +878,7 @@ namespace BookLibraryApi.Migrations
                         new
                         {
                             Id = new Guid("00000000-0000-6010-abcd-000000000000"),
-                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 14, 30, 747, DateTimeKind.Unspecified).AddTicks(4266), new TimeSpan(0, 2, 0, 0, 0)),
+                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 9, 26, 880, DateTimeKind.Unspecified).AddTicks(5338), new TimeSpan(0, 2, 0, 0, 0)),
                             BookId = new Guid("00000000-4444-0000-abcd-000000000000"),
                             BookRate = 3,
                             DownVote = 0,
@@ -906,7 +890,7 @@ namespace BookLibraryApi.Migrations
                         new
                         {
                             Id = new Guid("00000000-0000-7010-abcd-000000000000"),
-                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 14, 30, 747, DateTimeKind.Unspecified).AddTicks(4269), new TimeSpan(0, 2, 0, 0, 0)),
+                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 9, 26, 880, DateTimeKind.Unspecified).AddTicks(5343), new TimeSpan(0, 2, 0, 0, 0)),
                             BookId = new Guid("00000000-4444-0000-abcd-000000000000"),
                             BookRate = 3,
                             DownVote = 0,
@@ -918,7 +902,7 @@ namespace BookLibraryApi.Migrations
                         new
                         {
                             Id = new Guid("00000000-0000-8010-abcd-000000000000"),
-                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 14, 30, 747, DateTimeKind.Unspecified).AddTicks(4273), new TimeSpan(0, 2, 0, 0, 0)),
+                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 9, 26, 880, DateTimeKind.Unspecified).AddTicks(5347), new TimeSpan(0, 2, 0, 0, 0)),
                             BookId = new Guid("00000000-5555-0000-abcd-000000000000"),
                             BookRate = 4,
                             DownVote = 0,
@@ -930,7 +914,7 @@ namespace BookLibraryApi.Migrations
                         new
                         {
                             Id = new Guid("00000000-0000-9010-abcd-000000000000"),
-                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 14, 30, 747, DateTimeKind.Unspecified).AddTicks(4283), new TimeSpan(0, 2, 0, 0, 0)),
+                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 9, 26, 880, DateTimeKind.Unspecified).AddTicks(5351), new TimeSpan(0, 2, 0, 0, 0)),
                             BookId = new Guid("00000000-5555-0000-abcd-000000000000"),
                             BookRate = 2,
                             DownVote = 0,
@@ -942,7 +926,7 @@ namespace BookLibraryApi.Migrations
                         new
                         {
                             Id = new Guid("00000000-0000-1110-abcd-000000000000"),
-                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 14, 30, 747, DateTimeKind.Unspecified).AddTicks(4286), new TimeSpan(0, 2, 0, 0, 0)),
+                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 9, 26, 880, DateTimeKind.Unspecified).AddTicks(5354), new TimeSpan(0, 2, 0, 0, 0)),
                             BookId = new Guid("00000000-6666-0000-abcd-000000000000"),
                             BookRate = 2,
                             DownVote = 0,
@@ -954,7 +938,7 @@ namespace BookLibraryApi.Migrations
                         new
                         {
                             Id = new Guid("00000000-0000-1210-abcd-000000000000"),
-                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 14, 30, 747, DateTimeKind.Unspecified).AddTicks(4290), new TimeSpan(0, 2, 0, 0, 0)),
+                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 9, 26, 880, DateTimeKind.Unspecified).AddTicks(5358), new TimeSpan(0, 2, 0, 0, 0)),
                             BookId = new Guid("00000000-7777-0000-abcd-000000000000"),
                             BookRate = 2,
                             DownVote = 0,
@@ -966,7 +950,7 @@ namespace BookLibraryApi.Migrations
                         new
                         {
                             Id = new Guid("00000000-0000-1310-abcd-000000000000"),
-                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 14, 30, 747, DateTimeKind.Unspecified).AddTicks(4293), new TimeSpan(0, 2, 0, 0, 0)),
+                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 9, 26, 880, DateTimeKind.Unspecified).AddTicks(5361), new TimeSpan(0, 2, 0, 0, 0)),
                             BookId = new Guid("00000000-7777-0000-abcd-000000000000"),
                             BookRate = 2,
                             DownVote = 0,
@@ -978,7 +962,7 @@ namespace BookLibraryApi.Migrations
                         new
                         {
                             Id = new Guid("00000000-0000-1410-abcd-000000000000"),
-                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 14, 30, 747, DateTimeKind.Unspecified).AddTicks(4296), new TimeSpan(0, 2, 0, 0, 0)),
+                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 9, 26, 880, DateTimeKind.Unspecified).AddTicks(5365), new TimeSpan(0, 2, 0, 0, 0)),
                             BookId = new Guid("00000000-8888-0000-abcd-000000000000"),
                             BookRate = 5,
                             DownVote = 0,
@@ -990,7 +974,7 @@ namespace BookLibraryApi.Migrations
                         new
                         {
                             Id = new Guid("00000000-0000-1510-abcd-000000000000"),
-                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 14, 30, 747, DateTimeKind.Unspecified).AddTicks(4300), new TimeSpan(0, 2, 0, 0, 0)),
+                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 9, 26, 880, DateTimeKind.Unspecified).AddTicks(5369), new TimeSpan(0, 2, 0, 0, 0)),
                             BookId = new Guid("00000000-8888-0000-abcd-000000000000"),
                             BookRate = 1,
                             DownVote = 0,
@@ -1002,7 +986,7 @@ namespace BookLibraryApi.Migrations
                         new
                         {
                             Id = new Guid("00000000-0000-1610-abcd-000000000000"),
-                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 14, 30, 747, DateTimeKind.Unspecified).AddTicks(4304), new TimeSpan(0, 2, 0, 0, 0)),
+                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 9, 26, 880, DateTimeKind.Unspecified).AddTicks(5372), new TimeSpan(0, 2, 0, 0, 0)),
                             BookId = new Guid("00000000-8888-0000-abcd-000000000000"),
                             BookRate = 4,
                             DownVote = 0,
@@ -1014,7 +998,7 @@ namespace BookLibraryApi.Migrations
                         new
                         {
                             Id = new Guid("00000000-0000-1710-abcd-000000000000"),
-                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 14, 30, 747, DateTimeKind.Unspecified).AddTicks(4308), new TimeSpan(0, 2, 0, 0, 0)),
+                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 9, 26, 880, DateTimeKind.Unspecified).AddTicks(5376), new TimeSpan(0, 2, 0, 0, 0)),
                             BookId = new Guid("00000000-9999-0000-abcd-000000000000"),
                             BookRate = 2,
                             DownVote = 0,
@@ -1026,7 +1010,7 @@ namespace BookLibraryApi.Migrations
                         new
                         {
                             Id = new Guid("00000000-0000-1810-abcd-000000000000"),
-                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 14, 30, 747, DateTimeKind.Unspecified).AddTicks(4312), new TimeSpan(0, 2, 0, 0, 0)),
+                            AddedDate = new DateTimeOffset(new DateTime(2022, 2, 21, 5, 9, 26, 880, DateTimeKind.Unspecified).AddTicks(5379), new TimeSpan(0, 2, 0, 0, 0)),
                             BookId = new Guid("00000000-9999-0000-abcd-000000000000"),
                             BookRate = 1,
                             DownVote = 0,
@@ -1069,9 +1053,6 @@ namespace BookLibraryApi.Migrations
 
                     b.Property<Guid>("GenreId")
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTimeOffset?>("IsDeleted")
-                        .HasColumnType("datetimeoffset");
 
                     b.Property<int>("NumberOfBookPages")
                         .HasColumnType("int");

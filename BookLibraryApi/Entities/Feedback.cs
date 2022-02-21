@@ -19,6 +19,8 @@ namespace BookLibraryApi.Entities
 
         public bool IsReaded { get; set; }
 
-        public bool IsDeleted { get; set; }
+        public DateTimeOffset? IsDeleted { get; set; }
+
+        public DateTimeOffset? UpdateDate { get; set; }
     }
 }

@@ -12,7 +12,7 @@ namespace BookLibraryApi.Entities
 
         public DateTime DateOfBirth { get; set; }
 
-        public DateTime AddedDate { get; set; } = DateTime.Now;
+        public DateTimeOffset AddedDate { get; set; } = DateTime.Now;
 
         public string Country { get; set; }
 
@@ -23,7 +23,9 @@ namespace BookLibraryApi.Entities
         [Url]
         public string PictureUrl { get; set; }
 
-        public bool IsDeleted { get; set; }
+        public DateTimeOffset? IsDeleted { get; set; }
+
+        public DateTimeOffset? UpdateDate { get; set; }
 
     }
 

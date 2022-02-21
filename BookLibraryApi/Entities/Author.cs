@@ -19,15 +19,20 @@ namespace BookLibraryApi.Entities
         [MaxLength(1000)]
         public string Bio { get; set; }
 
-        public DateTimeOffset DateOfBirth { get; set; }
+        public DateTime DateOfBirth { get; set; }
 
-        public DateTimeOffset DateOfDeath { get; set; }
+        public DateTime DateOfDeath { get; set; }
 
         public List<Book> Books { get; set; }
 
         public Guid GenreId { get; set; }
+
         public Genre Genre { get; set; }
 
-        public bool IsDeleted { get; set; }
+        public DateTimeOffset AddedDate { get; set; } = DateTimeOffset.Now;
+
+        public DateTimeOffset? IsDeleted { get; set; }
+
+        public DateTimeOffset? UpdateDate { get; set; }
     }
 }

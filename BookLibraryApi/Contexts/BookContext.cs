@@ -60,10 +60,13 @@ namespace BookLibraryApi.Contexts
                 .WithOne(r => r.Book)
                 .HasForeignKey<BookRating>(r => r.BookId);
 
-            modelBuilder.Entity<Author>().HasQueryFilter(p => !p.IsDeleted);
-            modelBuilder.Entity<Genre>().HasQueryFilter(p => !p.IsDeleted);
-            modelBuilder.Entity<Book>().HasQueryFilter(p => !p.IsDeleted);
-            modelBuilder.Entity<Review>().HasQueryFilter(p => !p.IsDeleted);
+            modelBuilder.Entity<ApplicationUser>().HasQueryFilter(a => a.IsDeleted == null);
+            modelBuilder.Entity<Author>().HasQueryFilter(a => a.IsDeleted == null);
+            modelBuilder.Entity<Genre>().HasQueryFilter(g => g.IsDeleted == null);
+            modelBuilder.Entity<Book>().HasQueryFilter(b => b.IsDeleted == null);
+            modelBuilder.Entity<Review>().HasQueryFilter(r => r.IsDeleted == null);
+            modelBuilder.Entity<Feedback>().HasQueryFilter(f => f.IsDeleted == null);
+            modelBuilder.Entity<Suggesstion>().HasQueryFilter(s => s.IsDeleted == null);
 
             // data just for development
 
