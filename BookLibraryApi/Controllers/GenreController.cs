@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace BookLibraryApi.Controllers
@@ -55,6 +56,17 @@ namespace BookLibraryApi.Controllers
             {
                 return NotFound();
             }
+
+            var paginationMetadata = new
+            {
+                pageSize = GenreGromRepo.PageSize,
+                currentPage = GenreGromRepo.CurrentPage,
+                hasNext = GenreGromRepo.HasNext,
+                hasPrevious = GenreGromRepo.HasPrevious
+            };
+
+            Response.Headers.Add("X-Pagination",
+                JsonSerializer.Serialize(paginationMetadata));
 
             var shapedData = _mapper.Map<IEnumerable<GenreDto>>(GenreGromRepo).ShapeData(parameters.Fields);
             return Ok(shapedData);
@@ -144,7 +156,7 @@ namespace BookLibraryApi.Controllers
 
             patchDocument.ApplyTo(genre, ModelState);
 
-            if(!TryValidateModel(genre))
+            if (!TryValidateModel(genre))
             {
                 return ValidationProblem(ModelState);
             }
@@ -159,7 +171,7 @@ namespace BookLibraryApi.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete (Guid id)
+        public async Task<IActionResult> Delete(Guid id)
         {
             _genreRepository.DeleteGenre(id);
             await _genreRepository.SaveChangesAsync();

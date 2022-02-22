@@ -2,14 +2,13 @@
 using BookLibraryApi.Helper;
 using BookLibraryApi.ResourceParameters;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace BookLibraryApi.Repositories.SuggesstionRepository
 {
     public interface ISuggesstionRepository
     {
-        Task<IEnumerable<Suggesstion>> GetSuggesstions(ResourcesParameters parameters);
+        Task<PagedList<Suggesstion>> GetSuggesstions(ResourcesParameters parameters);
 
         Task<Suggesstion> GetSuggesstion(Guid id);
 
@@ -20,6 +19,6 @@ namespace BookLibraryApi.Repositories.SuggesstionRepository
         void Delete(Guid id);
 
         Task<bool> SaveChangesAsync();
-        
+
     }
 }

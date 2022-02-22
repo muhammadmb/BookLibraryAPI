@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace BookLibraryApi.Controllers
@@ -55,6 +56,17 @@ namespace BookLibraryApi.Controllers
             {
                 return NotFound();
             }
+
+            var paginationMetadata = new
+            {
+                pageSize = feedbacks.PageSize,
+                currentPage = feedbacks.CurrentPage,
+                hasNext = feedbacks.HasNext,
+                hasPrevious = feedbacks.HasPrevious
+            };
+
+            Response.Headers.Add("X-Pagination",
+                JsonSerializer.Serialize(paginationMetadata));
 
             return Ok(feedbacks.ShapeData(parameters.Fields));
         }
@@ -134,7 +146,7 @@ namespace BookLibraryApi.Controllers
 
             return NoContent();
         }
-        
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(Guid id)
         {

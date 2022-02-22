@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace BookLibraryApi.Controllers
@@ -57,6 +58,17 @@ namespace BookLibraryApi.Controllers
             {
                 return NotFound();
             }
+
+            var paginationMetadata = new
+            {
+                pageSize = Books.PageSize,
+                currentPage = Books.CurrentPage,
+                hasNext = Books.HasNext,
+                hasPrevious = Books.HasPrevious
+            };
+
+            Response.Headers.Add("X-Pagination",
+                JsonSerializer.Serialize(paginationMetadata));
 
             var BooksToReturn = _mapper.Map<IEnumerable<BookDto>>(Books).ShapeData(parameters.Fields);
             return Ok(BooksToReturn);

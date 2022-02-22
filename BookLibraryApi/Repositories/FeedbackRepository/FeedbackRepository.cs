@@ -4,7 +4,6 @@ using BookLibraryApi.Helper;
 using BookLibraryApi.ResourceParameters;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -20,7 +19,7 @@ namespace BookLibraryApi.Repositories.FeedbackRepository
                 throw new ArgumentNullException(nameof(context));
         }
 
-        public async Task<IEnumerable<Feedback>> GetFeedbacks(ResourcesParameters parameters)
+        public async Task<PagedList<Feedback>> GetFeedbacks(ResourcesParameters parameters)
         {
             IQueryable<Feedback> Collection;
 

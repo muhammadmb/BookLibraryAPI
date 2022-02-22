@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace BookLibraryApi.Controllers
@@ -59,6 +60,17 @@ namespace BookLibraryApi.Controllers
             {
                 return NotFound();
             }
+
+            var paginationMetadata = new
+            {
+                pageSize = reviewsFromRepo.PageSize,
+                currentPage = reviewsFromRepo.CurrentPage,
+                hasNext = reviewsFromRepo.HasNext,
+                hasPrevious = reviewsFromRepo.HasPrevious
+            };
+
+            Response.Headers.Add("X-Pagination",
+                JsonSerializer.Serialize(paginationMetadata));
 
             var reviewsToReturn = _mapper.Map<IEnumerable<ReviewDto>>(reviewsFromRepo).ShapeData(parameters.Fields);
 
@@ -184,7 +196,7 @@ namespace BookLibraryApi.Controllers
             Guid bookId,
             Guid reviewId)
         {
-            _reviewsRepository.Delete(bookId ,reviewId);
+            _reviewsRepository.Delete(bookId, reviewId);
             await _reviewsRepository.saveChangesAsync();
             return NoContent();
         }
