@@ -47,7 +47,8 @@ namespace BookLibraryApi.Repositories.BookReposittory
                     _context.Books
                     .Where(b => b.DateOfPublish.Year.ToString().Equals(parameters.YearOfPublish))
                     .Include(b => b.Author)
-                    .Include(b => b.Genre);
+                    .Include(b => b.Genre)
+                    .Include(b => b.BookRating);
             }
 
             if (!string.IsNullOrWhiteSpace(parameters.Author))
@@ -74,12 +75,12 @@ namespace BookLibraryApi.Repositories.BookReposittory
                 if (parameters.SortBy.ToLowerInvariant() == "popularity")
                 {
                     Collection =
-                        Collection.OrderBy(b => b.Reviews.Count());
+                        Collection.OrderByDescending(b => b.Reviews.Count);
                 }
                 if (parameters.SortBy.ToLowerInvariant() == "rating")
                 {
                     Collection =
-                        Collection.OrderBy(b => b.BookRating);
+                        Collection.OrderByDescending(b => b.BookRating.TotalRate);
                 }
             }
 

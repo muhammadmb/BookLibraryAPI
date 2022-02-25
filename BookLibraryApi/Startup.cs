@@ -43,7 +43,7 @@ namespace BookLibraryApi
                 options.AddPolicy("demoPolicy",
                     builder =>
                     {
-                        builder.WithOrigins().AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+                        builder.WithOrigins().AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod().WithExposedHeaders("X-Pagination");
                     });
             });
 
