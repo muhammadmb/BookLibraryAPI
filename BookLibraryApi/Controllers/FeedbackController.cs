@@ -62,7 +62,9 @@ namespace BookLibraryApi.Controllers
                 pageSize = feedbacks.PageSize,
                 currentPage = feedbacks.CurrentPage,
                 hasNext = feedbacks.HasNext,
-                hasPrevious = feedbacks.HasPrevious
+                hasPrevious = feedbacks.HasPrevious,
+                totalPages = feedbacks.TotalPages,
+                totalCount = feedbacks.TotalCount
             };
 
             Response.Headers.Add("X-Pagination",

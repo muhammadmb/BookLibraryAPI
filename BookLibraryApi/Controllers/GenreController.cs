@@ -62,7 +62,9 @@ namespace BookLibraryApi.Controllers
                 pageSize = GenreGromRepo.PageSize,
                 currentPage = GenreGromRepo.CurrentPage,
                 hasNext = GenreGromRepo.HasNext,
-                hasPrevious = GenreGromRepo.HasPrevious
+                hasPrevious = GenreGromRepo.HasPrevious,
+                totalPages = GenreGromRepo.TotalPages,
+                totalCount = GenreGromRepo.TotalCount
             };
 
             Response.Headers.Add("X-Pagination",

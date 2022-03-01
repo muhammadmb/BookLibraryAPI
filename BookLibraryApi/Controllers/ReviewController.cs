@@ -66,7 +66,9 @@ namespace BookLibraryApi.Controllers
                 pageSize = reviewsFromRepo.PageSize,
                 currentPage = reviewsFromRepo.CurrentPage,
                 hasNext = reviewsFromRepo.HasNext,
-                hasPrevious = reviewsFromRepo.HasPrevious
+                hasPrevious = reviewsFromRepo.HasPrevious,
+                totalPages = reviewsFromRepo.TotalPages,
+                totalCount = reviewsFromRepo.TotalCount
             };
 
             Response.Headers.Add("X-Pagination",
