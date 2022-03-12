@@ -29,15 +29,20 @@ namespace BookLibraryApi.Repositories.ReviewsRepository
             if (!string.IsNullOrWhiteSpace(parameters.OrderBy))
             {
                 parameters.OrderBy = parameters.OrderBy.Trim();
-                if (parameters.OrderBy.ToLowerInvariant() == "UpVote")
+                if (parameters.OrderBy.ToLowerInvariant() == "upvote")
                 {
                     Collection =
-                        Collection.OrderBy(r => r.UpVote);
+                        Collection.OrderByDescending(r => r.UpVote);
                 }
-                if (parameters.OrderBy.ToLowerInvariant() == "DownVote")
+                if (parameters.OrderBy.ToLowerInvariant() == "downvote")
                 {
                     Collection =
-                        Collection.OrderBy(r => r.DownVote);
+                        Collection.OrderByDescending(r => r.DownVote);
+                }
+                if (parameters.OrderBy.ToLowerInvariant() == "addeddate")
+                {
+                    Collection =
+                        Collection.OrderByDescending(r => r.AddedDate);
                 }
             }
 

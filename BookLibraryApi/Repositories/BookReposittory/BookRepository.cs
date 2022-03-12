@@ -51,13 +51,12 @@ namespace BookLibraryApi.Repositories.BookReposittory
                     .Include(b => b.BookRating);
             }
 
-            if (!string.IsNullOrWhiteSpace(parameters.Author))
+            if (parameters.Author != Guid.Empty)
             {
-                parameters.Author = parameters.Author.Trim();
 
                 Collection =
                     _context.Books
-                    .Where(b => b.Author.Name == parameters.Author)
+                    .Where(b => b.Author.Id == parameters.Author)
                     .Include(b => b.Author)
                     .Include(b => b.Genre)
                     .Include(b => b.BookRating);
@@ -90,9 +89,7 @@ namespace BookLibraryApi.Repositories.BookReposittory
 
                 Collection =
                     Collection.Where(b =>
-                    b.BookTitle.Contains(parameters.SearchQuery) ||
-                    b.Description.Contains(parameters.SearchQuery) ||
-                    b.Publisher.Contains(parameters.SearchQuery));
+                    b.BookTitle.Contains(parameters.SearchQuery));
             }
 
             return await PagedList<Book>.Create(

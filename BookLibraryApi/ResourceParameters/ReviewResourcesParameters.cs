@@ -2,6 +2,6 @@
 {
     public class ReviewResourcesParameters : ResourcesParameters
     {
-        public string OrderBy { get; set; } = "UpVotes";
+        public string OrderBy { get; set; } = "AddedDate";
     }
 }

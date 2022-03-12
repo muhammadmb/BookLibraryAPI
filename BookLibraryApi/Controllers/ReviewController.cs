@@ -157,6 +157,7 @@ namespace BookLibraryApi.Controllers
         }
 
         [HttpPatch("{reviewId}")]
+        [AllowAnonymous]
         public async Task<IActionResult> PartialUpdateReview(
             Guid genreId,
             Guid bookId,
