@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace BookLibraryApi.Models.SuggesstionModels
 {
-    public class GenericSuggesstionDto
+    public class GenericSuggestionDto
     {
         [EmailAddress]
         [Required]
@@ -28,8 +28,8 @@ namespace BookLibraryApi.Models.SuggesstionModels
 
         public Guid GenreId { get; set; }
 
-        public DateTimeOffset AddedDate { get; set; }
+        public DateTimeOffset AddedDate { get; set; } = DateTimeOffset.Now;
 
-        public DateTimeOffset UpdateDate { get; set; }
+        public DateTimeOffset? UpdateDate { get; set; } = null;
     }
 }

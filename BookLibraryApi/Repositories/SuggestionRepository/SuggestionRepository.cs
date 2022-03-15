@@ -9,21 +9,21 @@ using System.Threading.Tasks;
 
 namespace BookLibraryApi.Repositories.SuggesstionRepository
 {
-    public class SuggesstionRepository : ISuggesstionRepository, IDisposable
+    public class SuggestionRepository : ISuggestionRepository, IDisposable
     {
         private readonly BookContext _context;
 
-        public SuggesstionRepository(BookContext context)
+        public SuggestionRepository(BookContext context)
         {
             _context = context ??
                 throw new ArgumentNullException(nameof(context));
         }
 
-        public async Task<PagedList<Suggesstion>> GetSuggesstions(ResourcesParameters parameters)
+        public async Task<PagedList<Suggestion>> GetSuggestions(ResourcesParameters parameters)
         {
-            IQueryable<Suggesstion> Collection;
+            IQueryable<Suggestion> Collection;
 
-            Collection = _context.Suggesstions;
+            Collection = _context.Suggestions;
 
             if (!string.IsNullOrWhiteSpace(parameters.SearchQuery))
             {
@@ -35,33 +35,33 @@ namespace BookLibraryApi.Repositories.SuggesstionRepository
                 s.Publisher.Contains(parameters.SearchQuery));
             }
 
-            return await PagedList<Suggesstion>.Create(
+            return await PagedList<Suggestion>.Create(
                 Collection,
                 parameters.PageNumber,
                 parameters.PageSize);
         }
 
-        public async Task<Suggesstion> GetSuggesstion(Guid id)
+        public async Task<Suggestion> GetSuggesstion(Guid id)
         {
-            return await _context.Suggesstions.FirstOrDefaultAsync(s => s.Id == id);
+            return await _context.Suggestions.FirstOrDefaultAsync(s => s.Id == id);
         }
 
-        public void Create(Suggesstion suggesstion)
+        public void Create(Suggestion suggesstion)
         {
-            _context.Suggesstions.Add(suggesstion);
+            _context.Suggestions.Add(suggesstion);
         }
 
-        public void Update(Suggesstion suggesstion)
+        public void Update(Suggestion suggesstion)
         {
             suggesstion.UpdateDate = DateTimeOffset.Now;
-            _context.Suggesstions.Update(suggesstion);
+            _context.Suggestions.Update(suggesstion);
         }
 
         public void Delete(Guid id)
         {
-            var suggestion = _context.Suggesstions.FirstOrDefault(s => s.Id == id);
+            var suggestion = _context.Suggestions.FirstOrDefault(s => s.Id == id);
             suggestion.IsDeleted = DateTimeOffset.Now;
-            _context.Suggesstions.Update(suggestion);
+            _context.Suggestions.Update(suggestion);
         }
 
         public async Task<bool> SaveChangesAsync()

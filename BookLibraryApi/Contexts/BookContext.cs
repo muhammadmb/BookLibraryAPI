@@ -27,7 +27,7 @@ namespace BookLibraryApi.Contexts
 
         public DbSet<Feedback> Feedbacks { get; set; }
 
-        public DbSet<Suggesstion> Suggesstions { get; set; }
+        public DbSet<Suggestion> Suggestions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -66,7 +66,7 @@ namespace BookLibraryApi.Contexts
             modelBuilder.Entity<Book>().HasQueryFilter(b => b.IsDeleted == null);
             modelBuilder.Entity<Review>().HasQueryFilter(r => r.IsDeleted == null);
             modelBuilder.Entity<Feedback>().HasQueryFilter(f => f.IsDeleted == null);
-            modelBuilder.Entity<Suggesstion>().HasQueryFilter(s => s.IsDeleted == null);
+            modelBuilder.Entity<Suggestion>().HasQueryFilter(s => s.IsDeleted == null);
 
             // data just for development
 

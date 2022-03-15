@@ -103,7 +103,7 @@ namespace BookLibraryApi
             services.AddScoped<IReviewsRepository, ReviewsRepository>();
             services.AddScoped<IAuthenticationRepository, AuthenticationRepository>();
             services.AddScoped<IFeedbackRepository, FeedbackRepository>();
-            services.AddScoped<ISuggesstionRepository, SuggesstionRepository>();
+            services.AddScoped<ISuggestionRepository, SuggestionRepository>();
 
             services.AddSwaggerGen(c =>
             {

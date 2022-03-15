@@ -39,8 +39,7 @@ namespace BookLibraryApi.Repositories.GenreRepository
                 Collection =
                     Collection.Where(
                         g =>
-                            g.GenreName.Contains(genreResourcesParameters.SearchQuery) ||
-                            g.Description.Contains(genreResourcesParameters.SearchQuery));
+                            g.GenreName.Contains(genreResourcesParameters.SearchQuery));
             }
 
             return await PagedList<Genre>.Create(

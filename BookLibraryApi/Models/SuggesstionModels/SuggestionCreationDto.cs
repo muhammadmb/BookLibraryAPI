@@ -1,6 +1,6 @@
 ﻿namespace BookLibraryApi.Models.SuggesstionModels
 {
-    public class SuggesstionUpdateDto : GenericSuggesstionDto
+    public class SuggestionCreationDto : GenericSuggestionDto
     {
     }
 }

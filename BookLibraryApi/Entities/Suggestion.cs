@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace BookLibraryApi.Entities
 {
-    public class Suggesstion
+    public class Suggestion
     {
         [Key]
         public Guid Id { get; set; }

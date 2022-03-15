@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace BookLibraryApi.Repositories.SuggesstionRepository
 {
-    public interface ISuggesstionRepository
+    public interface ISuggestionRepository
     {
-        Task<PagedList<Suggesstion>> GetSuggesstions(ResourcesParameters parameters);
+        Task<PagedList<Suggestion>> GetSuggestions(ResourcesParameters parameters);
 
-        Task<Suggesstion> GetSuggesstion(Guid id);
+        Task<Suggestion> GetSuggesstion(Guid id);
 
-        void Create(Suggesstion suggesstion);
+        void Create(Suggestion suggesstion);
 
-        void Update(Suggesstion suggesstion);
+        void Update(Suggestion suggesstion);
 
         void Delete(Guid id);
 

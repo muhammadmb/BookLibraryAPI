@@ -11,24 +11,25 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace BookLibraryApi.Controllers
 {
-    [Route("api/Suggesstions")]
+    [Route("api/Suggestions")]
     [ApiController]
     [EnableCors("demoPolicy")]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Master, Editor")]
-    public class SuggesstionController : ControllerBase
+    public class SuggestionController : ControllerBase
     {
 
-        private readonly ISuggesstionRepository _suggesstionRepository;
+        private readonly ISuggestionRepository _suggesstionRepository;
         private readonly IMapper _mapper;
         private readonly IPropertyCheckerService _propertyCheckerService;
 
-        public SuggesstionController(
-            ISuggesstionRepository suggesstionRepository,
+        public SuggestionController(
+            ISuggestionRepository suggesstionRepository,
             IMapper mapper,
             IPropertyCheckerService propertyCheckerService)
         {
@@ -43,42 +44,44 @@ namespace BookLibraryApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetSuggesstions(
+        public async Task<IActionResult> GetSuggestions(
             [FromQuery] ResourcesParameters parameters
             )
         {
-            if (!_propertyCheckerService.TypeHasProperties<Suggesstion>(parameters.Fields))
+            if (!_propertyCheckerService.TypeHasProperties<Suggestion>(parameters.Fields))
             {
                 return BadRequest();
             }
 
-            var suggesstions = await _suggesstionRepository.GetSuggesstions(parameters);
+            var Suggestions = await _suggesstionRepository.GetSuggestions(parameters);
 
-            if (suggesstions == null)
+            if (Suggestions == null)
             {
                 return NotFound();
             }
 
             var paginationMetadata = new
             {
-                pageSize = suggesstions.PageSize,
-                currentPage = suggesstions.CurrentPage,
-                hasNext = suggesstions.HasNext,
-                hasPrevious = suggesstions.HasPrevious,
-                totalPages = suggesstions.TotalPages,
-                totalCount = suggesstions.TotalCount
+                pageSize = Suggestions.PageSize,
+                currentPage = Suggestions.CurrentPage,
+                hasNext = Suggestions.HasNext,
+                hasPrevious = Suggestions.HasPrevious,
+                totalPages = Suggestions.TotalPages,
+                totalCount = Suggestions.TotalCount
             };
 
             Response.Headers.Add("X-Pagination",
                 JsonSerializer.Serialize(paginationMetadata));
 
-            return Ok(suggesstions.ShapeData(parameters.Fields));
+            var SuggestionsToReturn = _mapper.Map<IEnumerable<Suggestion>>(Suggestions).ShapeData(parameters.Fields);
+
+            return Ok(SuggestionsToReturn);
         }
 
         [HttpGet("{id}", Name = "GetSuggesstion")]
         public async Task<IActionResult> GetSuggesstion(Guid id, [FromQuery] string fileds)
         {
-            if (!_propertyCheckerService.TypeHasProperties<Suggesstion>(fileds))
+            if (!_propertyCheckerService.TypeHasProperties<Suggestion>(fileds))
             {
                 return BadRequest();
             }
@@ -95,14 +98,14 @@ namespace BookLibraryApi.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> CreateSuggesstion([FromBody] SuggesstionCreationDto creationDto)
+        public async Task<IActionResult> CreateSuggesstion([FromBody] SuggestionCreationDto creationDto)
         {
             if (creationDto == null)
             {
                 throw new ArgumentNullException(nameof(creationDto));
             }
 
-            var suggesstion = _mapper.Map<Suggesstion>(creationDto);
+            var suggesstion = _mapper.Map<Suggestion>(creationDto);
             _suggesstionRepository.Create(suggesstion);
             await _suggesstionRepository.SaveChangesAsync();
 
@@ -113,7 +116,7 @@ namespace BookLibraryApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(Guid id, SuggesstionUpdateDto updateDto)
+        public async Task<IActionResult> Update(Guid id, SuggestionUpdateDto updateDto)
         {
             if (updateDto == null)
             {
@@ -135,7 +138,7 @@ namespace BookLibraryApi.Controllers
         }
 
         [HttpPatch("{id}")]
-        public async Task<IActionResult> PartialUpdate(Guid id, JsonPatchDocument<SuggesstionUpdateDto> patchDocument)
+        public async Task<IActionResult> PartialUpdate(Guid id, JsonPatchDocument<SuggestionUpdateDto> patchDocument)
         {
             if (patchDocument == null)
             {
@@ -149,7 +152,7 @@ namespace BookLibraryApi.Controllers
                 return NotFound();
             }
 
-            var suggesstion = _mapper.Map<SuggesstionUpdateDto>(suggesstionFromRepo);
+            var suggesstion = _mapper.Map<SuggestionUpdateDto>(suggesstionFromRepo);
 
             patchDocument.ApplyTo(suggesstion, ModelState);
 
