@@ -8,7 +8,6 @@ namespace BookLibraryApi.Profiles
     {
         public ReviewProfile()
         {
-            CreateMap<Review, ReviewForBook>();
             CreateMap<Review, ReviewDto>();
             CreateMap<ReviewCreation, Review>();
             CreateMap<ReviewUpdate, Review>();

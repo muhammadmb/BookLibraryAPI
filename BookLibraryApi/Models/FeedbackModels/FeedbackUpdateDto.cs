@@ -1,11 +1,7 @@
 ﻿namespace BookLibraryApi.Models.FeedbackModels
 {
-    public class FeedbackUpdateDto
+    public class FeedbackUpdateDto : FeedbackCreationDto
     {
-        public string Email { get; set; }
-
-        public string Description { get; set; }
-
         public bool IsReaded { get; set; }
     }
 }

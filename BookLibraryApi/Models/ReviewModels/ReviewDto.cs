@@ -2,17 +2,9 @@
 
 namespace BookLibraryApi.Models.ReviewModels
 {
-    public class ReviewDto
+    public class ReviewDto : GenericReviewDto
     {
         public Guid Id { get; set; }
-
-        public string ReviewerName { get; set; }
-
-        public string Email { get; set; }
-
-        public string ReviewDescription { get; set; }
-
-        public int BookRate { get; set; }
 
         public Guid BookId { get; set; }
 

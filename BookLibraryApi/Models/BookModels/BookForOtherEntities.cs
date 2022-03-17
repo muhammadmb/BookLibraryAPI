@@ -14,6 +14,5 @@ namespace BookLibraryApi.Models.BookModels
         public Guid GenreId { get; set; }
 
         public AuthorForBook Author { get; set; }
-
     }
 }

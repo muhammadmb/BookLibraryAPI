@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "fLNpEERUcQ3uJbmbZcb3zaYfwkmeIU7EWQ4TOcwrkKKnM90eSQM8q8QBS7GHQPVGzGiuvje04/mU0SsclFE7ew==",
+  "dgSpecHash": "ePuTEJsmgwVAI0HxC3i1ECS5NBtiDxh11WU9aguMz8cqkMiHeccMUNns49GZr1ixbV201L26brUEa1McqHTlGg==",
   "success": true,
   "projectFilePath": "F:\\Projects\\BackEndProjects\\BookLibraryAPI\\BookLibraryApi\\BookLibraryApi.csproj",
   "expectedPackageFiles": [
@@ -147,8 +147,7 @@
     "C:\\Users\\Blu-Ray\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\Blu-Ray\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\Blu-Ray\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\Blu-Ray\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
-    "C:\\Users\\Blu-Ray\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.15\\microsoft.netcore.app.host.win-x64.5.0.15.nupkg.sha512"
+    "C:\\Users\\Blu-Ray\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
   ],
   "logs": []
 }

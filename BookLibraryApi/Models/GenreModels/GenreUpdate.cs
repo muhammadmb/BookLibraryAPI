@@ -2,15 +2,7 @@
 
 namespace BookLibraryApi.Models.GenreModels
 {
-    public class GenreUpdate
+    public class GenreUpdate : GenreCreation
     {
-        public string Description { get; set; }
-
-        [Required]
-        public string GenreName { get; set; }
-
-        [Url]
-        [Required]
-        public string PicUrl { get; set; }
     }
 }
