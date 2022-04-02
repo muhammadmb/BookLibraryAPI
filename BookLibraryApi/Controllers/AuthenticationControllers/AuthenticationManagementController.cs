@@ -2,6 +2,8 @@
 using BookLibraryApi.Entities;
 using BookLibraryApi.Models.AuthenticationModels;
 using BookLibraryApi.Repositories.AuthenticationRepository;
+using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -17,6 +19,7 @@ using System.Threading.Tasks;
 namespace BookLibraryApi.Controllers.AuthenticationControllers
 {
     [ApiController]
+    [EnableCors("demoPolicy")]
     [Route("api/AuthenticationManagement")]
     public class AuthenticationManagementController : ControllerBase
     {
@@ -141,8 +144,16 @@ namespace BookLibraryApi.Controllers.AuthenticationControllers
 
         [HttpPost]
         [Route("RefreshToken")]
-        public async Task<IActionResult> RefreshToken([FromBody] TokenRequest tokenRequest)
+        public async Task<IActionResult> RefreshToken([FromBody] TokenRequest request)
         {
+            var refreshToken =  Request.Cookies["refreshToken"];
+
+            var tokenRequest = new TokenRequest
+            {
+                Token = request.Token,
+                RefreshToken = refreshToken
+            };
+
             if (ModelState.IsValid)
             {
                 var result = await VerifyAndGenerateToken(tokenRequest);
@@ -174,12 +185,22 @@ namespace BookLibraryApi.Controllers.AuthenticationControllers
         {
             var jwtTokenHandler = new JwtSecurityTokenHandler();
 
+            var refreshTokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuerSigningKey = true,
+                ValidateIssuer = false,
+                ValidateAudience = false,
+                ValidateLifetime = false,
+                ClockSkew = TimeSpan.Zero,
+                RequireExpirationTime = true
+            };
+
+            refreshTokenValidationParameters.IssuerSigningKey = _tokenValidationParams.IssuerSigningKey;
+
             try
             {
-                // Validation 1 - Validation JWT token format
-                var tokenInVerification = jwtTokenHandler.ValidateToken(tokenRequest.Token, _tokenValidationParams, out var validatedToken);
+                var tokenInVerification = jwtTokenHandler.ValidateToken(tokenRequest.Token, refreshTokenValidationParameters, out var validatedToken);
 
-                // Validation 2 - Validate encryption alg
                 if (validatedToken is JwtSecurityToken jwtSecurityToken)
                 {
                     var result = jwtSecurityToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256, StringComparison.InvariantCultureIgnoreCase);
@@ -190,7 +211,6 @@ namespace BookLibraryApi.Controllers.AuthenticationControllers
                     }
                 }
 
-                // Validation 3 - validate expiry date
                 var utcExpiryDate = long.Parse(tokenInVerification.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Exp).Value);
 
                 var expiryDate = UnixTimeStampToDateTime(utcExpiryDate);
@@ -206,7 +226,6 @@ namespace BookLibraryApi.Controllers.AuthenticationControllers
                     };
                 }
 
-                // validation 4 - validate existence of the token
                 var storedToken = await _authenticationRepository.getRefreshToken(tokenRequest);
 
                 if (storedToken == null)
@@ -220,7 +239,6 @@ namespace BookLibraryApi.Controllers.AuthenticationControllers
                     };
                 }
 
-                // Validation 5 - validate if used
                 if (storedToken.IsUsed)
                 {
                     return new AuthResult()
@@ -232,7 +250,6 @@ namespace BookLibraryApi.Controllers.AuthenticationControllers
                     };
                 }
 
-                // Validation 6 - validate if revoked
                 if (storedToken.IsRevorked)
                 {
                     return new AuthResult()
@@ -244,7 +261,6 @@ namespace BookLibraryApi.Controllers.AuthenticationControllers
                     };
                 }
 
-                // Validation 7 - validate the id
                 var jti = tokenInVerification.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Jti).Value;
 
                 if (storedToken.JwtId != jti)
@@ -258,13 +274,10 @@ namespace BookLibraryApi.Controllers.AuthenticationControllers
                     };
                 }
 
-                // update current token 
-
                 storedToken.IsUsed = true;
                 _authenticationRepository.Update(storedToken);
                 await _authenticationRepository.SaveChangesAsync();
 
-                // Generate a new token
                 var dbUser = await _userManager.FindByIdAsync(storedToken.UserId);
                 return await GenerateJwtToken(dbUser);
             }
@@ -313,8 +326,7 @@ namespace BookLibraryApi.Controllers.AuthenticationControllers
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
-                // only for demo
-                Expires = DateTime.UtcNow.AddSeconds(60),
+                Expires = DateTime.UtcNow.AddMinutes(1),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
 
@@ -335,15 +347,18 @@ namespace BookLibraryApi.Controllers.AuthenticationControllers
             _authenticationRepository.AddRefreshToken(refreshToken);
             await _authenticationRepository.SaveChangesAsync();
 
+            SetRefreshTokenInCookie(refreshToken.Token, refreshToken.ExpiryDate);
+
             return new AuthResult()
             {
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Roles = await _userManager.GetRolesAsync(user),
                 Token = jwtToken,
-                Success = true,
-                RefreshToken = refreshToken.Token
+                Success = true
             };
         }
 
-        // Get all valid claims for the corresponding user
         private async Task<List<Claim>> GetAllValidClaims(ApplicationUser user)
         {
             var claims = new List<Claim>
@@ -355,11 +370,9 @@ namespace BookLibraryApi.Controllers.AuthenticationControllers
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
 
-            // Getting the claims that we have assigned to the user
             var userClaims = await _userManager.GetClaimsAsync(user);
             claims.AddRange(userClaims);
 
-            // Get the user role and add it to the claims
             var userRoles = await _userManager.GetRolesAsync(user);
 
             foreach (var userRole in userRoles)
@@ -377,7 +390,6 @@ namespace BookLibraryApi.Controllers.AuthenticationControllers
                     }
                 }
             }
-
             return claims;
         }
 
@@ -389,5 +401,15 @@ namespace BookLibraryApi.Controllers.AuthenticationControllers
                 .Select(x => x[random.Next(x.Length)]).ToArray());
         }
 
+        private void SetRefreshTokenInCookie(string refreshToken, DateTime expires)
+        {
+            var cookieOptions = new CookieOptions
+            {
+                HttpOnly = true,
+                Expires = expires.ToLocalTime()
+            };
+
+            Response.Cookies.Append("refreshToken", refreshToken, cookieOptions);
+        }
     }
 }
