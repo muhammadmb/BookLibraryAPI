@@ -6,7 +6,7 @@ namespace BookLibraryApi.Models.AuthenticationModels
     {
         [Required]
         public string Token { get; set; }
-        [Required]
+        //[Required]
         public string RefreshToken { get; set; }
     }
 }

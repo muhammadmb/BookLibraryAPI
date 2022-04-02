@@ -43,7 +43,11 @@ namespace BookLibraryApi
                 options.AddPolicy("demoPolicy",
                     builder =>
                     {
-                        builder.WithOrigins().AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod().WithExposedHeaders("X-Pagination");
+                        builder.WithOrigins("http://localhost:3000", "http://localhost:3001")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .WithExposedHeaders("X-Pagination")
+                        .AllowCredentials();
                     });
             });
 
@@ -57,7 +61,8 @@ namespace BookLibraryApi
                 ValidateIssuer = false,
                 ValidateAudience = false,
                 ValidateLifetime = true,
-                RequireExpirationTime = false
+                ClockSkew = TimeSpan.Zero,
+                RequireExpirationTime = true
             };
 
             services.AddSingleton(tokenValidationParameters);
