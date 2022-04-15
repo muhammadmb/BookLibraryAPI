@@ -117,6 +117,8 @@ namespace BookLibraryApi.Repositories.BookReposittory
         public void Update(Book book)
         {
             book.UpdateDate = DateTimeOffset.Now;
+            book.Genre = _context.Genres.FirstOrDefault(g => g.Id == book.GenreId);
+            book.Author = _context.Authors.FirstOrDefault(a => a.Id == book.AuthorId);
             _context.Books.Update(book);
         }
 

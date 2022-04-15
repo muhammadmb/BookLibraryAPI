@@ -60,6 +60,7 @@ namespace BookLibraryApi.Repositories.AuthorRepository
         public void Update(Author authorFromRepo)
         {
             authorFromRepo.UpdateDate = DateTimeOffset.Now;
+            authorFromRepo.Genre = _context.Genres.FirstOrDefault(g => g.Id == authorFromRepo.GenreId);
             _context.Authors.Update(authorFromRepo);
         }
 
