@@ -73,7 +73,7 @@ namespace BookLibraryApi.Controllers
             Response.Headers.Add("X-Pagination",
                 JsonSerializer.Serialize(paginationMetadata));
 
-            var SuggestionsToReturn = _mapper.Map<IEnumerable<Suggestion>>(Suggestions).ShapeData(parameters.Fields);
+            var SuggestionsToReturn = _mapper.Map<IEnumerable<SuggestionDto>>(Suggestions).ShapeData(parameters.Fields);
 
             return Ok(SuggestionsToReturn);
         }

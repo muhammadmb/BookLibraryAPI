@@ -31,7 +31,11 @@ namespace BookLibraryApi.Entities
 
         public Guid? AuthorId { get; set; }
 
-        public Guid GenreId { get; set; }
+        public Author? Author { get; set; }
+
+        public Guid? GenreId { get; set; }
+
+        public Genre? Genre { get; set; }
 
         public DateTimeOffset? IsDeleted { get; set; }
 

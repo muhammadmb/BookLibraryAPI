@@ -8,9 +8,9 @@ namespace BookLibraryApi.Profiles
     {
         public SuggestionProfile()
         {
+            CreateMap<Suggestion, SuggestionDto>();
             CreateMap<SuggestionCreationDto, Suggestion>();
-            CreateMap<SuggestionUpdateDto, Suggestion>();
-            CreateMap<Suggestion, SuggestionUpdateDto>();
+            CreateMap<SuggestionUpdateDto, Suggestion>().ReverseMap();
         }
     }
 }

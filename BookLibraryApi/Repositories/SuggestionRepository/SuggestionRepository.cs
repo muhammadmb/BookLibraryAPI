@@ -23,7 +23,7 @@ namespace BookLibraryApi.Repositories.SuggesstionRepository
         {
             IQueryable<Suggestion> Collection;
 
-            Collection = _context.Suggestions;
+            Collection = _context.Suggestions.Include(s => s.Genre ).Include(s => s.Author);
 
             if (!string.IsNullOrWhiteSpace(parameters.SearchQuery))
             {
