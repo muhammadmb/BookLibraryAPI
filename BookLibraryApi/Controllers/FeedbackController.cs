@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Text.Json;
 using System.Threading.Tasks;
 
@@ -70,7 +71,7 @@ namespace BookLibraryApi.Controllers
             Response.Headers.Add("X-Pagination",
                 JsonSerializer.Serialize(paginationMetadata));
 
-            return Ok(feedbacks.ShapeData(parameters.Fields));
+            return Ok( _mapper.Map<IEnumerable<Feedback>>(feedbacks).ShapeData(parameters.Fields));
         }
 
         [HttpGet("{Id}", Name = "GetFeedback")]
