@@ -1,11 +1,18 @@
-﻿using BookLibraryApi.Entities;
+﻿using AutoMapper;
+using BookLibraryApi.Contexts;
+using BookLibraryApi.Entities;
+using BookLibraryApi.Models.UserProfileModels;
+using BookLibraryApi.Repositories.UserRepository;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -13,17 +20,24 @@ namespace BookLibraryApi.Controllers.AuthenticationControllers
 {
     [Route("api/setup")]
     [ApiController]
+    [EnableCors("demoPolicy")]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Master")]
     public class SetupController : ControllerBase
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly BookContext _context;
         private readonly ILogger<SetupController> _logger;
+        private readonly IMapper _mapper;
+        private readonly IUserRepository _userRepository;
 
         public SetupController(
             ILogger<SetupController> logger,
             UserManager<ApplicationUser> userManager,
-            RoleManager<IdentityRole> roleManager)
+            RoleManager<IdentityRole> roleManager,
+            BookContext context,
+            IUserRepository userRepository,
+            IMapper mapper)
         {
             _userManager = userManager ??
                 throw new ArgumentNullException(nameof(userManager));
@@ -31,6 +45,11 @@ namespace BookLibraryApi.Controllers.AuthenticationControllers
                 throw new ArgumentNullException(nameof(roleManager));
             _logger = logger ??
                 throw new ArgumentNullException(nameof(logger));
+            _mapper = mapper ??
+                  throw new ArgumentNullException(nameof(mapper));
+            _context = context;
+            _userRepository = userRepository ??
+                throw new ArgumentNullException(nameof(userRepository));
         }
 
         [HttpGet]
@@ -44,18 +63,17 @@ namespace BookLibraryApi.Controllers.AuthenticationControllers
         [Route("GetAllUsers")]
         public async Task<IActionResult> GetAllUsers()
         {
-            var users = await _userManager.Users.ToListAsync();
-            return Ok(users);
+            var usersWithRoles = await _userRepository.GetUsers();
+            return Ok(usersWithRoles);
         }
 
         [HttpGet]
         [Route("GetUserRoles")]
         public async Task<IActionResult> GetUserRoles(string email)
         {
-            // check if the email is valid
             var user = await _userManager.FindByEmailAsync(email);
 
-            if (user == null) // User does not exist
+            if (user == null) 
             {
                 _logger.LogInformation($"The user with the {email} does not exist");
                 return BadRequest(new
@@ -64,7 +82,6 @@ namespace BookLibraryApi.Controllers.AuthenticationControllers
                 });
             }
 
-            // return the roles
             var roles = await _userManager.GetRolesAsync(user);
 
             return Ok(roles);
@@ -73,14 +90,12 @@ namespace BookLibraryApi.Controllers.AuthenticationControllers
         [HttpPost]
         public async Task<IActionResult> CreateRole(string name)
         {
-            // Check if the role exist
             var roleExist = await _roleManager.RoleExistsAsync(name);
 
-            if (!roleExist) // checks on the role exist status
+            if (!roleExist) 
             {
                 var roleResult = await _roleManager.CreateAsync(new IdentityRole(name));
 
-                // We need to check if the role has been added successfully
                 if (roleResult.Succeeded)
                 {
                     _logger.LogInformation($"The Role {name} has been added successfully");
@@ -101,14 +116,12 @@ namespace BookLibraryApi.Controllers.AuthenticationControllers
             return BadRequest(new { error = "Role already exist" });
         }
 
-        [HttpPost]
-        [Route("AddUserToRole")]
+        [HttpPost("AddUserToRole")]
         public async Task<IActionResult> AddUserToRole(string email, string roleName)
         {
-            // Check if the user exist
             var user = await _userManager.FindByEmailAsync(email);
 
-            if (user == null) // User does not exist
+            if (user == null)
             {
                 _logger.LogInformation($"The user with the {email} does not exist");
                 return BadRequest(new
@@ -117,11 +130,9 @@ namespace BookLibraryApi.Controllers.AuthenticationControllers
                 });
             }
 
-            // Check if the role exist
-            // Check if the role exist
             var roleExist = await _roleManager.RoleExistsAsync(roleName);
 
-            if (!roleExist) // checks on the role exist status
+            if (!roleExist)
             {
                 _logger.LogInformation($"The role {email} does not exist");
                 return BadRequest(new
@@ -132,7 +143,6 @@ namespace BookLibraryApi.Controllers.AuthenticationControllers
 
             var result = await _userManager.AddToRoleAsync(user, roleName);
 
-            // Check if the user is assigned to the role successfully
             if (result.Succeeded)
             {
                 return StatusCode(201, new
@@ -151,14 +161,12 @@ namespace BookLibraryApi.Controllers.AuthenticationControllers
             }
         }
 
-        [HttpPost]
-        [Route("RemoveUserFromRole")]
+        [HttpPost("RemoveUserFromRole")]
         public async Task<IActionResult> RemoveUserFromRole(string email, string roleName)
         {
-            // Check if the user exist
             var user = await _userManager.FindByEmailAsync(email);
 
-            if (user == null) // User does not exist
+            if (user == null)
             {
                 _logger.LogInformation($"The user with the {email} does not exist");
                 return BadRequest(new
@@ -167,10 +175,9 @@ namespace BookLibraryApi.Controllers.AuthenticationControllers
                 });
             }
 
-            // Check if the role exist
             var roleExist = await _roleManager.RoleExistsAsync(roleName);
 
-            if (!roleExist) // checks on the role exist status
+            if (!roleExist)
             {
                 _logger.LogInformation($"The role {email} does not exist");
                 return BadRequest(new
@@ -193,6 +200,27 @@ namespace BookLibraryApi.Controllers.AuthenticationControllers
             {
                 error = $"Unable to remove User {email} from role {roleName}"
             });
+        }
+
+        [HttpDelete("deleteUser")]
+        public async Task<IActionResult> DeleteUser(string email)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+
+            if (user == null)
+            {
+                _logger.LogInformation($"The user with the {email} does not exist");
+                return BadRequest(new
+                {
+                    error = "User does not exist"
+                });
+            }
+
+            user.IsDeleted = DateTimeOffset.Now;
+            _context.Update(user);
+            _context.SaveChanges();
+
+            return NoContent();
         }
     }
 }

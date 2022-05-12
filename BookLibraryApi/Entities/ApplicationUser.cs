@@ -12,7 +12,7 @@ namespace BookLibraryApi.Entities
 
         public DateTime DateOfBirth { get; set; }
 
-        public DateTimeOffset AddedDate { get; set; } = DateTime.Now;
+        public DateTimeOffset AddedDate { get; set; } = DateTimeOffset.Now;
 
         public string Country { get; set; }
 
