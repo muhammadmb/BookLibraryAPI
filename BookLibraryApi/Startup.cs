@@ -7,6 +7,7 @@ using BookLibraryApi.Repositories.BookReposittory;
 using BookLibraryApi.Repositories.FeedbackRepository;
 using BookLibraryApi.Repositories.GenreRepository;
 using BookLibraryApi.Repositories.ReviewsRepository;
+using BookLibraryApi.Repositories.StatisticsRepository;
 using BookLibraryApi.Repositories.SuggesstionRepository;
 using BookLibraryApi.Repositories.UserRepository;
 using BookLibraryApi.Services;
@@ -35,7 +36,6 @@ namespace BookLibraryApi
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
 
@@ -111,6 +111,7 @@ namespace BookLibraryApi
             services.AddScoped<IFeedbackRepository, FeedbackRepository>();
             services.AddScoped<ISuggestionRepository, SuggestionRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IStatisticsRepository, StatisticsRepository>();
 
             services.AddSwaggerGen(c =>
             {
