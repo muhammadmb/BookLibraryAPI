@@ -1,32 +1,45 @@
 ﻿using AutoMapper;
+using BookLibraryApi.Contexts;
 using BookLibraryApi.Entities;
 using BookLibraryApi.Models.UserProfileModels;
+using BookLibraryApi.Repositories.UserRepository;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace BookLibraryApi.Controllers.AuthenticationControllers
 {
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [EnableCors("demoPolicy")]
     [Route("api/myProfile")]
     [ApiController]
     public class ProfileController : ControllerBase
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IMapper _mapper;
+        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly IUserRepository _userRepository;
 
-        public ProfileController(UserManager<ApplicationUser> userManager, IMapper mapper)
+        public ProfileController(UserManager<ApplicationUser> userManager, IUserRepository userRepository, RoleManager<IdentityRole> roleManager, IMapper mapper)
         {
             _userManager = userManager ??
                 throw new ArgumentNullException(nameof(userManager));
 
             _mapper = mapper ??
                    throw new ArgumentNullException(nameof(mapper));
+
+            _roleManager = roleManager ??
+                throw new ArgumentNullException(nameof(roleManager));
+
+            _userRepository = userRepository ??
+                throw new ArgumentNullException(nameof(userRepository));
         }
 
         [HttpGet]
@@ -40,10 +53,12 @@ namespace BookLibraryApi.Controllers.AuthenticationControllers
             }
 
             var user = _mapper.Map<UserProfileDto>(loggedInUser);
+            var roles = await _userRepository.GetUserRoles(user);
+            user.Roles = roles;
 
             return Ok(user);
         }
-        
+
         [HttpPut]
         public async Task<IActionResult> EditProfile([FromBody] UserProfileUpdateDto profileUpdateDto)
         {

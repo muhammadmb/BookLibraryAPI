@@ -1,5 +1,6 @@
 ﻿using BookLibraryApi.Entities;
 using System;
+using System.Collections.Generic;
 
 namespace BookLibraryApi.Models.UserProfileModels
 {
@@ -21,8 +22,10 @@ namespace BookLibraryApi.Models.UserProfileModels
 
         public string Address { get; set; }
 
-        public Gender Gender { get; set; }
+        public string Gender { get; set; }
 
         public string PictureUrl { get; set; }
+
+        public List<string> Roles { get; set; }
     }
 }
