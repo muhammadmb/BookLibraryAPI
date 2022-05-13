@@ -23,7 +23,7 @@ namespace BookLibraryApi.Repositories.FeedbackRepository
         {
             IQueryable<Feedback> Collection;
 
-            Collection = _context.Feedbacks;
+            Collection = _context.Feedbacks.OrderByDescending(f => f.AddedDate);
 
             if (!string.IsNullOrWhiteSpace(parameters.SearchQuery))
             {
