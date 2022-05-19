@@ -6,8 +6,8 @@ namespace BookLibraryApi.Models.UserProfileModels
     {
         public Guid Id { get; set; }
 
-        public DateTime AddedDate { get; set; }
+        public DateTimeOffset AddedDate { get; set; }
 
-        public DateTimeOffset UpdateDate { get; set; }
+        public DateTimeOffset? UpdateDate { get; set; }
     }
 }
