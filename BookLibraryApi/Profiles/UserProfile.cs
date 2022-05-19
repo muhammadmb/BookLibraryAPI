@@ -8,7 +8,9 @@ namespace BookLibraryApi.Profiles
     {
         public UserProfile()
         {
-            CreateMap<ApplicationUser, UserProfileDto>();
+            CreateMap<ApplicationUser, UserProfileDto>().ForMember(
+                dest => dest.Gender,
+                opt => opt.MapFrom(src => src.Gender == 0 ? "Male" : "Female"));
             CreateMap<UserProfileUpdateDto, ApplicationUser>();
             CreateMap<ApplicationUser, UserProfileUpdateDto>();
         }
