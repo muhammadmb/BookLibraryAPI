@@ -79,7 +79,7 @@ namespace BookLibraryApi.Repositories.BookReposittory
                 if (parameters.SortBy.ToLowerInvariant() == "rating")
                 {
                     Collection =
-                        Collection.OrderByDescending(b => b.BookRating.TotalRate);
+                        Collection.OrderByDescending(b => (b.BookRating.ReviewsCount != 0 ?  b.BookRating.TotalRate/b.BookRating.ReviewsCount : b.BookRating.TotalRate));
                 }
             }
 
