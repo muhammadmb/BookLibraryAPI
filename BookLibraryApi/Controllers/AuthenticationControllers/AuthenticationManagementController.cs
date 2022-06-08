@@ -47,6 +47,7 @@ namespace BookLibraryApi.Controllers.AuthenticationControllers
                 throw new ArgumentNullException(nameof(authenticationRepository));
         }
 
+
         [HttpPost]
         [Route("Register")]
         public async Task<IActionResult> Register([FromBody] UserRegisterationDTO user)
@@ -158,13 +159,11 @@ namespace BookLibraryApi.Controllers.AuthenticationControllers
             {
                 var result = await VerifyAndGenerateToken(tokenRequest);
 
-                if (result == null)
+                if (result.Errors != null)
                 {
                     return BadRequest(new RegistrationResponse()
                     {
-                        Errors = new List<string>() {
-                            "Invalid tokens"
-                        },
+                        Errors = result.Errors,
                         Success = false
                     });
                 }
